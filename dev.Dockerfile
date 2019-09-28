@@ -1,4 +1,4 @@
-FROM ruby:2.5
+FROM ruby:2.5.6
 RUN apt-get update -qq && apt-get install -y mariadb-server vim
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
         && apt-get install -y nodejs

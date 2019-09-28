@@ -1,4 +1,4 @@
-FROM ruby:2.5
+FROM ruby:2.5.6
 RUN apt-get update -qq && apt-get install -y nodejs mariadb-server vim
 RUN mkdir /app
 WORKDIR /app
