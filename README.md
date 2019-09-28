@@ -71,7 +71,7 @@ $ docker-compose up -d mariadb
 ```
 
 ### 5. Crear base de datos dentro del contenedor
-```shell
+```
 $ docker-compose run web bash
 # rails db:create
 ```
