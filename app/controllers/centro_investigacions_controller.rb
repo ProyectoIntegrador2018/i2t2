@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class CentroInvestigacionsController < ApplicationController
-  before_action :set_centro_investigacion, only: [:show, :edit, :update, :destroy]
+  before_action :set_centro_investigacion, only: %i[show edit update destroy]
 
   # GET /centro_investigacions
   # GET /centro_investigacions.json
@@ -9,8 +11,7 @@ class CentroInvestigacionsController < ApplicationController
 
   # GET /centro_investigacions/1
   # GET /centro_investigacions/1.json
-  def show
-  end
+  def show; end
 
   # GET /centro_investigacions/new
   def new
@@ -18,8 +19,7 @@ class CentroInvestigacionsController < ApplicationController
   end
 
   # GET /centro_investigacions/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /centro_investigacions
   # POST /centro_investigacions.json
@@ -62,13 +62,14 @@ class CentroInvestigacionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_centro_investigacion
-      @centro_investigacion = CentroInvestigacion.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def centro_investigacion_params
-      params.require(:centro_investigacion).permit(:nombre, :abreviacion, :sitio, :domicilio, :fecha_inicio, :nombre_encargado, :correo_encargado, :telefono_encargado, :sectores, :industrias, :areas_investigacion, :servicios_idti, :terreno_total, :terreno_privada, :terreno_federal, :terreno_estatal, :terreno_otro, :equip_total, :equip_privado, :equip_federal, :equip_estatal, :equip_otro, :area_edificio, :area_terreno, :area_total, :area_idi, :lista_equipo, :patentes_solicitadas_mexico, :disenos_solicitados_mexico, :patentes_solicitadas_triadicas, :patentes_otorgadas_mexico, :disenos_otorgados_mexico, :patentes_otorgadas_triadicas, :marcas_registradas, :derechos_registrados, :publicaciones_isi, :articulos_arb, :articulos_no_arb, :citas_articulos, :premios_centro, :responsable_dep_vinculacion, :user_id, :centro_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_centro_investigacion
+    @centro_investigacion = CentroInvestigacion.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def centro_investigacion_params
+    params.require(:centro_investigacion).permit(:nombre, :abreviacion, :sitio, :domicilio, :fecha_inicio, :nombre_encargado, :correo_encargado, :telefono_encargado, :sectores, :industrias, :areas_investigacion, :servicios_idti, :terreno_total, :terreno_privada, :terreno_federal, :terreno_estatal, :terreno_otro, :equip_total, :equip_privado, :equip_federal, :equip_estatal, :equip_otro, :area_edificio, :area_terreno, :area_total, :area_idi, :lista_equipo, :patentes_solicitadas_mexico, :disenos_solicitados_mexico, :patentes_solicitadas_triadicas, :patentes_otorgadas_mexico, :disenos_otorgados_mexico, :patentes_otorgadas_triadicas, :marcas_registradas, :derechos_registrados, :publicaciones_isi, :articulos_arb, :articulos_no_arb, :citas_articulos, :premios_centro, :responsable_dep_vinculacion, :user_id, :centro_id)
+  end
 end
