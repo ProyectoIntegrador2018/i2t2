@@ -42,11 +42,7 @@ class CentroInvestigacionsController < ApplicationController
     format.json { render json: @centro_investigacion.errors, status: :unprocessable_entity }
   end
 
-  # POST /centro_investigacions
-  # POST /centro_investigacions.json
-  def create
-    @centro_investigacion = CentroInvestigacion.new(centro_investigacion_params)
-
+  def respond_create
     respond_to do |format|
       if @centro_investigacion.save
         show_created_html
@@ -58,17 +54,35 @@ class CentroInvestigacionsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /centro_investigacions/1
-  # PATCH/PUT /centro_investigacions/1.json
-  def update
-    respond_to do |format|
-      if @centro_investigacion.update(centro_investigacion_params)
+  # POST /centro_investigacions
+  # POST /centro_investigacions.json
+  def create
+    @centro_investigacion = CentroInvestigacion.new(centro_investigacion_params)
+    respond_create
+  end
+
+  def respond_update
+    if @centro_investigacion.update(centro_investigacion_params)
         show_updated_html
         show_updated_json
       else
         format.html { render :edit }
         show_unprocessable_json
       end
+  end
+
+  # PATCH/PUT /centro_investigacions/1
+  # PATCH/PUT /centro_investigacions/1.json
+  def update
+    respond_to do |format|
+      respond_update
+    end
+  end
+
+  def respond_destroy
+    respond_to do |format|
+      format.html { redirect_to centro_investigacions_url, notice: 'Centro investigacion was successfully destroyed.' }
+      format.json { head :no_content }
     end
   end
 
@@ -76,10 +90,7 @@ class CentroInvestigacionsController < ApplicationController
   # DELETE /centro_investigacions/1.json
   def destroy
     @centro_investigacion.destroy
-    respond_to do |format|
-      format.html { redirect_to centro_investigacions_url, notice: 'Centro investigacion was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    respond_destroy
   end
 
   private
