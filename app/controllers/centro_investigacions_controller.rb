@@ -22,16 +22,13 @@ class CentroInvestigacionsController < ApplicationController
   # GET /centro_investigacions/1/edit
   def edit; end
 
-  def show_created_html
+  def show_created
     format.html { redirect_to @centro_investigacion, notice: 'Centro investigacion was successfully created.' }
+    format.json { render :show, status: :created, location: @centro_investigacion }
   end
 
   def show_updated_html
     format.html { redirect_to @centro_investigacion, notice: 'Centro investigacion was successfully updated.' }
-  end
-
-  def show_updated_json
-    format.json { render :show, status: :ok, location: @centro_investigacion }
   end
 
   def show_unprocessable_json
@@ -40,8 +37,7 @@ class CentroInvestigacionsController < ApplicationController
 
   def respond_create
     if @centro_investigacion.save
-      show_created_html
-      format.json { render :show, status: :created, location: @centro_investigacion }
+      show_created
     else
       format.html { render :new }
       show_unprocessable_json
@@ -60,7 +56,7 @@ class CentroInvestigacionsController < ApplicationController
   def respond_update
     if @centro_investigacion.update(centro_investigacion_params)
         show_updated_html
-        show_updated_json
+        format.json { render :show, status: :ok, location: @centro_investigacion }
       else
         format.html { render :edit }
         show_unprocessable_json
