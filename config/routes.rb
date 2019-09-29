@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 Rails.application.routes.draw do
   root to: 'usuarios#inicio'
   devise_for :users
