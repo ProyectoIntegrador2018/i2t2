@@ -6,23 +6,8 @@ require 'test_helper'
 class CentroInvestigacionsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @centro_investigacion = centro_investigacions(:one)
-    @centro_investigacion_2 = centro_investigacions(:two)
-  end
-
-  test 'should get index' do
-    get centro_investigacions_url
-    assert_response :success
-  end
-
-  test 'should get new' do
-    get new_centro_investigacion_url
-    assert_response :success
-  end
-
-  test 'should create centro_investigacion' do
-    assert_difference('CentroInvestigacion.count') do
-      post centro_investigacions_url,
-           params: {
+    @centro_investigacion_two = centro_investigacions(:two)
+    @saved_parms = params: {
             centro_investigacion: {
               abreviacion: @centro_investigacion.abreviacion,
               area_edificio: @centro_investigacion.area_edificio,
@@ -69,6 +54,21 @@ class CentroInvestigacionsControllerTest < ActionDispatch::IntegrationTest
               user_id: @centro_investigacion.user_id
             }
           }
+  end
+
+  test 'should get index' do
+    get centro_investigacions_url
+    assert_response :success
+  end
+
+  test 'should get new' do
+    get new_centro_investigacion_url
+    assert_response :success
+  end
+
+  test 'should create centro_investigacion' do
+    assert_difference('CentroInvestigacion.count') do
+      post centro_investigacions_url, @saved_parms
     end
 
     assert_redirected_to centro_investigacion_url(CentroInvestigacion.last)
@@ -85,7 +85,7 @@ class CentroInvestigacionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should update centro_investigacion' do
-    patch centro_investigacion_url(@centro_investigacion_2), params: { centro_investigacion: { abreviacion: @centro_investigacion_2.abreviacion, area_edificio: @centro_investigacion_2.area_edificio, area_idi: @centro_investigacion_2.area_idi, area_terreno: @centro_investigacion_2.area_terreno, area_total: @centro_investigacion_2.area_total, areas_investigacion: @centro_investigacion_2.areas_investigacion, articulos_arb: @centro_investigacion_2.articulos_arb, articulos_no_arb: @centro_investigacion_2.articulos_no_arb, centro_id: @centro_investigacion_2.centro_id, citas_articulos: @centro_investigacion_2.citas_articulos, correo_encargado: @centro_investigacion_2.correo_encargado, derechos_registrados: @centro_investigacion_2.derechos_registrados, disenos_otorgados_mexico: @centro_investigacion_2.disenos_otorgados_mexico, disenos_solicitados_mexico: @centro_investigacion_2.disenos_solicitados_mexico, domicilio: @centro_investigacion_2.domicilio, equip_estatal: @centro_investigacion_2.equip_estatal, equip_federal: @centro_investigacion_2.equip_federal, equip_otro: @centro_investigacion_2.equip_otro, equip_privado: @centro_investigacion_2.equip_privado, equip_total: @centro_investigacion_2.equip_total, fecha_inicio: @centro_investigacion_2.fecha_inicio, industrias: @centro_investigacion_2.industrias, lista_equipo: @centro_investigacion_2.lista_equipo, marcas_registradas: @centro_investigacion_2.marcas_registradas, nombre: @centro_investigacion_2.nombre, nombre_encargado: @centro_investigacion_2.nombre_encargado, patentes_otorgadas_mexico: @centro_investigacion_2.patentes_otorgadas_mexico, patentes_otorgadas_triadicas: @centro_investigacion_2.patentes_otorgadas_triadicas, patentes_solicitadas_mexico: @centro_investigacion_2.patentes_solicitadas_mexico, patentes_solicitadas_triadicas: @centro_investigacion_2.patentes_solicitadas_triadicas, premios_centro: @centro_investigacion_2.premios_centro, publicaciones_isi: @centro_investigacion_2.publicaciones_isi, responsable_dep_vinculacion: @centro_investigacion_2.responsable_dep_vinculacion, sectores: @centro_investigacion_2.sectores, servicios_idti: @centro_investigacion_2.servicios_idti, sitio: @centro_investigacion_2.sitio, telefono_encargado: @centro_investigacion_2.telefono_encargado, terreno_estatal: @centro_investigacion_2.terreno_estatal, terreno_federal: @centro_investigacion_2.terreno_federal, terreno_otro: @centro_investigacion_2.terreno_otro, terreno_privada: @centro_investigacion_2.terreno_privada, terreno_total: @centro_investigacion_2.terreno_total, user_id: @centro_investigacion_2.user_id } }
+    patch centro_investigacion_url(@centro_investigacion_two), params: { centro_investigacion: { abreviacion: @centro_investigacion_two.abreviacion, area_edificio: @centro_investigacion_two.area_edificio, area_idi: @centro_investigacion_two.area_idi, area_terreno: @centro_investigacion_two.area_terreno, area_total: @centro_investigacion_two.area_total, areas_investigacion: @centro_investigacion_two.areas_investigacion, articulos_arb: @centro_investigacion_two.articulos_arb, articulos_no_arb: @centro_investigacion_two.articulos_no_arb, centro_id: @centro_investigacion_two.centro_id, citas_articulos: @centro_investigacion_two.citas_articulos, correo_encargado: @centro_investigacion_two.correo_encargado, derechos_registrados: @centro_investigacion_two.derechos_registrados, disenos_otorgados_mexico: @centro_investigacion_two.disenos_otorgados_mexico, disenos_solicitados_mexico: @centro_investigacion_two.disenos_solicitados_mexico, domicilio: @centro_investigacion_two.domicilio, equip_estatal: @centro_investigacion_two.equip_estatal, equip_federal: @centro_investigacion_two.equip_federal, equip_otro: @centro_investigacion_two.equip_otro, equip_privado: @centro_investigacion_two.equip_privado, equip_total: @centro_investigacion_two.equip_total, fecha_inicio: @centro_investigacion_two.fecha_inicio, industrias: @centro_investigacion_two.industrias, lista_equipo: @centro_investigacion_two.lista_equipo, marcas_registradas: @centro_investigacion_two.marcas_registradas, nombre: @centro_investigacion_two.nombre, nombre_encargado: @centro_investigacion_two.nombre_encargado, patentes_otorgadas_mexico: @centro_investigacion_two.patentes_otorgadas_mexico, patentes_otorgadas_triadicas: @centro_investigacion_two.patentes_otorgadas_triadicas, patentes_solicitadas_mexico: @centro_investigacion_two.patentes_solicitadas_mexico, patentes_solicitadas_triadicas: @centro_investigacion_two.patentes_solicitadas_triadicas, premios_centro: @centro_investigacion_two.premios_centro, publicaciones_isi: @centro_investigacion_two.publicaciones_isi, responsable_dep_vinculacion: @centro_investigacion_two.responsable_dep_vinculacion, sectores: @centro_investigacion_two.sectores, servicios_idti: @centro_investigacion_two.servicios_idti, sitio: @centro_investigacion_two.sitio, telefono_encargado: @centro_investigacion_two.telefono_encargado, terreno_estatal: @centro_investigacion_two.terreno_estatal, terreno_federal: @centro_investigacion_two.terreno_federal, terreno_otro: @centro_investigacion_two.terreno_otro, terreno_privada: @centro_investigacion_two.terreno_privada, terreno_total: @centro_investigacion_two.terreno_total, user_id: @centro_investigacion_two.user_id } }
     assert_redirected_to centro_investigacion_url(@centro_investigacion)
   end
 

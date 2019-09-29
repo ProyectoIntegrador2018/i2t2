@@ -26,10 +26,6 @@ class CentroInvestigacionsController < ApplicationController
     format.html { redirect_to @centro_investigacion, notice: 'Centro investigacion was successfully created.' }
   end
 
-  def show_created_json
-    format.json { render :show, status: :created, location: @centro_investigacion }
-  end
-
   def show_updated_html
     format.html { redirect_to @centro_investigacion, notice: 'Centro investigacion was successfully updated.' }
   end
@@ -43,14 +39,12 @@ class CentroInvestigacionsController < ApplicationController
   end
 
   def respond_create
-    respond_to do |format|
-      if @centro_investigacion.save
-        show_created_html
-        show_created_json
-      else
-        format.html { render :new }
-        show_unprocessable_json
-      end
+    if @centro_investigacion.save
+      show_created_html
+      format.json { render :show, status: :created, location: @centro_investigacion }
+    else
+      format.html { render :new }
+      show_unprocessable_json
     end
   end
 
@@ -58,7 +52,9 @@ class CentroInvestigacionsController < ApplicationController
   # POST /centro_investigacions.json
   def create
     @centro_investigacion = CentroInvestigacion.new(centro_investigacion_params)
-    respond_create
+    respond_to do |format|
+      respond_create
+    end
   end
 
   def respond_update
