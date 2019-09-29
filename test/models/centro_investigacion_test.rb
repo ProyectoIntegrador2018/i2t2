@@ -2,8 +2,8 @@
 
 require 'test_helper'
 
-# Unit tests for the User Model.
-class UserTest < ActiveSupport::TestCase
+# Unit tests for the Centro Investigacion model.
+class CentroInvestigacionTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
