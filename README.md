@@ -74,6 +74,7 @@ $ docker-compose up -d mariadb
 ```
 $ docker-compose run web bash
 # rails db:create
+# rails db:migrate
 ```
 
 ### 6. Ejecutar aplicación web
