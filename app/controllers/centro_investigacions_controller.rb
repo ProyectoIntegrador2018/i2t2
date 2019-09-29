@@ -22,8 +22,16 @@ class CentroInvestigacionsController < ApplicationController
   # GET /centro_investigacions/1/edit
   def edit; end
 
+  def show_created_html
+    format.html { redirect_to @centro_investigacion, notice: 'Centro investigacion was successfully created.' }
+  end
+
   def show_created_json
     format.json { render :show, status: :created, location: @centro_investigacion }
+  end
+
+  def show_updated_html
+    format.html { redirect_to @centro_investigacion, notice: 'Centro investigacion was successfully updated.' }
   end
 
   def show_updated_json
@@ -41,7 +49,7 @@ class CentroInvestigacionsController < ApplicationController
 
     respond_to do |format|
       if @centro_investigacion.save
-        format.html { redirect_to @centro_investigacion, notice: 'Centro investigacion was successfully created.' }
+        show_created_html
         show_created_json
       else
         format.html { render :new }
@@ -55,7 +63,7 @@ class CentroInvestigacionsController < ApplicationController
   def update
     respond_to do |format|
       if @centro_investigacion.update(centro_investigacion_params)
-        format.html { redirect_to @centro_investigacion, notice: 'Centro investigacion was successfully updated.' }
+        show_updated_html
         show_updated_json
       else
         format.html { render :edit }
