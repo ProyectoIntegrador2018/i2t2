@@ -22,25 +22,26 @@ class CentroInvestigacionsController < ApplicationController
   # GET /centro_investigacions/1/edit
   def edit; end
 
-  def show_created
+  def show_created(format)
     format.html { redirect_to @centro_investigacion, notice: 'Centro investigacion was successfully created.' }
     format.json { render :show, status: :created, location: @centro_investigacion }
   end
 
-  def show_updated_html
+  def show_updated(format)
     format.html { redirect_to @centro_investigacion, notice: 'Centro investigacion was successfully updated.' }
+    format.json { render :show, status: :ok, location: @centro_investigacion }
   end
 
-  def show_unprocessable_json
+  def show_unprocessable_json(format)
     format.json { render json: @centro_investigacion.errors, status: :unprocessable_entity }
   end
 
-  def respond_create
+  def respond_create(format)
     if @centro_investigacion.save
-      show_created
+      show_created(format)
     else
       format.html { render :new }
-      show_unprocessable_json
+      show_unprocessable_json(format)
     end
   end
 
@@ -49,17 +50,16 @@ class CentroInvestigacionsController < ApplicationController
   def create
     @centro_investigacion = CentroInvestigacion.new(centro_investigacion_params)
     respond_to do |format|
-      respond_create
+      respond_create(format)
     end
   end
 
-  def respond_update
+  def respond_update(format)
     if @centro_investigacion.update(centro_investigacion_params)
-        show_updated_html
-        format.json { render :show, status: :ok, location: @centro_investigacion }
+        show_updated(format)
       else
         format.html { render :edit }
-        show_unprocessable_json
+        show_unprocessable_json(format)
       end
   end
 
@@ -67,7 +67,7 @@ class CentroInvestigacionsController < ApplicationController
   # PATCH/PUT /centro_investigacions/1.json
   def update
     respond_to do |format|
-      respond_update
+      respond_update(format)
     end
   end
 
