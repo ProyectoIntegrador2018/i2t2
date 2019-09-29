@@ -4,6 +4,7 @@
 class User < ApplicationRecord
   enum role: %i[admin_centro_inv admin_plataforma admin_patente
                 admin_cluster emprendedor_base usuario_general]
+
   after_initialize :set_default_role, if: :new_record?
 
   def set_default_role
