@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Action handler for CRUD operations on Centros de Investigación.
 class CentroInvestigacionsController < ApplicationController
   before_action :set_centro_investigacion, only: %i[show edit update destroy]
 
@@ -21,6 +22,18 @@ class CentroInvestigacionsController < ApplicationController
   # GET /centro_investigacions/1/edit
   def edit; end
 
+  def show_created_json
+    format.json { render :show, status: :created, location: @centro_investigacion }
+  end
+
+  def show_updated_json
+    format.json { render :show, status: :ok, location: @centro_investigacion }
+  end
+
+  def show_unprocessable_json
+    format.json { render json: @centro_investigacion.errors, status: :unprocessable_entity }
+  end
+
   # POST /centro_investigacions
   # POST /centro_investigacions.json
   def create
@@ -29,10 +42,10 @@ class CentroInvestigacionsController < ApplicationController
     respond_to do |format|
       if @centro_investigacion.save
         format.html { redirect_to @centro_investigacion, notice: 'Centro investigacion was successfully created.' }
-        format.json { render :show, status: :created, location: @centro_investigacion }
+        show_created_json
       else
         format.html { render :new }
-        format.json { render json: @centro_investigacion.errors, status: :unprocessable_entity }
+        show_unprocessable_json
       end
     end
   end
@@ -43,10 +56,10 @@ class CentroInvestigacionsController < ApplicationController
     respond_to do |format|
       if @centro_investigacion.update(centro_investigacion_params)
         format.html { redirect_to @centro_investigacion, notice: 'Centro investigacion was successfully updated.' }
-        format.json { render :show, status: :ok, location: @centro_investigacion }
+        show_updated_json
       else
         format.html { render :edit }
-        format.json { render json: @centro_investigacion.errors, status: :unprocessable_entity }
+        show_unprocessable_json
       end
     end
   end

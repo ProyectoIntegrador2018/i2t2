@@ -2,6 +2,7 @@
 
 require 'application_system_test_case'
 
+# Unit tests for CentroInvestigacions.
 class CentroInvestigacionsTest < ApplicationSystemTestCase
   setup do
     @centro_investigacion = centro_investigacions(:one)

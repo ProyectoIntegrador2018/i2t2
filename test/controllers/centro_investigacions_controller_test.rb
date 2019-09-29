@@ -2,6 +2,7 @@
 
 require 'test_helper'
 
+# Unit tests for CentroInvestigacionsController.
 class CentroInvestigacionsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @centro_investigacion = centro_investigacions(:one)
