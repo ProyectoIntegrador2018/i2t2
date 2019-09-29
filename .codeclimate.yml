@@ -54,14 +54,6 @@ checks:
       threshold: # language-specific defaults. an override will affect all languages.
 
 
-engines:
-  reek:
-    enabled: true
-    checks:
-      InstanceVariableAssumption:
-        enabled: false
-
-
 plugins:
   rubocop:
     enabled: true
@@ -82,6 +74,9 @@ plugins:
     enabled: true
   reek:
     enabled: true
+    checks:
+      InstanceVariableAssumption:
+        enabled: false
   shellcheck:
     enabled: true
 
