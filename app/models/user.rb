@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Base model of a User that can have different roles.
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -5,7 +8,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   enum role: [:admin_centro_inv, :admin_plataforma, :admin_patente,
-  			  :admin_cluster, :emprendedor_base, :usuario_general]
+              :admin_cluster, :emprendedor_base, :usuario_general]
   after_initialize :set_default_role, :if => :new_record?
 
   def set_default_role
