@@ -72,6 +72,8 @@ plugins:
     enabled: true
   fixme:
     enabled: true
+  duplication:
+    enabled: false
   reek:
     enabled: true
     checks:
