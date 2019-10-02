@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-
+umask 0000
 # Remove potentially pre-existing server.pid to avoid 'Rails server already running' issues.
 rm -f /app/tmp/pids/server.pid
 
