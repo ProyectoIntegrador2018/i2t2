@@ -1,0 +1,192 @@
+<%= form_with(model: center, local: true) do |form| %>
+  <% if center.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(center.errors.count, "error") %> prohibited this center from being saved:</h2>
+
+      <ul>
+      <% center.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.fields_for :equipments, center.equipments.build do |equipments_fields| %>
+    <%= equipments_fields.text_field :name %>
+    <%= equipments_fields.check_box :available %>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :full_name %>
+    <%= form.text_field :full_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :short_name %>
+    <%= form.text_field :short_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :website %>
+    <%= form.text_field :website %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_date %>
+    <%= form.date_select :start_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :building_area %>
+    <%= form.text_field :building_area %>
+  </div>
+
+  <div class="field">
+    <%= form.label :property_area %>
+    <%= form.text_field :property_area %>
+  </div>
+
+  <div class="field">
+    <%= form.label :property_private_funding %>
+    <%= form.text_field :property_private_funding %>
+  </div>
+
+  <div class="field">
+    <%= form.label :property_federal_funding %>
+    <%= form.text_field :property_federal_funding %>
+  </div>
+
+  <div class="field">
+    <%= form.label :property_state_funding %>
+    <%= form.text_field :property_state_funding %>
+  </div>
+
+  <div class="field">
+    <%= form.label :property_other_funding %>
+    <%= form.text_field :property_other_funding %>
+  </div>
+
+  <div class="field">
+    <%= form.label :property_other_source %>
+    <%= form.text_field :property_other_source %>
+  </div>
+
+  <div class="field">
+    <%= form.label :equipment_private_funding %>
+    <%= form.text_field :equipment_private_funding %>
+  </div>
+
+  <div class="field">
+    <%= form.label :equipment_federal_funding %>
+    <%= form.text_field :equipment_federal_funding %>
+  </div>
+
+  <div class="field">
+    <%= form.label :equipment_state_funding %>
+    <%= form.text_field :equipment_state_funding %>
+  </div>
+
+  <div class="field">
+    <%= form.label :equipment_other_funding %>
+    <%= form.text_field :equipment_other_funding %>
+  </div>
+
+  <div class="field">
+    <%= form.label :equipment_other_source %>
+    <%= form.text_field :equipment_other_source %>
+  </div>
+
+  <div class="field">
+    <%= form.label :requested_patents_mexico %>
+    <%= form.number_field :requested_patents_mexico %>
+  </div>
+
+  <div class="field">
+    <%= form.label :requested_designs_mexico %>
+    <%= form.number_field :requested_designs_mexico %>
+  </div>
+
+  <div class="field">
+    <%= form.label :requested_patents_us_eu_as %>
+    <%= form.number_field :requested_patents_us_eu_as %>
+  </div>
+
+  <div class="field">
+    <%= form.label :given_patents_mexico %>
+    <%= form.number_field :given_patents_mexico %>
+  </div>
+
+  <div class="field">
+    <%= form.label :given_designs_mexico %>
+    <%= form.number_field :given_designs_mexico %>
+  </div>
+
+  <div class="field">
+    <%= form.label :given_patents_us_eu_as %>
+    <%= form.number_field :given_patents_us_eu_as %>
+  </div>
+
+  <div class="field">
+    <%= form.label :trademarks %>
+    <%= form.number_field :trademarks %>
+  </div>
+
+  <div class="field">
+    <%= form.label :copyrights %>
+    <%= form.text_field :copyrights %>
+  </div>
+
+  <div class="field">
+    <%= form.label :isi_publications %>
+    <%= form.number_field :isi_publications %>
+  </div>
+
+  <div class="field">
+    <%= form.label :arbitrated_publications %>
+    <%= form.number_field :arbitrated_publications %>
+  </div>
+
+  <div class="field">
+    <%= form.label :non_arbitrated_publications %>
+    <%= form.number_field :non_arbitrated_publications %>
+  </div>
+
+  <div class="field">
+    <%= form.label :quotes_in_publications %>
+    <%= form.number_field :quotes_in_publications %>
+  </div>
+
+  <div class="field">
+    <%= form.label :director_name %>
+    <%= form.text_field :director_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :director_email %>
+    <%= form.text_field :director_email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :director_phone %>
+    <%= form.text_field :director_phone %>
+  </div>
+
+  <%= collection_check_boxes(:center, :cluster_ids, Cluster.all, :id, :name) do |cluster| %>
+    <%= cluster.label %>
+    <%= cluster.check_box%>
+  <% end %>
+
+  <%= collection_check_boxes(:center, :industry_ids, Industry.all, :id, :name) do |industry| %>
+    <%= industry.label %>
+    <%= industry.check_box%>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,89 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Centers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Full name</th>
+      <th>Short name</th>
+      <th>Website</th>
+      <th>Address</th>
+      <th>Start date</th>
+      <th>Building area</th>
+      <th>Property area</th>
+      <th>Property private funding</th>
+      <th>Property federal funding</th>
+      <th>Property state funding</th>
+      <th>Property other funding</th>
+      <th>Property other source</th>
+      <th>Equipment private funding</th>
+      <th>Equipment federal funding</th>
+      <th>Equipment state funding</th>
+      <th>Equipment other funding</th>
+      <th>Equipment other source</th>
+      <th>Requested patents mexico</th>
+      <th>Requested designs mexico</th>
+      <th>Requested patents us eu as</th>
+      <th>Given patents mexico</th>
+      <th>Given designs mexico</th>
+      <th>Given patents us eu as</th>
+      <th>Trademarks</th>
+      <th>Copyrights</th>
+      <th>Isi publications</th>
+      <th>Arbitrated publications</th>
+      <th>Non arbitrated publications</th>
+      <th>Quotes in publications</th>
+      <th>Director name</th>
+      <th>Director email</th>
+      <th>Director phone</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @centers.each do |center| %>
+      <tr>
+        <td><%= center.full_name %></td>
+        <td><%= center.short_name %></td>
+        <td><%= center.website %></td>
+        <td><%= center.address %></td>
+        <td><%= center.start_date %></td>
+        <td><%= center.building_area %></td>
+        <td><%= center.property_area %></td>
+        <td><%= center.property_private_funding %></td>
+        <td><%= center.property_federal_funding %></td>
+        <td><%= center.property_state_funding %></td>
+        <td><%= center.property_other_funding %></td>
+        <td><%= center.property_other_source %></td>
+        <td><%= center.equipment_private_funding %></td>
+        <td><%= center.equipment_federal_funding %></td>
+        <td><%= center.equipment_state_funding %></td>
+        <td><%= center.equipment_other_funding %></td>
+        <td><%= center.equipment_other_source %></td>
+        <td><%= center.requested_patents_mexico %></td>
+        <td><%= center.requested_designs_mexico %></td>
+        <td><%= center.requested_patents_us_eu_as %></td>
+        <td><%= center.given_patents_mexico %></td>
+        <td><%= center.given_designs_mexico %></td>
+        <td><%= center.given_patents_us_eu_as %></td>
+        <td><%= center.trademarks %></td>
+        <td><%= center.copyrights %></td>
+        <td><%= center.isi_publications %></td>
+        <td><%= center.arbitrated_publications %></td>
+        <td><%= center.non_arbitrated_publications %></td>
+        <td><%= center.quotes_in_publications %></td>
+        <td><%= center.director_name %></td>
+        <td><%= center.director_email %></td>
+        <td><%= center.director_phone %></td>
+        <td><%= link_to 'Show', center %></td>
+        <td><%= link_to 'Edit', edit_center_path(center) %></td>
+        <td><%= link_to 'Destroy', center, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Center', new_center_path %>
