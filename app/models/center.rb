@@ -8,4 +8,6 @@ class Center < ApplicationRecord
   has_many :awards
   has_many :equipments
   accepts_nested_attributes_for :equipments, allow_destroy: true
+  accepts_nested_attributes_for :awards, allow_destroy: true
+
 end

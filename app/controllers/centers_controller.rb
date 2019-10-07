@@ -107,6 +107,12 @@ class CentersController < ApplicationController
                                      :available,
                                      :_destroy
                                    ],
+                                   :awards_attributes => [
+                                     :id,
+                                     :name,
+                                     :date,
+                                     :_destroy
+                                   ],
                                    :industry_ids => [],
                                    :cluster_ids => []
                                    )

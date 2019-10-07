@@ -131,6 +131,7 @@
     <%= form.text_field :equipment_other_source %>
   </div>
 </div>
+<h4> OPTIONAL </h4>
 <div id="patents">
   <h2> Patents & Designs </h2>
 
@@ -195,12 +196,20 @@
   </div>
 </div>
 
+<h2> Equipment </h2>
 <div id="equipments">
-  <h2> Equipment </h2>
   <%= form.fields_for :equipments do |equipment_form| %>
     <%= render 'equipment_fields', f: equipment_form %>
   <% end %>
   <%= link_to_add_association 'Add equipment', form, :equipments %>
+</div>
+
+<h2> Awards </h2>
+<div id="awards">
+  <%= form.fields_for :awards do |award_form| %>
+    <%= render 'award_fields', f: award_form %>
+  <% end %>
+  <%= link_to_add_association 'Add award', form, :awards %>
 </div>
 
 
