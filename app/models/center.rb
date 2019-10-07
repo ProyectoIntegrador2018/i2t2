@@ -7,5 +7,5 @@ class Center < ApplicationRecord
   has_and_belongs_to_many :clusters
   has_many :awards
   has_many :equipments
-  accepts_nested_attributes_for :equipments
+  accepts_nested_attributes_for :equipments, allow_destroy: true
 end

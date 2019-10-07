@@ -101,6 +101,12 @@ class CentersController < ApplicationController
                                    :director_name,
                                    :director_email,
                                    :director_phone,
+                                   :equipments_attributes => [
+                                     :id,
+                                     :name,
+                                     :available,
+                                     :_destroy
+                                   ],
                                    :industry_ids => [],
                                    :cluster_ids => []
                                    )

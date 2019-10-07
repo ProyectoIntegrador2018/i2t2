@@ -10,37 +10,65 @@
       </ul>
     </div>
   <% end %>
+  <div id="basic info">
+    <h2> Basic Info </h2>
+    <div class="field">
+      <%= form.label :full_name %>
+      <%= form.text_field :full_name %>
+    </div>
 
-  <%= form.fields_for :equipments, center.equipments.build do |equipments_fields| %>
-    <%= equipments_fields.text_field :name %>
-    <%= equipments_fields.check_box :available %>
+    <div class="field">
+      <%= form.label :short_name %>
+      <%= form.text_field :short_name %>
+    </div>
+
+    <div class="field">
+      <%= form.label :website %>
+      <%= form.text_field :website %>
+    </div>
+
+    <div class="field">
+      <%= form.label :address %>
+      <%= form.text_field :address %>
+    </div>
+
+    <div class="field">
+      <%= form.label :start_date %>
+      <%= form.date_select :start_date %>
+    </div>
+
+    <div class="field">
+      <%= form.label :director_name %>
+      <%= form.text_field :director_name %>
+    </div>
+
+    <div class="field">
+      <%= form.label :director_email %>
+      <%= form.text_field :director_email %>
+    </div>
+
+    <div class="field">
+      <%= form.label :director_phone %>
+      <%= form.text_field :director_phone %>
+    </div>
+</div>
+<div id="clusters">
+  <h2> Clusters </h2>
+  <%= collection_check_boxes(:center, :cluster_ids, Cluster.all, :id, :name) do |cluster| %>
+    <%= cluster.label %>
+    <%= cluster.check_box%>
   <% end %>
-
-  <div class="field">
-    <%= form.label :full_name %>
-    <%= form.text_field :full_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :short_name %>
-    <%= form.text_field :short_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :website %>
-    <%= form.text_field :website %>
-  </div>
-
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
-  </div>
-
-  <div class="field">
-    <%= form.label :start_date %>
-    <%= form.date_select :start_date %>
-  </div>
-
+</div>
+<div id="industries">
+  <h2> Industries </h2>
+  <%= collection_check_boxes(:center, :industry_ids, Industry.all, :id, :name) do |industry| %>
+    <%= industry.label %>
+    <%= industry.check_box%>
+  <% end %>
+</div>
+<div id="funding">
+  <h2> Infrastructure </h2>
+  <h3> Property </h3>
   <div class="field">
     <%= form.label :building_area %>
     <%= form.text_field :building_area %>
@@ -76,6 +104,8 @@
     <%= form.text_field :property_other_source %>
   </div>
 
+  <h3> Equipment </h3>
+
   <div class="field">
     <%= form.label :equipment_private_funding %>
     <%= form.text_field :equipment_private_funding %>
@@ -100,6 +130,9 @@
     <%= form.label :equipment_other_source %>
     <%= form.text_field :equipment_other_source %>
   </div>
+</div>
+<div id="patents">
+  <h2> Patents & Designs </h2>
 
   <div class="field">
     <%= form.label :requested_patents_mexico %>
@@ -160,31 +193,17 @@
     <%= form.label :quotes_in_publications %>
     <%= form.number_field :quotes_in_publications %>
   </div>
+</div>
 
-  <div class="field">
-    <%= form.label :director_name %>
-    <%= form.text_field :director_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :director_email %>
-    <%= form.text_field :director_email %>
-  </div>
-
-  <div class="field">
-    <%= form.label :director_phone %>
-    <%= form.text_field :director_phone %>
-  </div>
-
-  <%= collection_check_boxes(:center, :cluster_ids, Cluster.all, :id, :name) do |cluster| %>
-    <%= cluster.label %>
-    <%= cluster.check_box%>
+<div id="equipments">
+  <h2> Equipment </h2>
+  <%= form.fields_for :equipments do |equipment_form| %>
+    <%= render 'equipment_fields', f: equipment_form %>
   <% end %>
+  <%= link_to_add_association 'Add equipment', form, :equipments %>
+</div>
 
-  <%= collection_check_boxes(:center, :industry_ids, Industry.all, :id, :name) do |industry| %>
-    <%= industry.label %>
-    <%= industry.check_box%>
-  <% end %>
+
 
   <div class="actions">
     <%= form.submit %>
