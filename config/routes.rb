@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :idti_areas
+  resources :idti_services
   resources :centro_investigacions
 
   root to: 'usuarios#inicio'

@@ -101,6 +101,8 @@ class CentersController < ApplicationController
                                    :director_name,
                                    :director_email,
                                    :director_phone,
+                                   :transfer_office_contact,
+                                   :transfer_office_contact_name,
                                    :equipments_attributes => [
                                      :id,
                                      :name,
@@ -113,8 +115,19 @@ class CentersController < ApplicationController
                                      :date,
                                      :_destroy
                                    ],
+                                   :idti_areas_attributes => [
+                                     :id,
+                                     :name,
+                                     :_destroy
+                                   ],
+                                   :idti_services_attributes => [
+                                     :id,
+                                     :name,
+                                     :industry,
+                                     :_destroy
+                                   ],
                                    :industry_ids => [],
-                                   :cluster_ids => []
+                                   :cluster_ids => [],
                                    )
     end
 end

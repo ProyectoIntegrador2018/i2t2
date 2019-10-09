@@ -66,6 +66,26 @@
     <%= industry.check_box%>
   <% end %>
 </div>
+
+<h2> IDTi services</h2>
+<div id="idti_services">
+  <%= form.fields_for :idti_services do |idti_service_form| %>
+    <%= render 'idti_service_fields', f: idti_service_form %>
+  <% end %>
+  <%= link_to_add_association 'Add IDTi service', form, :idti_services %>
+  </div>
+</div>
+
+<h2> IDTi areas </h2>
+<div id="idti_areas">
+  <%= form.fields_for :idti_areas do |idti_area_form| %>
+    <%= render 'idti_area_fields', f: idti_area_form %>
+  <% end %>
+  <%= link_to_add_association 'Add IDTi area', form, :idti_areas %>
+  </div>
+</div>
+
+
 <div id="funding">
   <h2> Infrastructure </h2>
   <h3> Property </h3>
@@ -210,6 +230,15 @@
     <%= render 'award_fields', f: award_form %>
   <% end %>
   <%= link_to_add_association 'Add award', form, :awards %>
+</div>
+<h2> Transfer office </h2>
+<div class="field">
+  <%= form.label :transfer_office_contact_name %>
+  <%= form.text_field :transfer_office_contact_name %>
+</div>
+<div class="field">
+  <%= form.label :transfer_office_contact %>
+  <%= form.text_field :transfer_office_contact %>
 </div>
 
 

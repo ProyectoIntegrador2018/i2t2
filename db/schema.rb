@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_29_012046) do
+ActiveRecord::Schema.define(version: 2019_10_09_224604) do
 
   create_table "awards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -56,6 +56,8 @@ ActiveRecord::Schema.define(version: 2019_09_29_012046) do
     t.string "director_phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "transfer_office_contact_name"
+    t.string "transfer_office_contact"
   end
 
   create_table "centers_clusters", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -88,6 +90,23 @@ ActiveRecord::Schema.define(version: 2019_09_29_012046) do
     t.index ["center_id"], name: "index_equipment_on_center_id"
   end
 
+  create_table "idti_areas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.bigint "center_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["center_id"], name: "index_idti_areas_on_center_id"
+  end
+
+  create_table "idti_services", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.string "industry"
+    t.bigint "center_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["center_id"], name: "index_idti_services_on_center_id"
+  end
+
   create_table "industries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -109,4 +128,6 @@ ActiveRecord::Schema.define(version: 2019_09_29_012046) do
 
   add_foreign_key "awards", "centers"
   add_foreign_key "equipment", "centers"
+  add_foreign_key "idti_areas", "centers"
+  add_foreign_key "idti_services", "centers"
 end
