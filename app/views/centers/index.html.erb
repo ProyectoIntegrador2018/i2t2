@@ -20,8 +20,7 @@
         <td><%= center.website %></td>
         <td><%= link_to 'Detalle', center %></td>
         <td><%= link_to 'Editar', edit_center_path(center) %></td>
-        <td><%= link_to 'Destruir',  method: :delete, data: { confirm: '¿Seguro que quieres destruir el centro?' } %></td>
-
+        <td><%= link_to 'Destruir', center ,data: { confirm: 'Seguro que quieres destruir el centro?' }, method: :delete %></td>
       </tr>
     <% end %>
   </tbody>

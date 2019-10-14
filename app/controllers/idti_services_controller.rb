@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class IdtiServicesController < ApplicationController
-  before_action :set_idti_service, only: [:show, :edit, :update, :destroy]
+  before_action :set_idti_service, only: %i[show edit update destroy]
 
   # GET /idti_services
   # GET /idti_services.json
@@ -9,8 +11,7 @@ class IdtiServicesController < ApplicationController
 
   # GET /idti_services/1
   # GET /idti_services/1.json
-  def show
-  end
+  def show; end
 
   # GET /idti_services/new
   def new
@@ -18,8 +19,7 @@ class IdtiServicesController < ApplicationController
   end
 
   # GET /idti_services/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /idti_services
   # POST /idti_services.json
@@ -62,13 +62,14 @@ class IdtiServicesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_idti_service
-      @idti_service = IdtiService.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def idti_service_params
-      params.require(:idti_service).permit(:name, :industry, :center_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_idti_service
+    @idti_service = IdtiService.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def idti_service_params
+    params.require(:idti_service).permit(:name, :industry, :center_id)
+  end
 end

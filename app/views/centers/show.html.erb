@@ -3,6 +3,7 @@
 <h1> <%= @center.full_name %> </h1>
 <h2> <%= @center.short_name %> </h2>
 
+<h2> Información general </h2>
 <p>
   <strong>Sitio web:</strong>
   <%= @center.website %>
@@ -17,7 +18,23 @@
   <strong>Inicio de operaciones:</strong>
   <%= @center.start_date %>
 </p>
+<p>
+  <strong>Nombre del director o gerente:</strong>
+  <%= @center.director_name %>
+</p>
 
+<p>
+  <strong>Email del director o gerente:</strong>
+  <%= @center.director_email %>
+</p>
+
+<p>
+  <strong>Teléfono del director o gerente:</strong>
+  <%= @center.director_phone %>
+</p>
+
+<h2> Infraestructura </h2>
+<h3> Propiedad </h3>
 <p>
   <strong>Área de construcción:</strong>
   <%= @center.building_area %>
@@ -55,6 +72,7 @@
   </p>
 <% end %>
 
+<h3> Equipamiento </h3>
 <p>
   <strong>Inversión privada:</strong>
   <%= @center.equipment_private_funding %>
@@ -80,6 +98,7 @@
   <%= @center.equipment_other_source %>
 </p>
 
+<h2> Patentes y diseños </h2>
 <p>
   <strong>Patentes solicitadas en México:</strong>
   <%= @center.requested_patents_mexico %>
@@ -140,21 +159,7 @@
   <%= @center.quotes_in_publications %>
 </p>
 
-<p>
-  <strong>Nombre del director o gerente:</strong>
-  <%= @center.director_name %>
-</p>
-
-<p>
-  <strong>Email del director o gerente:</strong>
-  <%= @center.director_email %>
-</p>
-
-<p>
-  <strong>Teléfono del director o gerente:</strong>
-  <%= @center.director_phone %>
-</p>
-
+<h2> Equipamiento </h2>
 <table>
   <tr>
     <th>Equipo</th>
@@ -168,6 +173,7 @@
   <% end %>
 </table>
 
+<h2> Premios y reconocimientos </h2>
 <table>
   <tr>
     <th> Premio </th>
@@ -181,13 +187,15 @@
   <% end %>
 </table>
 
-<p> <strong> Areas de IDTi </strong> </p>
+<h2> IDTi </h2>
+<h3> Areas</h3>
 <ul>
 <% @center.idti_areas.each do |area| %>
   <li> <%= "#{area.name}" %> </li>
 <% end %>
 </ul>
 
+<h3> Servicios</h3>
 <table>
   <tr>
     <th> Servicio </th>
@@ -201,14 +209,14 @@
   <% end %>
 </table>
 
-<h3> Clusters </h3>
+<h2> Clusters </h2>
 <ul>
   <% @center.clusters.each do |cluster| %>
     <li> <%= cluster.name %> </li>
   <% end %>
 </ul>
 
-<h3> Industrias </h3>
+<h2> Industrias </h2>
 <ul>
   <% @center.industries.each do |industry| %>
     <li> <%= industry.name %> </li>

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class CentersController < ApplicationController
-  before_action :set_center, only: [:show, :edit, :update, :destroy]
+  before_action :set_center, only: %i[show edit update destroy]
 
   # GET /centers
   # GET /centers.json
@@ -9,8 +11,7 @@ class CentersController < ApplicationController
 
   # GET /centers/1
   # GET /centers/1.json
-  def show
-  end
+  def show; end
 
   # GET /centers/new
   def new
@@ -18,8 +19,7 @@ class CentersController < ApplicationController
   end
 
   # GET /centers/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /centers
   # POST /centers.json
@@ -62,14 +62,15 @@ class CentersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_center
-      @center = Center.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def center_params
-      params.require(:center).permit(:full_name,
+  # Use callbacks to share common setup or constraints between actions.
+  def set_center
+    @center = Center.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def center_params
+    params.require(:center).permit(:full_name,
                                    :short_name,
                                    :website,
                                    :address,
@@ -103,31 +104,30 @@ class CentersController < ApplicationController
                                    :director_phone,
                                    :transfer_office_contact,
                                    :transfer_office_contact_name,
-                                   :equipments_attributes => [
-                                     :id,
-                                     :name,
-                                     :available,
-                                     :_destroy
+                                   equipments_attributes: %i[
+                                     id
+                                     name
+                                     available
+                                     _destroy
                                    ],
-                                   :awards_attributes => [
-                                     :id,
-                                     :name,
-                                     :date,
-                                     :_destroy
+                                   awards_attributes: %i[
+                                     id
+                                     name
+                                     date
+                                     _destroy
                                    ],
-                                   :idti_areas_attributes => [
-                                     :id,
-                                     :name,
-                                     :_destroy
+                                   idti_areas_attributes: %i[
+                                     id
+                                     name
+                                     _destroy
                                    ],
-                                   :idti_services_attributes => [
-                                     :id,
-                                     :name,
-                                     :industry,
-                                     :_destroy
+                                   idti_services_attributes: %i[
+                                     id
+                                     name
+                                     industry
+                                     _destroy
                                    ],
-                                   :industry_ids => [],
-                                   :cluster_ids => [],
-                                   )
-    end
+                                   industry_ids: [],
+                                   cluster_ids: [])
+  end
 end
