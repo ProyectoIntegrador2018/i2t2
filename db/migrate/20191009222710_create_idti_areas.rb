@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateIdtiAreas < ActiveRecord::Migration[5.2]
   def change
     create_table :idti_areas do |t|
