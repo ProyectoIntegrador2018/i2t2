@@ -1,164 +1,219 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Full name:</strong>
-  <%= @center.full_name %>
-</p>
+<h1> <%= @center.full_name %> </h1>
+<h2> <%= @center.short_name %> </h2>
 
 <p>
-  <strong>Short name:</strong>
-  <%= @center.short_name %>
-</p>
-
-<p>
-  <strong>Website:</strong>
+  <strong>Sitio web:</strong>
   <%= @center.website %>
 </p>
 
 <p>
-  <strong>Address:</strong>
+  <strong>Dirección:</strong>
   <%= @center.address %>
 </p>
 
 <p>
-  <strong>Start date:</strong>
+  <strong>Inicio de operaciones:</strong>
   <%= @center.start_date %>
 </p>
 
 <p>
-  <strong>Building area:</strong>
+  <strong>Área de construcción:</strong>
   <%= @center.building_area %>
 </p>
 
 <p>
-  <strong>Property area:</strong>
+  <strong>Área de terreno:</strong>
   <%= @center.property_area %>
 </p>
 
 <p>
-  <strong>Property private funding:</strong>
+  <strong>Inversión privada:</strong>
   <%= @center.property_private_funding %>
 </p>
 
 <p>
-  <strong>Property federal funding:</strong>
+  <strong>Inversión federal:</strong>
   <%= @center.property_federal_funding %>
 </p>
 
 <p>
-  <strong>Property state funding:</strong>
+  <strong>Inversión estatal:</strong>
   <%= @center.property_state_funding %>
 </p>
 
-<p>
-  <strong>Property other funding:</strong>
-  <%= @center.property_other_funding %>
-</p>
+<% if !@center.property_other_funding.blank? %>
+  <p>
+    <strong>Otra inversión:</strong>
+    <%= @center.property_other_funding %>
+  </p>
+
+  <p>
+    <strong>Fuente de otra inversión:</strong>
+    <%= @center.property_other_source %>
+  </p>
+<% end %>
 
 <p>
-  <strong>Property other source:</strong>
-  <%= @center.property_other_source %>
-</p>
-
-<p>
-  <strong>Equipment private funding:</strong>
+  <strong>Inversión privada:</strong>
   <%= @center.equipment_private_funding %>
 </p>
 
 <p>
-  <strong>Equipment federal funding:</strong>
+  <strong>Inversión federal:</strong>
   <%= @center.equipment_federal_funding %>
 </p>
 
 <p>
-  <strong>Equipment state funding:</strong>
+  <strong>Inversión estatal:</strong>
   <%= @center.equipment_state_funding %>
 </p>
 
 <p>
-  <strong>Equipment other funding:</strong>
+  <strong>Otra inversión:</strong>
   <%= @center.equipment_other_funding %>
 </p>
 
 <p>
-  <strong>Equipment other source:</strong>
+  <strong>Fuente de otra inversión:</strong>
   <%= @center.equipment_other_source %>
 </p>
 
 <p>
-  <strong>Requested patents mexico:</strong>
+  <strong>Patentes solicitadas en México:</strong>
   <%= @center.requested_patents_mexico %>
 </p>
 
 <p>
-  <strong>Requested designs mexico:</strong>
+  <strong>Diseños solicitados en México:</strong>
   <%= @center.requested_designs_mexico %>
 </p>
 
 <p>
-  <strong>Requested patents us eu as:</strong>
+  <strong>Patentes solicitadas en EUA, Europa y Asia:</strong>
   <%= @center.requested_patents_us_eu_as %>
 </p>
 
 <p>
-  <strong>Given patents mexico:</strong>
+  <strong>Patentes otorgadas México:</strong>
   <%= @center.given_patents_mexico %>
 </p>
 
 <p>
-  <strong>Given designs mexico:</strong>
+  <strong>Diseños obtenidos en México:</strong>
   <%= @center.given_designs_mexico %>
 </p>
 
 <p>
-  <strong>Given patents us eu as:</strong>
+  <strong>Patentes obtenidas en EUA, Europa y Asia:</strong>
   <%= @center.given_patents_us_eu_as %>
 </p>
 
 <p>
-  <strong>Trademarks:</strong>
+  <strong>Marcas registradas:</strong>
   <%= @center.trademarks %>
 </p>
 
 <p>
-  <strong>Copyrights:</strong>
+  <strong>Derechos de autor:</strong>
   <%= @center.copyrights %>
 </p>
 
 <p>
-  <strong>Isi publications:</strong>
+  <strong>Publicaciones en el Institute for Scientific Information:</strong>
   <%= @center.isi_publications %>
 </p>
 
 <p>
-  <strong>Arbitrated publications:</strong>
+  <strong>Artículos publicados en revistas arbitradas:</strong>
   <%= @center.arbitrated_publications %>
 </p>
 
 <p>
-  <strong>Non arbitrated publications:</strong>
+  <strong>Artículos publicados en revistas no arbitradas:</strong>
   <%= @center.non_arbitrated_publications %>
 </p>
 
 <p>
-  <strong>Quotes in publications:</strong>
+  <strong>Citas de artículos:</strong>
   <%= @center.quotes_in_publications %>
 </p>
 
 <p>
-  <strong>Director name:</strong>
+  <strong>Nombre del director o gerente:</strong>
   <%= @center.director_name %>
 </p>
 
 <p>
-  <strong>Director email:</strong>
+  <strong>Email del director o gerente:</strong>
   <%= @center.director_email %>
 </p>
 
 <p>
-  <strong>Director phone:</strong>
+  <strong>Teléfono del director o gerente:</strong>
   <%= @center.director_phone %>
 </p>
 
-<%= link_to 'Edit', edit_center_path(@center) %> |
-<%= link_to 'Back', centers_path %>
+<table>
+  <tr>
+    <th>Equipo</th>
+    <th>Disponible</th>
+  </tr>
+  <% @center.equipments.each do |equipment| %>
+    <tr>
+      <td> <%="#{equipment.name}" %> </td>
+      <td> <%=equipment.available ? "Si" : "No" %> </td>
+    </tr>
+  <% end %>
+</table>
+
+<table>
+  <tr>
+    <th> Premio </th>
+    <th> Año </th>
+  </tr>
+  <% @center.awards.each do |award| %>
+    <tr>
+      <td> <%= "#{award.name}" %> </td>
+      <td> <%= "#{award.date.year}" %> </td>
+    </tr>
+  <% end %>
+</table>
+
+<p> <strong> Areas de IDTi </strong> </p>
+<ul>
+<% @center.idti_areas.each do |area| %>
+  <li> <%= "#{area.name}" %> </li>
+<% end %>
+</ul>
+
+<table>
+  <tr>
+    <th> Servicio </th>
+    <th> Industria </th>
+  </tr>
+  <% @center.idti_services.each do |service| %>
+    <tr>
+      <td> <%= "#{service.name}" %> </td>
+      <td> <%= "#{service.industry}" %> </td>
+    </tr>
+  <% end %>
+</table>
+
+<h3> Clusters </h3>
+<ul>
+  <% @center.clusters.each do |cluster| %>
+    <li> <%= cluster.name %> </li>
+  <% end %>
+</ul>
+
+<h3> Industrias </h3>
+<ul>
+  <% @center.industries.each do |industry| %>
+    <li> <%= industry.name %> </li>
+  <% end %>
+</ul>
+
+<%= link_to 'Editar', edit_center_path(@center) %> |
+<%= link_to 'Regresar', centers_path %>
