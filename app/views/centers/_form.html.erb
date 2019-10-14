@@ -68,22 +68,35 @@
 </div>
 
 <h2> Servicios de IDTi</h2>
-<div id="idti_services">
-  <%= form.fields_for :idti_services do |idti_service_form| %>
-    <%= render 'idti_service_fields', f: idti_service_form %>
-  <% end %>
-  <%= link_to_add_association 'Agregar servicio', form, :idti_services %>
-  </div>
-</div>
+<table>
+  <tr>
+    <th> Nombre </th>
+    <th> Industria </th>
+  </tr>
+  <tbody class="idti_services">
+    <%= form.fields_for :idti_services do |idti_service_form| %>
+      <%= render 'idti_service_fields', f: idti_service_form %>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to_add_association "Agregar servicio", form, :idti_services, data:
+  {"association-insertion-node" => "tbody.idti_services",
+  "association-insertion-method" => "append"} %>
 
 <h2> Areas de IDTi</h2>
-<div id="idti_areas">
-  <%= form.fields_for :idti_areas do |idti_area_form| %>
-    <%= render 'idti_area_fields', f: idti_area_form %>
-  <% end %>
-  <%= link_to_add_association 'Agregar área', form, :idti_areas %>
-  </div>
-</div>
+<table>
+  <tr>
+    <th> Nombre </th>
+  </tr>
+  <tbody class="idti_areas">
+    <%= form.fields_for :idti_areas do |idti_area_form| %>
+      <%= render 'idti_area_fields', f: idti_area_form %>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to_add_association "Agregar area", form, :idti_areas, data:
+  {"association-insertion-node" => "tbody.idti_areas",
+  "association-insertion-method" => "append"} %>
 
 
 <div id="funding">
@@ -217,20 +230,37 @@
 </div>
 
 <h2> Equipamiento </h2>
-<div id="equipments">
-  <%= form.fields_for :equipments do |equipment_form| %>
-    <%= render 'equipment_fields', f: equipment_form %>
-  <% end %>
-  <%= link_to_add_association 'Agregar equipo', form, :equipments %>
-</div>
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Disponible</th>
+  </tr>
+  <tbody class="equipment_fields">
+    <%= form.fields_for :equipments do |equipment_form| %>
+      <%= render 'equipment_fields', f: equipment_form %>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to_add_association "Agregar equipo", form, :equipments, data:
+  {"association-insertion-node" => "tbody.equipment_fields",
+  "association-insertion-method" => "append"} %>
 
 <h2> Premios y reconocimientos </h2>
-<div id="awards">
-  <%= form.fields_for :awards do |award_form| %>
-    <%= render 'award_fields', f: award_form %>
-  <% end %>
-  <%= link_to_add_association 'Agregar premio', form, :awards %>
-</div>
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Fecha</th>
+  </tr>
+  <tbody class="awards_fields">
+    <%= form.fields_for :awards do |award_form| %>
+      <%= render 'award_fields', f: award_form %>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to_add_association "Agregar premio", form, :awards, data:
+  {"association-insertion-node" => "tbody.awards_fields",
+  "association-insertion-method" => "append"} %>
+
 <h2> Oficina de transferencia de tecnología </h2>
 <div class="field">
   <%= form.label "Nombre de contacto" %>
