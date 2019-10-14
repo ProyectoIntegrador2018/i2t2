@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Centers</h1>
+<h1>Centros de investigación</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Full name</th>
-      <th>Short name</th>
-      <th>Website</th>
+      <th>Nombre completo</th>
+      <th>Nombre corto</th>
+      <th>Sitio web</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,8 +18,10 @@
         <td><%= center.full_name %></td>
         <td><%= center.short_name %></td>
         <td><%= center.website %></td>
-        <td><%= link_to 'Show', center %></td>
-        <td><%= link_to 'Edit', edit_center_path(center) %></td>
+        <td><%= link_to 'Detalle', center %></td>
+        <td><%= link_to 'Editar', edit_center_path(center) %></td>
+        <td><%= link_to 'Destruir',  method: :delete, data: { confirm: '¿Seguro que quieres destruir el centro?' } %></td>
+
       </tr>
     <% end %>
   </tbody>
@@ -27,4 +29,4 @@
 
 <br>
 
-<%= link_to 'New Center', new_center_path %>
+<%= link_to 'Agregar centro', new_center_path %>

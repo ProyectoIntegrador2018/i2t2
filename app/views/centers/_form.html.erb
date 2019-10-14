@@ -11,7 +11,7 @@
     </div>
   <% end %>
   <div id="basic info">
-    <h2> Basic Info </h2>
+    <h2> Información básica </h2>
     <div class="field">
       <%= form.label "Nombre completo" %>
       <%= form.text_field :full_name %>
@@ -60,7 +60,7 @@
   <% end %>
 </div>
 <div id="industries">
-  <h2> Industries </h2>
+  <h2> Industrias </h2>
   <%= collection_check_boxes(:center, :industry_ids, Industry.all, :id, :name) do |industry| %>
     <%= industry.label %>
     <%= industry.check_box%>
