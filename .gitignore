@@ -40,3 +40,6 @@ test.env
 
 # Ignore local files
 .local/
+
+# Ignore cache files
+.cache/
