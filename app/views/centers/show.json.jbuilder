@@ -1,1 +1,3 @@
-json.partial! "centers/center", center: @center
+# frozen_string_literal: true
+
+json.partial! 'centers/center', center: @center
