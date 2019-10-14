@@ -201,8 +201,19 @@
   <% end %>
 </table>
 
+<h3> Clusters </h3>
+<ul>
+  <% @center.clusters.each do |cluster| %>
+    <li> <%= cluster.name %> </li>
+  <% end %>
+</ul>
 
-
+<h3> Industrias </h3>
+<ul>
+  <% @center.industries.each do |industry| %>
+    <li> <%= industry.name %> </li>
+  <% end %>
+</ul>
 
 <%= link_to 'Editar', edit_center_path(@center) %> |
 <%= link_to 'Regresar', centers_path %>
