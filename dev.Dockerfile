@@ -1,5 +1,5 @@
 FROM ruby:2.5.6
-RUN apt-get update -qq && apt-get install -y mariadb-server vim
+RUN apt-get update -qq && apt-get install -y mariadb-server vim rubocop
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
         && apt-get install -y nodejs
 RUN mkdir /app
