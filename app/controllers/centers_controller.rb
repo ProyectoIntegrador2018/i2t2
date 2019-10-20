@@ -26,7 +26,7 @@ class CentersController < ApplicationController
   # POST /centers.json
   def create
     @center = Center.new(center_params)
-
+    @center.user_id = current_user.id
     respond_to do |format|
       if @center.save
         format.html { redirect_to @center, notice: 'Center was successfully created.' }
