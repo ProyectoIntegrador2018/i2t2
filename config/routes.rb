@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  devise_for :admin_platforms, path: 'admin_plataforma', controllers: {
+    # sessions: 'sessions'
+  }
+  devise_for :admin_centers, path: 'admin_centro', controllers: {
+    # sessions: 'admin_centers/sessions'
+  }
   resources :idti_areas
   resources :idti_services
   resources :centro_investigacions
