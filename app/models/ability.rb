@@ -13,10 +13,8 @@ class Ability
     elsif user.admin_centro_inv?
         can :create, Center  # Can create a new Center.
         can :manage, Center, user_id: user.id # Can only edit their own Centers.
-        can :read, :all
-    else
-        can :read, :all
     end
+    can :read, :all
     #
     # The first argument to `can` is the action you are giving the user
     # permission to do.
