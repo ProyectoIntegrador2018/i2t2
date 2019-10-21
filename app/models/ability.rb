@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
+# Define user permissions according to their role.
 class Ability
   include CanCan::Ability
 
   def initialize(user)
-    # Define abilities for the passed in user here. For example:
-    #
+    # Define abilities for the passed in user here.
     user ||= User.new # guest user (not logged in)
     if user.admin_plataforma?
         can :manage, :all

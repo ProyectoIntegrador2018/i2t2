@@ -35,8 +35,9 @@ class CentersController < ApplicationController
   # POST /centers.json
   def create
     # Don't create a new center if the user already has one.
-    if not Center.exists?(user_id: current_user.id)
-      @center.user_id = current_user.id
+    @current_id = current_user.id
+    if not Center.exists?(user_id: @current_id)
+      @center.user_id = @current_id
       respond_to do |format|
         if @center.save
           format.html { redirect_to @center, notice: 'Center was successfully created.' }
