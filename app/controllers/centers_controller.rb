@@ -31,6 +31,7 @@ class CentersController < ApplicationController
         format.html { redirect_to @center, notice: 'Center was successfully created.' }
         format.json { render :show, status: :created, location: @center }
       else
+        print @center.errors.inspect
         format.html { render :new }
         format.json { render json: @center.errors, status: :unprocessable_entity }
       end

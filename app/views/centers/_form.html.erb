@@ -1,74 +1,83 @@
-<%= form_with(model: center, local: true) do |form| %>
+<%= form_with(model: center, local: true, class:"needs_validation") do |form| %>
   <% if center.errors.any? %>
-    <div id="error_explanation">
       <h2><%= pluralize(center.errors.count, "error") %> prohibited this center from being saved:</h2>
-
       <ul>
       <% center.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
-    </div>
   <% end %>
   <div id="basic info">
     <h2> Información básica </h2>
-    <div class="field">
-      <%= form.label "Nombre completo" %>
-      <%= form.text_field :full_name %>
+    <div class="input-group field">
+      <%= form.text_field :full_name, class:"form-control", placeholder:"Nombre completo", required:true %>
     </div>
+    <br>
 
-    <div class="field">
-      <%= form.label "Nombre corto" %>
-      <%= form.text_field :short_name %>
+    <div class="input-group field">
+      <%= form.text_field :short_name, class:"form-control", placeholder:"Siglas", required:true%>
     </div>
+    <br>
 
-    <div class="field">
-      <%= form.label "Sitio web" %>
-      <%= form.text_field :website %>
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1">@</span>
+      <%= form.text_field :website, class:"form-control", placeholder:"Sitio web", 'aria-describedby'=>"basic-addon1", required:true  %>
     </div>
+    <br>
 
-    <div class="field">
-      <%= form.label "Dirección" %>
-      <%= form.text_field :address %>
+    <div class="input-group field">
+      <%= form.text_field :address, class:"form-control", placeholder:"Dirección", required:true  %>
     </div>
+    <br>
 
     <div class="field">
       <%= form.label "Inicio de operaciones" %>
       <%= form.date_select :start_date %>
     </div>
+    <br>
 
-    <div class="field">
-      <%= form.label "Nombre de director o gerente" %>
-      <%= form.text_field :director_name %>
+    <div class="input-group field">
+      <%= form.text_field :director_name, class:"form-control", placeholder:"Nombre de director", required:true  %>
     </div>
+    <br>
 
-    <div class="field">
-      <%= form.label "Email de director o gerente" %>
-      <%= form.text_field :director_email %>
+    <div class="input-group field">
+      <%= form.text_field :director_email, class:"form-control", placeholder:"Email del director", required:true  %>
     </div>
+    <br>
 
-    <div class="field">
-      <%= form.label "Teléfono de director o gerente" %>
-      <%= form.text_field :director_phone %>
+    <div class="input-group field">
+      <%= form.text_field :director_phone, class:"form-control", placeholder:"Teléfono del director", required:true  %>
     </div>
+    <br>
+
 </div>
 <div id="clusters">
   <h2> Clusters </h2>
-  <%= collection_check_boxes(:center, :cluster_ids, Cluster.all, :id, :name) do |cluster| %>
+  <div class="form-check">
+  <%= collection_check_boxes(:center, :cluster_ids, Cluster.all.sort_by{ |x| x.name }, :id, :name) do |cluster| %>
+    <label class="checkbox-inline">
+    <%= cluster.check_box %>
     <%= cluster.label %>
-    <%= cluster.check_box%>
+  </label>
   <% end %>
+  </div>
 </div>
+
 <div id="industries">
   <h2> Industrias </h2>
-  <%= collection_check_boxes(:center, :industry_ids, Industry.all, :id, :name) do |industry| %>
-    <%= industry.label %>
-    <%= industry.check_box%>
-  <% end %>
+  <div class="form-check">
+    <%= collection_check_boxes(:center, :industry_ids, Industry.all.sort_by{|x| x.name}, :id, :name) do |industry| %>
+      <label class="checkbox-inline">
+        <%= industry.label %>
+        <%= industry.check_box%>
+      </label>
+    <% end %>
+  </div>
 </div>
 
 <h2> Servicios de IDTi</h2>
-<table>
+<table class="table">
   <tr>
     <th> Nombre </th>
     <th> Industria </th>
@@ -84,7 +93,7 @@
   "association-insertion-method" => "append"} %>
 
 <h2> Areas de IDTi</h2>
-<table>
+<table class="table">
   <tr>
     <th> Nombre </th>
   </tr>
@@ -101,135 +110,151 @@
 <div id="funding">
   <h2> Infraestructura </h2>
   <h3> Propiedad </h3>
-  <div class="field">
-    <%= form.label "Area de construcción" %>
-    <%= form.text_field :building_area %>
-  </div>
 
-  <div class="field">
-    <%= form.label "Area de propiedad" %>
-    <%= form.text_field :property_area %>
+  <div class="input-group field">
+    <%= form.text_field :building_area, class:"form-control", placeholder:"Area de construcción", required:true  %>
   </div>
+  <br>
 
-  <div class="field">
-    <%= form.label "Inversión privada" %>
-    <%= form.text_field :property_private_funding %>
+  <div class="input-group field">
+    <%= form.text_field :property_area, class:"form-control", placeholder:"Area de propiedad", required:true  %>
   </div>
+  <br>
 
-  <div class="field">
-    <%= form.label "Inversión federal" %>
-    <%= form.text_field :property_federal_funding %>
+  <div class="input-group field">
+    <%= form.text_field :property_private_funding, class:"form-control", placeholder:"Inversion privada", required:true  %>
   </div>
+  <br>
 
-  <div class="field">
-    <%= form.label "Inversión estatal" %>
-    <%= form.text_field :property_state_funding %>
+  <div class="input-group field">
+    <%= form.text_field :property_federal_funding, class:"form-control", placeholder:"Inversion federal", required:true  %>
   </div>
+  <br>
 
-  <div class="field">
-    <%= form.label "Otra inversión" %>
-    <%= form.text_field :property_other_funding %>
+  <div class="input-group field">
+    <%= form.text_field :property_state_funding, class:"form-control", placeholder:"Inversion estatal", required:true  %>
   </div>
+  <br>
 
-  <div class="field">
-    <%= form.label "Fuente de otra inversión" %>
-    <%= form.text_field :property_other_source %>
+  <div class="input-group field">
+    <%= form.text_field :property_other_funding, class:"form-control", placeholder:"Otra inversion" %>
   </div>
+  <br>
+
+  <div class="input-group field">
+    <%= form.text_field :property_other_source, class:"form-control", placeholder:"Fuente de otra inversion" %>
+  </div>
+  <br>
 
   <h3> Equipamiento </h3>
 
-  <div class="field">
-    <%= form.label "Inversión privada" %>
-    <%= form.text_field :equipment_private_funding %>
+  <div class="input-group field">
+    <%= form.text_field :equipment_private_funding, class:"form-control", placeholder:"Inversion privada", required:true  %>
   </div>
+  <br>
 
-  <div class="field">
-    <%= form.label "Inversión federal" %>
-    <%= form.text_field :equipment_federal_funding %>
+  <div class="input-group field">
+    <%= form.text_field :equipment_federal_funding, class:"form-control", placeholder:"Inversion federal", required:true  %>
   </div>
+  <br>
 
-  <div class="field">
-    <%= form.label "Inversión estatal" %>
-    <%= form.text_field :equipment_state_funding %>
+  <div class="input-group field">
+    <%= form.text_field :equipment_state_funding, class:"form-control", placeholder:"Inversion estatal", required:true  %>
   </div>
+  <br>
 
-  <div class="field">
-    <%= form.label "Otra inversión" %>
-    <%= form.text_field :equipment_other_funding %>
+  <div class="input-group field">
+    <%= form.text_field :equipment_other_funding, class:"form-control", placeholder:"Otra inversion" %>
   </div>
+  <br>
 
-  <div class="field">
-    <%= form.label "Fuente de otra inversión" %>
-    <%= form.text_field :equipment_other_source %>
+  <div class="input-group field">
+    <%= form.text_field :property_other_source, class:"form-control", placeholder:"Fuente de otra inversion" %>
   </div>
+  <br>
 </div>
-<h4> Los siguientes campos son opcionales </h4>
+
+<h5> Los siguientes campos son opcionales </h5>
 <div id="patents">
-  <h2> Patentess y Diseños </h2>
+  <h2> Patentes y Diseños </h2>
 
-  <div class="field">
-    <%= form.label "Patentes solicitadas en México" %>
-    <%= form.number_field :requested_patents_mexico %>
+  <div class="form-row ">
+      <label class="form-label col-sm-2 col-form-label"> Patentes en México </label>
+    <div class="col-auto">
+      <div class="input-group field col-auto">
+        <%= form.number_field :requested_patents_mexico, class:"form-control", placeholder:"Solicitadas" %>
+      </div>
+    </div>
+    <div class="col-auto">
+      <div class="input-group field col-auto">
+        <%= form.number_field :given_patents_mexico, class:"form-control", placeholder:"Obtenidas" %>
+      </div>
+    </div>
   </div>
+  <br>
 
-  <div class="field">
-    <%= form.label "Diseños solicitados en México" %>
-    <%= form.number_field :requested_designs_mexico %>
+  <div class="form-row ">
+      <label class="form-label col-sm-2 col-form-label"> Patentes en EUA, Europa o Asia </label>
+    <div class="col-auto">
+      <div class="input-group field col-auto">
+        <%= form.number_field :requested_patents_us_eu_as, class:"form-control", placeholder:"Solicitadas" %>
+      </div>
+    </div>
+    <div class="col-auto">
+      <div class="input-group field col-auto">
+        <%= form.number_field :given_patents_us_eu_as, class:"form-control", placeholder:"Obtenidas" %>
+      </div>
+    </div>
   </div>
+  <br>
 
-  <div class="field">
-    <%= form.label "Patentes solicitadas en EUA, Europa o Asia"%>
-    <%= form.number_field :requested_patents_us_eu_as %>
+  <div class="form-row ">
+      <label class="form-label col-sm-2 col-form-label">Diseños en México</label>
+    <div class="col-auto">
+      <div class="input-group field col-auto">
+        <%= form.number_field :requested_designs_mexico, class:"form-control", placeholder:"Solicitadas" %>
+      </div>
+    </div>
+    <div class="col-auto">
+      <div class="input-group field col-auto">
+        <%= form.number_field :given_designs_mexico, class:"form-control", placeholder:"Obtenidas" %>
+      </div>
+    </div>
   </div>
+  <br>
 
-  <div class="field">
-    <%= form.label "Patentes otorgadas en México" %>
-    <%= form.number_field :given_patents_mexico %>
+  <div class="input-group field">
+    <%= form.number_field :trademarks, class:"form-control", placeholder:"Marcas registradas" %>
   </div>
+  <br>
 
-  <div class="field">
-    <%= form.label "Diseños obtenidos en México" %>
-    <%= form.number_field :given_designs_mexico %>
+  <div class="input-group field">
+    <%= form.number_field :copyrights, class:"form-control", placeholder:"Derechos de autor" %>
   </div>
+  <br>
 
-  <div class="field">
-    <%= form.label "Patentes obtenidas en EUA, Europa o Asia"%>
-    <%= form.number_field :given_patents_us_eu_as %>
+  <div class="input-group field">
+    <%= form.number_field :isi_publications, class:"form-control", placeholder:"Publicaciones en el Institute for Scientific Information" %>
   </div>
+  <br>
 
-  <div class="field">
-    <%= form.label "Marcas registradas" %>
-    <%= form.number_field :trademarks %>
+  <div class="input-group field">
+    <%= form.number_field :arbitrated_publications, class:"form-control", placeholder:"Artículos publicados en revistas arbitradas" %>
   </div>
+  <br>
 
-  <div class="field">
-    <%= form.label "Derechos de autor" %>
-    <%= form.text_field :copyrights %>
+  <div class="input-group field">
+    <%= form.number_field :non_arbitrated_publications, class:"form-control", placeholder:"Artículos publicados en revistas no arbitradas" %>
   </div>
+  <br>
 
-  <div class="field">
-    <%= form.label "Publicaciones en el Institute for Scientific Information" %>
-    <%= form.number_field :isi_publications %>
+  <div class="input-group field">
+    <%= form.number_field :quotes_in_publications, class:"form-control", placeholder:"Citas de artículos" %>
   </div>
-
-  <div class="field">
-    <%= form.label "Artículos publicados en revistas arbitradas" %>
-    <%= form.number_field :arbitrated_publications %>
-  </div>
-
-  <div class="field">
-    <%= form.label "Artículos publicados en revistas no arbitradas" %>
-    <%= form.number_field :non_arbitrated_publications %>
-  </div>
-
-  <div class="field">
-    <%= form.label "Citas de artículos" %>
-    <%= form.number_field :quotes_in_publications %>
-  </div>
-</div>
+  <br>
 
 <h2> Equipamiento </h2>
-<table>
+<table class="table">
   <tr>
     <th>Nombre</th>
     <th>Disponible</th>
@@ -245,7 +270,7 @@
   "association-insertion-method" => "append"} %>
 
 <h2> Premios y reconocimientos </h2>
-<table>
+<table class="table">
   <tr>
     <th>Nombre</th>
     <th>Fecha</th>
@@ -261,14 +286,15 @@
   "association-insertion-method" => "append"} %>
 
 <h2> Oficina de transferencia de tecnología </h2>
-<div class="field">
-  <%= form.label "Nombre de contacto" %>
-  <%= form.text_field :transfer_office_contact_name %>
+<div class="input-group field">
+  <%= form.number_field :transfer_office_contact_name, class:"form-control", placeholder:"Nombre de contacto" %>
 </div>
-<div class="field">
-  <%= form.label "Email de contacto" %>
-  <%= form.text_field :transfer_office_contact %>
+<br>
+
+<div class="input-group field">
+  <%= form.number_field :transfer_office_contact, class:"form-control", placeholder:"Email de contacto" %>
 </div>
+<br>
 
 
 
