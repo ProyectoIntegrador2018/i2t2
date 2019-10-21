@@ -8,6 +8,12 @@ class CentersController < ApplicationController
 
   # before_action :authenticate_user!, except: [:show, :index]
 
+  before_action :only => [:new, :edit] do
+    redirect_to new_admin_platform_session_path unless current_admin_platform or current_admin_center
+    # TODO: Pass ID of the Centro de Investigación that's linked with this admin account.
+    redirect_to edit_center_path(id: 3) unless not current_admin_platform && current_admin_center.try(:has_created_center?)
+  end
+
   # GET /centers
   # GET /centers.json
   def index
