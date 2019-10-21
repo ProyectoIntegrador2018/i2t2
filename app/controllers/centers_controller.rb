@@ -22,7 +22,7 @@ class CentersController < ApplicationController
   def new
     # Redirect to center edit page if there's already a center created for this account.
     @center_id = Center.find_by(user_id: current_user.id)
-    unless @center_id.nil?
+    if @center_id
       redirect_to edit_center_path(id: @center_id)
     end
     # @center = Center.new
