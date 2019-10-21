@@ -2,5 +2,13 @@
 
 # Main controller for responding to user actions.
 class UsuariosController < ApplicationController
-  def inicio; end
+  # before_filter :authenticate_user!
+  def inicio
+  	@users = User.all
+  end
+
+
+  def edit_profile
+    @user = current_user
+  end
 end
