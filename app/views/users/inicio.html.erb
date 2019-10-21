@@ -1,6 +1,6 @@
-<h1>Usuarios#inicio</h1>
+<h1>Usuarios</h1>
 
-<% if current_user or current_admin_platform or current_admin_center %>
+<% if current_user %>
 
 <%= link_to 'Cerrar Sesión', destroy_user_session_path, method: :delete %>
 
@@ -24,6 +24,8 @@
         <td><%= user.id %></td>
         <td><%= user.email %></td>
         <td><%= user.role %></td>
+        <%if can? :update, user %> <td><%= link_to 'Editar', admin_edit_user_path(user) %></td> <% end %>
+        <%if can? :destroy, user %> <td><%= link_to 'Eliminar', admin_destroy_user_path(user) ,data: { confirm: 'Seguro que quieres eliminar el usuario?' }, method: :delete %></td> <% end %>
       </tr>
     <% if current_user.id == user.id%>
     	</b>

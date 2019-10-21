@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :idti_services
   resources :centro_investigacions
 
-  root to: 'usuarios#inicio'
+  root to: 'users#inicio'
   resources :equipment
   resources :centers
   resources :awards
@@ -21,5 +21,13 @@ Rails.application.routes.draw do
              :controllers  => {
              :registrations => 'registrations',
              }
+  post '/users', :to => 'users#create', :as => :user
+  scope "/admin" do
+    resources :users, only: [:edit]
+  end
+  match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_user
+  match 'admin/users/:id/update' => 'users#edit', :via => :get, :as => :admin_edit_user
+  match 'admin/users/:id/update' => 'users#update', :via => :put, :as => :admin_update_user
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
