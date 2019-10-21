@@ -19,8 +19,8 @@
         <td><%= center.short_name %></td>
         <td><%= center.website %></td>
         <td><%= link_to 'Detalle', center %></td>
-        <td><%= link_to 'Editar', edit_center_path(center) %></td>
-        <td><%= link_to 'Destruir', center ,data: { confirm: 'Seguro que quieres destruir el centro?' }, method: :delete %></td>
+        <%if can? :update, center %> <td><%= link_to 'Editar', edit_center_path(center) %></td> <% end %>
+        <%if can? :update, center %> <td><%= link_to 'Destruir', center ,data: { confirm: 'Seguro que quieres destruir el centro?' }, method: :delete %></td> <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +28,6 @@
 
 <br>
 
-<%= link_to 'Agregar centro', new_center_path %>
+<%if can? :create, Center %>
+  <%= link_to 'Agregar centro', new_center_path %>
+<% end %>
