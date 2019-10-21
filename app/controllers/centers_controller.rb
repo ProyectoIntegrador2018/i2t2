@@ -31,6 +31,13 @@ class CentersController < ApplicationController
   # GET /centers/1/edit
   def edit; end
 
+  # Check that the user has the ability to create a new Center and that they haven't
+  # created any centers previously.
+  def can_create_center
+    return (can? :create, Center) && (not Center.exists?(user_id: current_user.id))
+  end
+  helper_method :can_create_center
+
   # POST /centers
   # POST /centers.json
   def create
