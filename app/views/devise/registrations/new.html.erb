@@ -24,13 +24,7 @@
   <div class="field">
     <%= f.label :role %><br />
     <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]}) %>
-<!--
-    <select name=f.role>
-      <% User::roles.each do |role| %>
-          <option value="<%= role[0] %>"><%= role[0] %></option>
-      <% end %>
-    </select>
- -->  </div>
+  </div>
 
   <div class="actions">
     <%= f.submit "Sign up" %>
