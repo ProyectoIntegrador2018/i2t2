@@ -8,9 +8,8 @@ class Ability
     #
     user ||= User.new # guest user (not logged in)
     if user.admin_plataforma?
-        can [:update, :destroy], Center
-        can :manage, User
-        can :read, :all
+        can :manage, :all
+        cannot :create, Center  # Can create a new Center.
     elsif user.admin_centro_inv?
         can :create, Center  # Can create a new Center.
         can :manage, Center, user_id: user.id # Can only edit their own Centers.
