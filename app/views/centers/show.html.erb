@@ -223,5 +223,5 @@
   <% end %>
 </ul>
 
-<%= link_to 'Editar', edit_center_path(@center) %> |
+<%if can? :update, @center %><%= link_to 'Editar', edit_center_path(@center) %> | <% end %>
 <%= link_to 'Regresar', centers_path %>

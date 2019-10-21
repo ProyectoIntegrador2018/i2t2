@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_19_024055) do
+ActiveRecord::Schema.define(version: 2019_10_20_233808) do
 
   create_table "admin_centers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -83,6 +83,8 @@ ActiveRecord::Schema.define(version: 2019_10_19_024055) do
     t.datetime "updated_at", null: false
     t.string "transfer_office_contact_name"
     t.string "transfer_office_contact"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_centers_on_user_id"
   end
 
   create_table "centers_clusters", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -202,6 +204,7 @@ ActiveRecord::Schema.define(version: 2019_10_19_024055) do
   end
 
   add_foreign_key "awards", "centers"
+  add_foreign_key "centers", "users"
   add_foreign_key "centro_investigacions", "users"
   add_foreign_key "equipment", "centers"
   add_foreign_key "idti_areas", "centers"
