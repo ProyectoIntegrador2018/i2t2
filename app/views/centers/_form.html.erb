@@ -1,32 +1,29 @@
-<%= form_with(model: center, local: true, class:"needs_validation") do |form| %>
+<%= form_with(model: center, local: true) do |form| %>
   <% if center.errors.any? %>
-      <h2><%= pluralize(center.errors.count, "error") %> prohibited this center from being saved:</h2>
-      <ul>
-      <% center.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <div class="alert alert-danger" role="alert">Hay campos faltantes</div>
   <% end %>
   <div id="basic info">
     <h2> Información básica </h2>
     <div class="input-group field">
-      <%= form.text_field :full_name, class:"form-control", placeholder:"Nombre completo", required:true %>
+      <%= form.text_field :full_name, class:"form-control  #{center.errors.include?(:full_name) ? 'is-invalid' : 'is-valid' if center.errors.any?}", placeholder:"Nombre completo" %>
     </div>
     <br>
 
     <div class="input-group field">
-      <%= form.text_field :short_name, class:"form-control", placeholder:"Siglas", required:true%>
+      <%= form.text_field :short_name, class:"form-control  #{center.errors.include?(:short_name) ? 'is-invalid' : 'is-valid' if center.errors.any?}", placeholder:"Siglas"%>
     </div>
     <br>
 
     <div class="input-group">
-      <span class="input-group-addon" id="basic-addon1">@</span>
-      <%= form.text_field :website, class:"form-control", placeholder:"Sitio web", 'aria-describedby'=>"basic-addon1", required:true  %>
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="">https://</span>
+      </div>
+      <%= form.text_field :website, class:"form-control  #{center.errors.include?(:website) ? 'is-invalid' : 'is-valid' if center.errors.any?}", placeholder:"Sitio web", 'aria-describedby'=>"basic-addon1"  %>
     </div>
     <br>
 
     <div class="input-group field">
-      <%= form.text_field :address, class:"form-control", placeholder:"Dirección", required:true  %>
+      <%= form.text_field :address, class:"form-control  #{center.errors.include?(:address) ? 'is-invalid' : 'is-valid' if center.errors.any?}", placeholder:"Dirección"  %>
     </div>
     <br>
 
@@ -37,17 +34,17 @@
     <br>
 
     <div class="input-group field">
-      <%= form.text_field :director_name, class:"form-control", placeholder:"Nombre de director", required:true  %>
+      <%= form.text_field :director_name, class:"form-control  #{center.errors.include?(:director_name) ? 'is-invalid' : 'is-valid' if center.errors.any?}", placeholder:"Nombre de director"  %>
     </div>
     <br>
 
     <div class="input-group field">
-      <%= form.text_field :director_email, class:"form-control", placeholder:"Email del director", required:true  %>
+      <%= form.text_field :director_email, class:"form-control  #{center.errors.include?(:director_email) ? 'is-invalid' : 'is-valid' if center.errors.any?}", placeholder:"Email del director"  %>
     </div>
     <br>
 
     <div class="input-group field">
-      <%= form.text_field :director_phone, class:"form-control", placeholder:"Teléfono del director", required:true  %>
+      <%= form.text_field :director_phone, class:"form-control  #{center.errors.include?(:director_phone) ? 'is-invalid' : 'is-valid' if center.errors.any?}", placeholder:"Teléfono del director"  %>
     </div>
     <br>
 
@@ -90,7 +87,8 @@
 </table>
 <%= link_to_add_association "Agregar servicio", form, :idti_services, data:
   {"association-insertion-node" => "tbody.idti_services",
-  "association-insertion-method" => "append"} %>
+"association-insertion-method" => "append"} %>
+<br><br>
 
 <h2> Areas de IDTi</h2>
 <table class="table">
@@ -105,39 +103,57 @@
 </table>
 <%= link_to_add_association "Agregar area", form, :idti_areas, data:
   {"association-insertion-node" => "tbody.idti_areas",
-  "association-insertion-method" => "append"} %>
-
+"association-insertion-method" => "append"} %>
+<br><br>
 <div id="funding">
   <h2> Infraestructura </h2>
   <h3> Propiedad </h3>
 
   <div class="input-group field">
-    <%= form.text_field :building_area, class:"form-control", placeholder:"Area de construcción", required:true  %>
+    <%= form.number_field :building_area, class:"form-control  #{center.errors.include?(:building_area) ? 'is-invalid' : 'is-valid' if center.errors.any? if center.errors.any?}", placeholder:"Area de construcción"  %>
+    <div class="input-group-append">
+      <span class="input-group-text" id="">m2</span>
+    </div>
   </div>
   <br>
 
   <div class="input-group field">
-    <%= form.text_field :property_area, class:"form-control", placeholder:"Area de propiedad", required:true  %>
+    <%= form.number_field :property_area, class:"form-control  #{center.errors.include?(:property_area) ? 'is-invalid' : 'is-valid' if center.errors.any?}", placeholder:"Area de propiedad"  %>
+    <div class="input-group-append">
+      <span class="input-group-text" id="">m2</span>
+    </div>
   </div>
   <br>
 
   <div class="input-group field">
-    <%= form.text_field :property_private_funding, class:"form-control", placeholder:"Inversion privada", required:true  %>
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="">$</span>
+    </div>
+    <%= form.number_field :property_private_funding, class:"form-control  #{center.errors.include?(:property_private_funding) ? 'is-invalid' : 'is-valid' if center.errors.any?}", placeholder:"Inversion privada"  %>
   </div>
   <br>
 
   <div class="input-group field">
-    <%= form.text_field :property_federal_funding, class:"form-control", placeholder:"Inversion federal", required:true  %>
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="">$</span>
+    </div>
+    <%= form.number_field :property_federal_funding, class:"form-control  #{center.errors.include?(:property_federal_funding) ? 'is-invalid' : 'is-valid' if center.errors.any?}", placeholder:"Inversion federal"  %>
   </div>
   <br>
 
   <div class="input-group field">
-    <%= form.text_field :property_state_funding, class:"form-control", placeholder:"Inversion estatal", required:true  %>
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="">$</span>
+    </div>
+    <%= form.number_field :property_state_funding, class:"form-control  #{center.errors.include?(:property_state_funding) ? 'is-invalid' : 'is-valid' if center.errors.any?}", placeholder:"Inversion estatal"  %>
   </div>
   <br>
 
   <div class="input-group field">
-    <%= form.text_field :property_other_funding, class:"form-control", placeholder:"Otra inversion" %>
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="">$</span>
+    </div>
+    <%= form.number_field :property_other_funding, class:"form-control", placeholder:"Otra inversion" %>
   </div>
   <br>
 
@@ -149,22 +165,34 @@
   <h3> Equipamiento </h3>
 
   <div class="input-group field">
-    <%= form.text_field :equipment_private_funding, class:"form-control", placeholder:"Inversion privada", required:true  %>
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="">$</span>
+    </div>
+    <%= form.number_field :equipment_private_funding, class:"form-control  #{center.errors.include?(:equipment_private_funding) ? 'is-invalid' : 'is-valid' if center.errors.any?}", placeholder:"Inversion privada"  %>
   </div>
   <br>
 
   <div class="input-group field">
-    <%= form.text_field :equipment_federal_funding, class:"form-control", placeholder:"Inversion federal", required:true  %>
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="">$</span>
+    </div>
+    <%= form.number_field :equipment_federal_funding, class:"form-control  #{center.errors.include?(:equipment_federal_funding) ? 'is-invalid' : 'is-valid' if center.errors.any?}", placeholder:"Inversion federal"  %>
   </div>
   <br>
 
   <div class="input-group field">
-    <%= form.text_field :equipment_state_funding, class:"form-control", placeholder:"Inversion estatal", required:true  %>
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="">$</span>
+    </div>
+    <%= form.number_field :equipment_state_funding, class:"form-control  #{center.errors.include?(:equipment_state_funding) ? 'is-invalid' : 'is-valid' if center.errors.any?}", placeholder:"Inversion estatal"  %>
   </div>
   <br>
 
   <div class="input-group field">
-    <%= form.text_field :equipment_other_funding, class:"form-control", placeholder:"Otra inversion" %>
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="">$</span>
+    </div>
+    <%= form.number_field :equipment_other_funding, class:"form-control", placeholder:"Otra inversion" %>
   </div>
   <br>
 
@@ -267,7 +295,8 @@
 </table>
 <%= link_to_add_association "Agregar equipo", form, :equipments, data:
   {"association-insertion-node" => "tbody.equipment_fields",
-  "association-insertion-method" => "append"} %>
+"association-insertion-method" => "append"} %>
+<br><br>
 
 <h2> Premios y reconocimientos </h2>
 <table class="table">
@@ -283,7 +312,8 @@
 </table>
 <%= link_to_add_association "Agregar premio", form, :awards, data:
   {"association-insertion-node" => "tbody.awards_fields",
-  "association-insertion-method" => "append"} %>
+"association-insertion-method" => "append"} %>
+<br><br>
 
 <h2> Oficina de transferencia de tecnología </h2>
 <div class="input-group field">
@@ -296,9 +326,7 @@
 </div>
 <br>
 
-
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+<div class="actions">
+  <%= form.submit class:"btn btn-primary", value:"Crear centro", 'data-disable-with'=>"Crear centro" %>
+</div>
 <% end %>
