@@ -4,49 +4,29 @@
   <% end %>
   <div id="basic info">
     <h2> Información básica </h2>
-    <div class="input-group field">
-      <%= form.text_field :full_name, class:"form-control  #{center.errors.include?(:full_name) ? 'is-invalid' : 'is-valid' if center.errors.any?}", placeholder:"Nombre completo" %>
-    </div>
-    <br>
 
-    <div class="input-group field">
-      <%= form.text_field :short_name, class:"form-control  #{center.errors.include?(:short_name) ? 'is-invalid' : 'is-valid' if center.errors.any?}", placeholder:"Siglas"%>
-    </div>
-    <br>
+    <%= render partial: 'text_field', locals: {form: form, tag:"Nombre completo", sym: :full_name, required_field: true, center: @center} %>
 
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="">https://</span>
+    <%= render partial: 'text_field', locals: {form: form, tag:"Siglas", sym: :short_name, required_field: true, center: @center} %>
+
+    <%= render partial: 'text_field', locals: {form: form, tag:"Sitio web", sym: :website, required_field: true, center: @center} %>
+
+    <%= render partial: 'text_field', locals: {form: form, tag:"Direccion", sym: :address, required_field: true, center: @center} %>
+
+    <div class="input-group field row">
+      <label class="col-sm-2 col-form-label">Inicio de operaciones</label>
+      <div class="col-sm-10">
+        <%= form.date_select :start_date %>
       </div>
-      <%= form.text_field :website, class:"form-control  #{center.errors.include?(:website) ? 'is-invalid' : 'is-valid' if center.errors.any?}", placeholder:"Sitio web", 'aria-describedby'=>"basic-addon1"  %>
     </div>
     <br>
 
-    <div class="input-group field">
-      <%= form.text_field :address, class:"form-control  #{center.errors.include?(:address) ? 'is-invalid' : 'is-valid' if center.errors.any?}", placeholder:"Dirección"  %>
-    </div>
-    <br>
+    <%= render partial: 'text_field', locals: {form: form, tag:"Nombre del director", sym: :director_name, required_field: true, center: @center} %>
 
-    <div class="field">
-      <%= form.label "Inicio de operaciones" %>
-      <%= form.date_select :start_date %>
-    </div>
-    <br>
+    <%= render partial: 'text_field', locals: {form: form, tag:"Email del director", sym: :director_email, required_field: true, center: @center} %>
 
-    <div class="input-group field">
-      <%= form.text_field :director_name, class:"form-control  #{center.errors.include?(:director_name) ? 'is-invalid' : 'is-valid' if center.errors.any?}", placeholder:"Nombre de director"  %>
-    </div>
-    <br>
+    <%= render partial: 'text_field', locals: {form: form, tag:"Telefono del director", sym: :director_phone, required_field: true, center: @center} %>
 
-    <div class="input-group field">
-      <%= form.text_field :director_email, class:"form-control  #{center.errors.include?(:director_email) ? 'is-invalid' : 'is-valid' if center.errors.any?}", placeholder:"Email del director"  %>
-    </div>
-    <br>
-
-    <div class="input-group field">
-      <%= form.text_field :director_phone, class:"form-control  #{center.errors.include?(:director_phone) ? 'is-invalid' : 'is-valid' if center.errors.any?}", placeholder:"Teléfono del director"  %>
-    </div>
-    <br>
 
 </div>
 <div id="clusters">
@@ -109,98 +89,32 @@
   <h2> Infraestructura </h2>
   <h3> Propiedad </h3>
 
-  <div class="input-group field">
-    <%= form.number_field :building_area, class:"form-control  #{center.errors.include?(:building_area) ? 'is-invalid' : 'is-valid' if center.errors.any? if center.errors.any?}", placeholder:"Area de construcción"  %>
-    <div class="input-group-append">
-      <span class="input-group-text" id="">m2</span>
-    </div>
-  </div>
-  <br>
+  <%= render partial: 'numeric_field', locals: {form: form, tag:"Area de construccion", sym: :building_area, required_field: true, center: @center} %>
 
-  <div class="input-group field">
-    <%= form.number_field :property_area, class:"form-control  #{center.errors.include?(:property_area) ? 'is-invalid' : 'is-valid' if center.errors.any?}", placeholder:"Area de propiedad"  %>
-    <div class="input-group-append">
-      <span class="input-group-text" id="">m2</span>
-    </div>
-  </div>
-  <br>
+  <%= render partial: 'numeric_field', locals: {form: form, tag:"Area de propiedad", sym: :property_area, required_field: true, center: @center} %>
 
-  <div class="input-group field">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="">$</span>
-    </div>
-    <%= form.number_field :property_private_funding, class:"form-control  #{center.errors.include?(:property_private_funding) ? 'is-invalid' : 'is-valid' if center.errors.any?}", placeholder:"Inversion privada"  %>
-  </div>
-  <br>
+  <%= render partial: 'numeric_field', locals: {form: form, tag:"Inversion privada", sym: :property_private_funding, required_field: true, center: @center} %>
 
-  <div class="input-group field">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="">$</span>
-    </div>
-    <%= form.number_field :property_federal_funding, class:"form-control  #{center.errors.include?(:property_federal_funding) ? 'is-invalid' : 'is-valid' if center.errors.any?}", placeholder:"Inversion federal"  %>
-  </div>
-  <br>
+  <%= render partial: 'numeric_field', locals: {form: form, tag:"Inversion federal", sym: :property_federal_funding, required_field: true, center: @center} %>
 
-  <div class="input-group field">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="">$</span>
-    </div>
-    <%= form.number_field :property_state_funding, class:"form-control  #{center.errors.include?(:property_state_funding) ? 'is-invalid' : 'is-valid' if center.errors.any?}", placeholder:"Inversion estatal"  %>
-  </div>
-  <br>
+  <%= render partial: 'numeric_field', locals: {form: form, tag:"Inversion estatal", sym: :property_state_funding, required_field: true, center: @center} %>
 
-  <div class="input-group field">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="">$</span>
-    </div>
-    <%= form.number_field :property_other_funding, class:"form-control", placeholder:"Otra inversion" %>
-  </div>
-  <br>
+  <%= render partial: 'numeric_field', locals: {form: form, tag:"Otra inversion", sym: :property_other_funding, required_field: false, center: @center} %>
 
-  <div class="input-group field">
-    <%= form.text_field :property_other_source, class:"form-control", placeholder:"Fuente de otra inversion" %>
-  </div>
-  <br>
+  <%= render partial: 'text_field', locals: {form: form, tag:"Fuente de otra inversion", sym: :property_other_source, required_field: false, center: @center} %>
 
   <h3> Equipamiento </h3>
 
-  <div class="input-group field">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="">$</span>
-    </div>
-    <%= form.number_field :equipment_private_funding, class:"form-control  #{center.errors.include?(:equipment_private_funding) ? 'is-invalid' : 'is-valid' if center.errors.any?}", placeholder:"Inversion privada"  %>
-  </div>
-  <br>
+  <%= render partial: 'numeric_field', locals: {form: form, tag:"Inversion privada", sym: :equipment_private_funding, required_field: true, center: @center} %>
 
-  <div class="input-group field">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="">$</span>
-    </div>
-    <%= form.number_field :equipment_federal_funding, class:"form-control  #{center.errors.include?(:equipment_federal_funding) ? 'is-invalid' : 'is-valid' if center.errors.any?}", placeholder:"Inversion federal"  %>
-  </div>
-  <br>
+  <%= render partial: 'numeric_field', locals: {form: form, tag:"Inversion federal", sym: :equipment_federal_funding, required_field: true, center: @center} %>
 
-  <div class="input-group field">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="">$</span>
-    </div>
-    <%= form.number_field :equipment_state_funding, class:"form-control  #{center.errors.include?(:equipment_state_funding) ? 'is-invalid' : 'is-valid' if center.errors.any?}", placeholder:"Inversion estatal"  %>
-  </div>
-  <br>
+  <%= render partial: 'numeric_field', locals: {form: form, tag:"Inversion estatal", sym: :equipment_state_funding, required_field: true, center: @center} %>
 
-  <div class="input-group field">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="">$</span>
-    </div>
-    <%= form.number_field :equipment_other_funding, class:"form-control", placeholder:"Otra inversion" %>
-  </div>
-  <br>
+  <%= render partial: 'numeric_field', locals: {form: form, tag:"Otra inversion", sym: :equipment_other_funding, required_field: false, center: @center} %>
 
-  <div class="input-group field">
-    <%= form.text_field :property_other_source, class:"form-control", placeholder:"Fuente de otra inversion" %>
-  </div>
-  <br>
-</div>
+  <%= render partial: 'text_field', locals: {form: form, tag:"Fuente de otra inversion", sym: :equipment_other_source, required_field: false, center: @center} %>
+
 
 <h5> Los siguientes campos son opcionales </h5>
 <div id="patents">
@@ -250,36 +164,19 @@
     </div>
   </div>
   <br>
+  <%= render partial: 'numeric_field', locals: {form: form, tag:"Marcas registradas", sym: :trademarks, required_field: false, center: @center} %>
 
-  <div class="input-group field">
-    <%= form.number_field :trademarks, class:"form-control", placeholder:"Marcas registradas" %>
-  </div>
-  <br>
+  <%= render partial: 'numeric_field', locals: {form: form, tag:"Derechos de autor", sym: :copyrights, required_field: false, center: @center} %>
 
-  <div class="input-group field">
-    <%= form.number_field :copyrights, class:"form-control", placeholder:"Derechos de autor" %>
-  </div>
-  <br>
+  <%= render partial: 'numeric_field', locals: {form: form, tag:"Publicaciones en el Institute for Scientific Information", sym: :isi_publications, required_field: false, center: @center} %>
 
-  <div class="input-group field">
-    <%= form.number_field :isi_publications, class:"form-control", placeholder:"Publicaciones en el Institute for Scientific Information" %>
-  </div>
-  <br>
+  <%= render partial: 'numeric_field', locals: {form: form, tag:"Artículos publicados en revistas arbitradas", sym: :arbitrated_publications, required_field: false, center: @center} %>
 
-  <div class="input-group field">
-    <%= form.number_field :arbitrated_publications, class:"form-control", placeholder:"Artículos publicados en revistas arbitradas" %>
-  </div>
-  <br>
+  <%= render partial: 'numeric_field', locals: {form: form, tag:"Artículos publicados en revistas no arbitradas", sym: :non_arbitrated_publications, required_field: false, center: @center} %>
 
-  <div class="input-group field">
-    <%= form.number_field :non_arbitrated_publications, class:"form-control", placeholder:"Artículos publicados en revistas no arbitradas" %>
-  </div>
-  <br>
+  <%= render partial: 'numeric_field', locals: {form: form, tag:"Otra inversion", sym: :quotes_in_publications, required_field: false, center: @center} %>
 
-  <div class="input-group field">
-    <%= form.number_field :quotes_in_publications, class:"form-control", placeholder:"Citas de artículos" %>
-  </div>
-  <br>
+  <%= render partial: 'numeric_field', locals: {form: form, tag:"Citas de artículos", sym: :property_other_source, required_field: false, center: @center} %>
 
 <h2> Equipamiento </h2>
 <table class="table">
@@ -316,15 +213,10 @@
 <br><br>
 
 <h2> Oficina de transferencia de tecnología </h2>
-<div class="input-group field">
-  <%= form.number_field :transfer_office_contact_name, class:"form-control", placeholder:"Nombre de contacto" %>
-</div>
-<br>
 
-<div class="input-group field">
-  <%= form.number_field :transfer_office_contact, class:"form-control", placeholder:"Email de contacto" %>
-</div>
-<br>
+<%= render partial: 'text_field', locals: {form: form, tag:"Nombre de contacto", sym: :transfer_office_contact_name, required_field: false, center: @center} %>
+
+<%= render partial: 'text_field', locals: {form: form, tag:"Email de contacto", sym: :transfer_office_contact, required_field: false, center: @center} %>
 
 <div class="actions">
   <%= form.submit class:"btn btn-primary", value:"Guardar centro", 'data-disable-with'=>"Guardar centro" %>
