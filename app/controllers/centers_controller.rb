@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
 class CentersController < ApplicationController
+  load_and_authorize_resource
   before_action :set_center, only: %i[show edit update destroy]
-  before_action :authenticate_user!, except: [:show, :index]
+  # redirect_to edit_center_path(id: 3) unless not current_admin_platform && current_admin_center.try(:has_created_center?)
+
+
+  # before_action :authenticate_user!, except: [:show, :index]
 
   before_action :only => [:new, :edit] do
     redirect_to new_admin_platform_session_path unless current_admin_platform or current_admin_center
@@ -22,24 +26,39 @@ class CentersController < ApplicationController
 
   # GET /centers/new
   def new
-    @center = Center.new
+    # Redirect to center edit page if there's already a center created for this account.
+    @center_id = Center.find_by(user_id: current_user.id)
+    if @center_id
+      redirect_to edit_center_path(id: @center_id)
+    end
+    # @center = Center.new
   end
 
   # GET /centers/1/edit
   def edit; end
 
+  # Check that the user has the ability to create a new Center and that they haven't
+  # created any centers previously.
+  def can_create_center
+    return (can? :create, Center) && (not Center.exists?(user_id: current_user.id))
+  end
+  helper_method :can_create_center
+
   # POST /centers
   # POST /centers.json
   def create
-    @center = Center.new(center_params)
-
-    respond_to do |format|
-      if @center.save
-        format.html { redirect_to @center, notice: 'Center was successfully created.' }
-        format.json { render :show, status: :created, location: @center }
-      else
-        format.html { render :new }
-        format.json { render json: @center.errors, status: :unprocessable_entity }
+    # Don't create a new center if the user already has one.
+    @current_id = current_user.id
+    if not Center.exists?(user_id: @current_id)
+      @center.user_id = @current_id
+      respond_to do |format|
+        if @center.save
+          format.html { redirect_to @center, notice: 'Center was successfully created.' }
+          format.json { render :show, status: :created, location: @center }
+        else
+          format.html { render :new }
+          format.json { render json: @center.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -72,7 +91,7 @@ class CentersController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_center
-    @center = Center.find(params[:id])
+    # @center = Center.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
