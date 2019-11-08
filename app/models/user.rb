@@ -2,6 +2,8 @@
 
 # Base model of a User that can have different roles.
 class User < ApplicationRecord
+  require 'csv'
+
   enum role: %i[admin_centro_inv admin_plataforma admin_patente
                 admin_cluster emprendedor_base usuario_general]
 
@@ -10,6 +12,24 @@ class User < ApplicationRecord
   def set_default_role
     self.role ||= :usuario_general
   end
+
+  def self.import(file)
+    CSV.foreach(file.path, headers: true) do |row|
+      r = row.to_hash
+      unless r.key?('email') && r.key?('role') && r.key?('password')
+        raise "Formato de archivo no valido"
+      end
+      unless User.exists?(email: r['email'])
+        User.create!(email: r['email'], role: r['role'], password: r['password'], password_confirmation: r['password'])
+      end
+    end
+  end
+
+  def platform_admin?
+    print self.role
+    return self.role == 'admin_plataforma'
+  end
+
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

@@ -16,23 +16,31 @@
   </thead>
 
   <tbody>
-    <% @users.each do |user| %>
+  <% @users.each do |user| %>
     <% if current_user.id == user.id%>
     	<b>
-	<% end %>
-      <tr>
-        <td><%= user.id %></td>
-        <td><%= user.email %></td>
-        <td><%= user.role %></td>
-        <%if can? :update, user %> <td><%= link_to 'Editar', admin_edit_user_path(user) %></td> <% end %>
-        <%if can? :destroy, user %> <td><%= link_to 'Eliminar', admin_destroy_user_path(user) ,data: { confirm: 'Seguro que quieres eliminar el usuario?' }, method: :delete %></td> <% end %>
-      </tr>
+    <% end %>
+    <tr>
+      <td><%= user.id %></td>
+      <td><%= user.email %></td>
+      <td><%= user.role %></td>
+      <%if can? :update, user %> <td><%= link_to 'Editar', admin_edit_user_path(user) %></td> <% end %>
+      <%if can? :destroy, user %> <td><%= link_to 'Eliminar', admin_destroy_user_path(user) ,data: { confirm: 'Seguro que quieres eliminar el usuario?' }, method: :delete %></td> <% end %>
+    </tr>
     <% if current_user.id == user.id%>
     	</b>
-	<% end %>
     <% end %>
+  <% end %>
   </tbody>
 </table>
+
+<% if current_user.platform_admin? %>
+  <h4>Importar usuarios</h4>
+  <%= form_tag import_users_path, multipart: true do %>
+    <%= file_field_tag :file, accept: 'text/csv' %>
+    <%= submit_tag "Importar CSV" %>
+  <% end %>
+<% end %>
 
 <% else %>
 
@@ -43,6 +51,3 @@
 <% end %>
 
 <%= link_to 'Centros de Investigación', centers_path %>
-
-
-
