@@ -1,4 +1,4 @@
-o# frozen_string_literal: true
+# frozen_string_literal: true
 
 class CentersController < ApplicationController
   load_and_authorize_resource
