@@ -15,4 +15,6 @@ class Center < ApplicationRecord
   accepts_nested_attributes_for :awards, allow_destroy: true, reject_if: ->(attrs) { attrs['name'].blank? }
   accepts_nested_attributes_for :idti_areas, allow_destroy: true, reject_if: ->(attrs) { attrs['name'].blank? }
   accepts_nested_attributes_for :idti_services, allow_destroy: true, reject_if: ->(attrs) { attrs['name'].blank? }
+
+  belongs_to :user
 end
