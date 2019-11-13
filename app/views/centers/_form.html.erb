@@ -1,74 +1,60 @@
 <%= form_with(model: center, local: true) do |form| %>
   <% if center.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(center.errors.count, "error") %> prohibited this center from being saved:</h2>
-
-      <ul>
-      <% center.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+    <div class="alert alert-danger" role="alert">Hay campos faltantes</div>
   <% end %>
   <div id="basic info">
     <h2> Información básica </h2>
-    <div class="field">
-      <%= form.label "Nombre completo" %>
-      <%= form.text_field :full_name %>
-    </div>
 
-    <div class="field">
-      <%= form.label "Nombre corto" %>
-      <%= form.text_field :short_name %>
-    </div>
+    <%= render partial: 'text_field', locals: {form: form, tag:"Nombre completo", sym: :full_name, required_field: true, center: @center} %>
 
-    <div class="field">
-      <%= form.label "Sitio web" %>
-      <%= form.text_field :website %>
-    </div>
+    <%= render partial: 'text_field', locals: {form: form, tag:"Siglas", sym: :short_name, required_field: true, center: @center} %>
 
-    <div class="field">
-      <%= form.label "Dirección" %>
-      <%= form.text_field :address %>
-    </div>
+    <%= render partial: 'text_field', locals: {form: form, tag:"Sitio web", sym: :website, required_field: true, center: @center} %>
 
-    <div class="field">
-      <%= form.label "Inicio de operaciones" %>
-      <%= form.date_select :start_date %>
-    </div>
+    <%= render partial: 'text_field', locals: {form: form, tag:"Direccion", sym: :address, required_field: true, center: @center} %>
 
-    <div class="field">
-      <%= form.label "Nombre de director o gerente" %>
-      <%= form.text_field :director_name %>
+    <div class="input-group field row">
+      <label class="col-sm-2 col-form-label">Inicio de operaciones</label>
+      <div class="col-sm-10">
+        <%= form.date_select :start_date %>
+      </div>
     </div>
+    <br>
 
-    <div class="field">
-      <%= form.label "Email de director o gerente" %>
-      <%= form.text_field :director_email %>
-    </div>
+    <%= render partial: 'text_field', locals: {form: form, tag:"Nombre del director", sym: :director_name, required_field: true, center: @center} %>
 
-    <div class="field">
-      <%= form.label "Teléfono de director o gerente" %>
-      <%= form.text_field :director_phone %>
-    </div>
+    <%= render partial: 'text_field', locals: {form: form, tag:"Email del director", sym: :director_email, required_field: true, center: @center} %>
+
+    <%= render partial: 'text_field', locals: {form: form, tag:"Telefono del director", sym: :director_phone, required_field: true, center: @center} %>
+
+
 </div>
 <div id="clusters">
   <h2> Clusters </h2>
-  <%= collection_check_boxes(:center, :cluster_ids, Cluster.all, :id, :name) do |cluster| %>
+  <div class="form-check">
+  <%= collection_check_boxes(:center, :cluster_ids, Cluster.all.sort_by{ |x| x.name }, :id, :name) do |cluster| %>
+    <label class="checkbox-inline">
+    <%= cluster.check_box %>
     <%= cluster.label %>
-    <%= cluster.check_box%>
+  </label>
   <% end %>
+  </div>
 </div>
+
 <div id="industries">
   <h2> Industrias </h2>
-  <%= collection_check_boxes(:center, :industry_ids, Industry.all, :id, :name) do |industry| %>
-    <%= industry.label %>
-    <%= industry.check_box%>
-  <% end %>
+  <div class="form-check">
+    <%= collection_check_boxes(:center, :industry_ids, Industry.all.sort_by{|x| x.name}, :id, :name) do |industry| %>
+      <label class="checkbox-inline">
+        <%= industry.label %>
+        <%= industry.check_box%>
+      </label>
+    <% end %>
+  </div>
 </div>
 
 <h2> Servicios de IDTi</h2>
-<table>
+<table class="table">
   <tr>
     <th> Nombre </th>
     <th> Industria </th>
@@ -81,10 +67,11 @@
 </table>
 <%= link_to_add_association "Agregar servicio", form, :idti_services, data:
   {"association-insertion-node" => "tbody.idti_services",
-  "association-insertion-method" => "append"} %>
+"association-insertion-method" => "append"} %>
+<br><br>
 
 <h2> Areas de IDTi</h2>
-<table>
+<table class="table">
   <tr>
     <th> Nombre </th>
   </tr>
@@ -96,140 +83,103 @@
 </table>
 <%= link_to_add_association "Agregar area", form, :idti_areas, data:
   {"association-insertion-node" => "tbody.idti_areas",
-  "association-insertion-method" => "append"} %>
-
+"association-insertion-method" => "append"} %>
+<br><br>
 <div id="funding">
   <h2> Infraestructura </h2>
   <h3> Propiedad </h3>
-  <div class="field">
-    <%= form.label "Area de construcción" %>
-    <%= form.text_field :building_area %>
-  </div>
 
-  <div class="field">
-    <%= form.label "Area de propiedad" %>
-    <%= form.text_field :property_area %>
-  </div>
+  <%= render partial: 'numeric_field', locals: {form: form, tag:"Area de construccion", sym: :building_area, required_field: true, center: @center} %>
 
-  <div class="field">
-    <%= form.label "Inversión privada" %>
-    <%= form.text_field :property_private_funding %>
-  </div>
+  <%= render partial: 'numeric_field', locals: {form: form, tag:"Area de propiedad", sym: :property_area, required_field: true, center: @center} %>
 
-  <div class="field">
-    <%= form.label "Inversión federal" %>
-    <%= form.text_field :property_federal_funding %>
-  </div>
+  <%= render partial: 'numeric_field', locals: {form: form, tag:"Inversion privada", sym: :property_private_funding, required_field: true, center: @center} %>
 
-  <div class="field">
-    <%= form.label "Inversión estatal" %>
-    <%= form.text_field :property_state_funding %>
-  </div>
+  <%= render partial: 'numeric_field', locals: {form: form, tag:"Inversion federal", sym: :property_federal_funding, required_field: true, center: @center} %>
 
-  <div class="field">
-    <%= form.label "Otra inversión" %>
-    <%= form.text_field :property_other_funding %>
-  </div>
+  <%= render partial: 'numeric_field', locals: {form: form, tag:"Inversion estatal", sym: :property_state_funding, required_field: true, center: @center} %>
 
-  <div class="field">
-    <%= form.label "Fuente de otra inversión" %>
-    <%= form.text_field :property_other_source %>
-  </div>
+  <%= render partial: 'numeric_field', locals: {form: form, tag:"Otra inversion", sym: :property_other_funding, required_field: false, center: @center} %>
+
+  <%= render partial: 'text_field', locals: {form: form, tag:"Fuente de otra inversion", sym: :property_other_source, required_field: false, center: @center} %>
 
   <h3> Equipamiento </h3>
 
-  <div class="field">
-    <%= form.label "Inversión privada" %>
-    <%= form.text_field :equipment_private_funding %>
-  </div>
+  <%= render partial: 'numeric_field', locals: {form: form, tag:"Inversion privada", sym: :equipment_private_funding, required_field: true, center: @center} %>
 
-  <div class="field">
-    <%= form.label "Inversión federal" %>
-    <%= form.text_field :equipment_federal_funding %>
-  </div>
+  <%= render partial: 'numeric_field', locals: {form: form, tag:"Inversion federal", sym: :equipment_federal_funding, required_field: true, center: @center} %>
 
-  <div class="field">
-    <%= form.label "Inversión estatal" %>
-    <%= form.text_field :equipment_state_funding %>
-  </div>
+  <%= render partial: 'numeric_field', locals: {form: form, tag:"Inversion estatal", sym: :equipment_state_funding, required_field: true, center: @center} %>
 
-  <div class="field">
-    <%= form.label "Otra inversión" %>
-    <%= form.text_field :equipment_other_funding %>
-  </div>
+  <%= render partial: 'numeric_field', locals: {form: form, tag:"Otra inversion", sym: :equipment_other_funding, required_field: false, center: @center} %>
 
-  <div class="field">
-    <%= form.label "Fuente de otra inversión" %>
-    <%= form.text_field :equipment_other_source %>
-  </div>
-</div>
-<h4> Los siguientes campos son opcionales </h4>
+  <%= render partial: 'text_field', locals: {form: form, tag:"Fuente de otra inversion", sym: :equipment_other_source, required_field: false, center: @center} %>
+
+
+<h5> Los siguientes campos son opcionales </h5>
 <div id="patents">
-  <h2> Patentess y Diseños </h2>
+  <h2> Patentes y Diseños </h2>
 
-  <div class="field">
-    <%= form.label "Patentes solicitadas en México" %>
-    <%= form.number_field :requested_patents_mexico %>
+  <div class="form-row ">
+      <label class="form-label col-sm-2 col-form-label"> Patentes en México </label>
+    <div class="col-auto">
+      <div class="input-group field col-auto">
+        <%= form.number_field :requested_patents_mexico, class:"form-control", placeholder:"Solicitadas" %>
+      </div>
+    </div>
+    <div class="col-auto">
+      <div class="input-group field col-auto">
+        <%= form.number_field :given_patents_mexico, class:"form-control", placeholder:"Obtenidas" %>
+      </div>
+    </div>
   </div>
+  <br>
 
-  <div class="field">
-    <%= form.label "Diseños solicitados en México" %>
-    <%= form.number_field :requested_designs_mexico %>
+  <div class="form-row ">
+      <label class="form-label col-sm-2 col-form-label"> Patentes en EUA, Europa o Asia </label>
+    <div class="col-auto">
+      <div class="input-group field col-auto">
+        <%= form.number_field :requested_patents_us_eu_as, class:"form-control", placeholder:"Solicitadas" %>
+      </div>
+    </div>
+    <div class="col-auto">
+      <div class="input-group field col-auto">
+        <%= form.number_field :given_patents_us_eu_as, class:"form-control", placeholder:"Obtenidas" %>
+      </div>
+    </div>
   </div>
+  <br>
 
-  <div class="field">
-    <%= form.label "Patentes solicitadas en EUA, Europa o Asia"%>
-    <%= form.number_field :requested_patents_us_eu_as %>
+  <div class="form-row ">
+      <label class="form-label col-sm-2 col-form-label">Diseños en México</label>
+    <div class="col-auto">
+      <div class="input-group field col-auto">
+        <%= form.number_field :requested_designs_mexico, class:"form-control", placeholder:"Solicitadas" %>
+      </div>
+    </div>
+    <div class="col-auto">
+      <div class="input-group field col-auto">
+        <%= form.number_field :given_designs_mexico, class:"form-control", placeholder:"Obtenidas" %>
+      </div>
+    </div>
   </div>
+  <br>
+  <%= render partial: 'numeric_field', locals: {form: form, tag:"Marcas registradas", sym: :trademarks, required_field: false, center: @center} %>
 
-  <div class="field">
-    <%= form.label "Patentes otorgadas en México" %>
-    <%= form.number_field :given_patents_mexico %>
-  </div>
+  <%= render partial: 'numeric_field', locals: {form: form, tag:"Derechos de autor", sym: :copyrights, required_field: false, center: @center} %>
 
-  <div class="field">
-    <%= form.label "Diseños obtenidos en México" %>
-    <%= form.number_field :given_designs_mexico %>
-  </div>
+  <%= render partial: 'numeric_field', locals: {form: form, tag:"Publicaciones en el Institute for Scientific Information", sym: :isi_publications, required_field: false, center: @center} %>
 
-  <div class="field">
-    <%= form.label "Patentes obtenidas en EUA, Europa o Asia"%>
-    <%= form.number_field :given_patents_us_eu_as %>
-  </div>
+  <%= render partial: 'numeric_field', locals: {form: form, tag:"Artículos publicados en revistas arbitradas", sym: :arbitrated_publications, required_field: false, center: @center} %>
 
-  <div class="field">
-    <%= form.label "Marcas registradas" %>
-    <%= form.number_field :trademarks %>
-  </div>
+  <%= render partial: 'numeric_field', locals: {form: form, tag:"Artículos publicados en revistas no arbitradas", sym: :non_arbitrated_publications, required_field: false, center: @center} %>
 
-  <div class="field">
-    <%= form.label "Derechos de autor" %>
-    <%= form.text_field :copyrights %>
-  </div>
+  <%= render partial: 'numeric_field', locals: {form: form, tag:"Otra inversion", sym: :quotes_in_publications, required_field: false, center: @center} %>
 
-  <div class="field">
-    <%= form.label "Publicaciones en el Institute for Scientific Information" %>
-    <%= form.number_field :isi_publications %>
-  </div>
-
-  <div class="field">
-    <%= form.label "Artículos publicados en revistas arbitradas" %>
-    <%= form.number_field :arbitrated_publications %>
-  </div>
-
-  <div class="field">
-    <%= form.label "Artículos publicados en revistas no arbitradas" %>
-    <%= form.number_field :non_arbitrated_publications %>
-  </div>
-
-  <div class="field">
-    <%= form.label "Citas de artículos" %>
-    <%= form.number_field :quotes_in_publications %>
-  </div>
-</div>
+  <%= render partial: 'numeric_field', locals: {form: form, tag:"Citas de artículos", sym: :property_other_source, required_field: false, center: @center} %>
 
 <h2> Equipamiento </h2>
-<table>
+<table class="table">
   <tr>
     <th>Nombre</th>
     <th>Disponible</th>
@@ -242,10 +192,11 @@
 </table>
 <%= link_to_add_association "Agregar equipo", form, :equipments, data:
   {"association-insertion-node" => "tbody.equipment_fields",
-  "association-insertion-method" => "append"} %>
+"association-insertion-method" => "append"} %>
+<br><br>
 
 <h2> Premios y reconocimientos </h2>
-<table>
+<table class="table">
   <tr>
     <th>Nombre</th>
     <th>Fecha</th>
@@ -258,21 +209,16 @@
 </table>
 <%= link_to_add_association "Agregar premio", form, :awards, data:
   {"association-insertion-node" => "tbody.awards_fields",
-  "association-insertion-method" => "append"} %>
+"association-insertion-method" => "append"} %>
+<br><br>
 
 <h2> Oficina de transferencia de tecnología </h2>
-<div class="field">
-  <%= form.label "Nombre de contacto" %>
-  <%= form.text_field :transfer_office_contact_name %>
+
+<%= render partial: 'text_field', locals: {form: form, tag:"Nombre de contacto", sym: :transfer_office_contact_name, required_field: false, center: @center} %>
+
+<%= render partial: 'text_field', locals: {form: form, tag:"Email de contacto", sym: :transfer_office_contact, required_field: false, center: @center} %>
+
+<div class="actions">
+  <%= form.submit class:"btn btn-primary", value:"Guardar centro", 'data-disable-with'=>"Guardar centro" %>
 </div>
-<div class="field">
-  <%= form.label "Email de contacto" %>
-  <%= form.text_field :transfer_office_contact %>
-</div>
-
-
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>
