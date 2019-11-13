@@ -1,227 +1,307 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <p id="notice"><%= notice %></p>
 
-<h1> <%= @center.full_name %> </h1>
-<h2> <%= @center.short_name %> </h2>
+  <h1> <%= @center.full_name %> </h1>
+  <h2> <%= @center.short_name %> </h2>
+  <div>
+    <% if @center.clusters.empty? %>
+      <p>No pertenece a algún cluster</p>
+    <% else %>
+      Clusters:
+      <% @center.clusters.each do |cluster| %>
+        <span class="badge badge-pill badge-secondary"> <%=cluster.name%> </span>
+      <% end %>
+    <% end %>
+  </div>
+  <div>
+    <% if @center.industries.empty? %>
+      <p>No pertenece a alguna industria</p>
+    <% else %>
+      Industrias:
+      <% @center.industries.each do |industry| %>
+        <span class="badge badge-pill badge-light"> <%=industry.name%> </span>
+      <% end %>
+    <% end %>
+  </div>
+  <br/>
 
-<h2> Información general </h2>
-<p>
-  <strong>Sitio web:</strong>
-  <%= @center.website %>
-</p>
+  <div class="card">
+    <h5 class="card-header">Información general</h5>
+    <div class="card-body">
+      <p>
+        <strong>Sitio web:</strong>
+        <%= @center.website %>
+      </p>
 
-<p>
-  <strong>Dirección:</strong>
-  <%= @center.address %>
-</p>
+      <p>
+        <strong>Dirección:</strong>
+        <%= @center.address %>
+      </p>
 
-<p>
-  <strong>Inicio de operaciones:</strong>
-  <%= @center.start_date %>
-</p>
-<p>
-  <strong>Nombre del director o gerente:</strong>
-  <%= @center.director_name %>
-</p>
+      <p>
+        <strong>Inicio de operaciones:</strong>
+        <%= @center.start_date %>
+      </p>
+      <p>
+    </div>
+  </div>
 
-<p>
-  <strong>Email del director o gerente:</strong>
-  <%= @center.director_email %>
-</p>
+  <br/>
+  <div class="card">
+    <h5 class="card-header">Contacto del director</h5>
+    <div class="card-body">
+      <p>
+        <strong>Nombre:</strong>
+        <%= @center.director_name %>
+      </p>
 
-<p>
-  <strong>Teléfono del director o gerente:</strong>
-  <%= @center.director_phone %>
-</p>
+      <p>
+        <strong>Email:</strong>
+        <%= @center.director_email %>
+      </p>
 
-<h2> Infraestructura </h2>
-<h3> Propiedad </h3>
-<p>
-  <strong>Área de construcción:</strong>
-  <%= @center.building_area %>
-</p>
+      <p>
+        <strong>Teléfono:</strong>
+        <%= @center.director_phone %>
+      </p>
+    </div>
+  </div>
 
-<p>
-  <strong>Área de terreno:</strong>
-  <%= @center.property_area %>
-</p>
+  <br/>
+  <div class="card">
+    <h5 class="card-header">Propiedad e infraestructura</h5>
+    <div class="card-body">
+      <p>
+        <strong>Área de construcción:</strong>
+        <%= @center.building_area %>
+      </p>
 
-<p>
-  <strong>Inversión privada:</strong>
-  <%= @center.property_private_funding %>
-</p>
+      <p>
+        <strong>Área de terreno:</strong>
+        <%= @center.property_area %>
+      </p>
 
-<p>
-  <strong>Inversión federal:</strong>
-  <%= @center.property_federal_funding %>
-</p>
+      <p>
+        <strong>Inversión privada:</strong>
+        <%= @center.property_private_funding %>
+      </p>
 
-<p>
-  <strong>Inversión estatal:</strong>
-  <%= @center.property_state_funding %>
-</p>
+      <p>
+        <strong>Inversión federal:</strong>
+        <%= @center.property_federal_funding %>
+      </p>
 
-<% if !@center.property_other_funding.blank? %>
-  <p>
-    <strong>Otra inversión:</strong>
-    <%= @center.property_other_funding %>
-  </p>
+      <p>
+        <strong>Inversión estatal:</strong>
+        <%= @center.property_state_funding %>
+      </p>
 
-  <p>
-    <strong>Fuente de otra inversión:</strong>
-    <%= @center.property_other_source %>
-  </p>
-<% end %>
+      <% if !@center.property_other_funding.blank? %>
+        <p>
+          <strong>Otra inversión:</strong>
+          <%= @center.property_other_funding %>
+        </p>
 
-<h3> Equipamiento </h3>
-<p>
-  <strong>Inversión privada:</strong>
-  <%= @center.equipment_private_funding %>
-</p>
+        <p>
+          <strong>Fuente de otra inversión:</strong>
+          <%= @center.property_other_source %>
+        </p>
+      <% end %>
+    </div>
+  </div>
 
-<p>
-  <strong>Inversión federal:</strong>
-  <%= @center.equipment_federal_funding %>
-</p>
+  <br/>
 
-<p>
-  <strong>Inversión estatal:</strong>
-  <%= @center.equipment_state_funding %>
-</p>
+  <div class="card">
+    <h5 class="card-header">Equipamiento</h5>
+    <div class="card-body">
+      <p>
+        <strong>Inversión privada:</strong>
+        <%= @center.equipment_private_funding %>
+      </p>
 
-<p>
-  <strong>Otra inversión:</strong>
-  <%= @center.equipment_other_funding %>
-</p>
+      <p>
+        <strong>Inversión federal:</strong>
+        <%= @center.equipment_federal_funding %>
+      </p>
 
-<p>
-  <strong>Fuente de otra inversión:</strong>
-  <%= @center.equipment_other_source %>
-</p>
+      <p>
+        <strong>Inversión estatal:</strong>
+        <%= @center.equipment_state_funding %>
+      </p>
 
-<h2> Patentes y diseños </h2>
-<p>
-  <strong>Patentes solicitadas en México:</strong>
-  <%= @center.requested_patents_mexico %>
-</p>
+      <% if !@center.equipment_other_funding.blank? %>
+        <p>
+          <strong>Otra inversión:</strong>
+          <%= @center.equipment_other_funding %>
+        </p>
 
-<p>
-  <strong>Diseños solicitados en México:</strong>
-  <%= @center.requested_designs_mexico %>
-</p>
+        <p>
+          <strong>Fuente de otra inversión:</strong>
+          <%= @center.equipment_other_source %>
+        </p>
+      <% end %>
+    </div>
+  </div>
 
-<p>
-  <strong>Patentes solicitadas en EUA, Europa y Asia:</strong>
-  <%= @center.requested_patents_us_eu_as %>
-</p>
+  <br/>
 
-<p>
-  <strong>Patentes otorgadas México:</strong>
-  <%= @center.given_patents_mexico %>
-</p>
+    <div class="row">
+        <div class="col-sm-6">
+          <div class="card">
+            <h5 class="card-header">Patentes y diseños</h5>
+            <div class="card-body">
+              <p>
+                <strong>Patentes solicitadas en México:</strong>
+                <%= @center.requested_patents_mexico %>
+              </p>
+              <p>
+                <strong>Patentes otorgadas México:</strong>
+                <%= @center.given_patents_mexico %>
+              </p>
+              <p>
+                <strong>Patentes solicitadas en EUA, Europa y Asia:</strong>
+                <%= @center.requested_patents_us_eu_as %>
+              </p>
+              <p>
+                <strong>Patentes obtenidas en EUA, Europa y Asia:</strong>
+                <%= @center.given_patents_us_eu_as %>
+              </p>
+              <p>
+                <strong>Diseños solicitados en México:</strong>
+                <%= @center.requested_designs_mexico %>
+              </p>
+              <p>
+                <strong>Diseños obtenidos en México:</strong>
+                <%= @center.given_designs_mexico %>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card">
+            <h5 class="card-header">Publicaciones y derechos</h5>
+            <div class="card-body">
+              <p>
+                <strong>Marcas registradas:</strong>
+                <%= @center.trademarks %>
+              </p>
+              <p>
+                <strong>Derechos de autor:</strong>
+                <%= @center.copyrights %>
+              </p>
+              <p>
+                <strong>Publicaciones en el Institute for Scientific Information:</strong>
+                <%= @center.isi_publications %>
+              </p>
+              <p>
+                <strong>Artículos publicados en revistas arbitradas:</strong>
+                <%= @center.arbitrated_publications %>
+              </p>
+              <p>
+                <strong>Artículos publicados en revistas no arbitradas:</strong>
+                <%= @center.non_arbitrated_publications %>
+              </p>
+              <p>
+                <strong>Citas de artículos:</strong>
+                <%= @center.quotes_in_publications %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-<p>
-  <strong>Diseños obtenidos en México:</strong>
-  <%= @center.given_designs_mexico %>
-</p>
+      <br/>
 
-<p>
-  <strong>Patentes obtenidas en EUA, Europa y Asia:</strong>
-  <%= @center.given_patents_us_eu_as %>
-</p>
+    <div class="card">
+      <h5 class="card-header">Equipo</h5>
+      <div class="card-body">
+        <% if @center.equipments.empty? %>
+          No se brindaron datos sobre el equipo.
+        <% else %>
+          <div class="container">
+            <table class="table">
+              <tr>
+                <th>Equipo</th>
+                <th>Disponible</th>
+              </tr>
+              <% @center.equipments.each do |equipment| %>
+                <tr>
+                  <td> <%="#{equipment.name}" %> </td>
+                  <td> <%=equipment.available ? "Si" : "No" %> </td>
+                </tr>
+              <% end %>
+            </table>
+          </div>
+        <% end %>
+      </div>
+    </div>
 
-<p>
-  <strong>Marcas registradas:</strong>
-  <%= @center.trademarks %>
-</p>
+    <br/>
 
-<p>
-  <strong>Derechos de autor:</strong>
-  <%= @center.copyrights %>
-</p>
+    <div class="card">
+      <h5 class="card-header">Premios y reconocimientos</h5>
+      <div class="card-body">
+        <% if @center.awards.empty? %>
+          No se brindaron datos sobre premios.
+        <% else %>
+          <div class="container">
+            <table class="table">
+              <tr>
+                <th> Premio </th>
+                <th> Año </th>
+              </tr>
+              <% @center.awards.each do |award| %>
+                <tr>
+                  <td> <%= "#{award.name}" %> </td>
+                  <td> <%= "#{award.date.year}" %> </td>
+                </tr>
+              <% end %>
+            </table>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <br/>
+    <div class="card">
+      <h5 class="card-header">Áreas de Investigación, Desarrollo Tecnológico e Innovación</h5>
+      <div class="card-body">
+        <% if @center.idti_areas.empty? %>
+          No se brindaron datos sobre áreas de IDTI.
+        <% else %>
+          <ul>
+            <% @center.idti_areas.each do |area| %>
+              <li> <%= "#{area.name}" %> </li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+    </div>
+    <br/>
+    <div class="card">
+      <h5 class="card-header">Servicios de Investigación, Desarrollo Tecnológico e Innovación</h5>
+      <div class="card-body">
+        <% if @center.idti_services.empty? %>
+          No se brindaron datos sobre servicios de IDTI.
+        <% else %>
+          <div class="container">
+            <table class="table">
+              <tr>
+                <th> Servicio </th>
+                <th> Industria </th>
+              </tr>
+              <% @center.idti_services.each do |service| %>
+                <tr>
+                  <td> <%= "#{service.name}" %> </td>
+                  <td> <%= "#{service.industry}" %> </td>
+                </tr>
+              <% end %>
+            </table>
+          </div>
+        <% end %>
+      </div>
+    </div>
 
-<p>
-  <strong>Publicaciones en el Institute for Scientific Information:</strong>
-  <%= @center.isi_publications %>
-</p>
-
-<p>
-  <strong>Artículos publicados en revistas arbitradas:</strong>
-  <%= @center.arbitrated_publications %>
-</p>
-
-<p>
-  <strong>Artículos publicados en revistas no arbitradas:</strong>
-  <%= @center.non_arbitrated_publications %>
-</p>
-
-<p>
-  <strong>Citas de artículos:</strong>
-  <%= @center.quotes_in_publications %>
-</p>
-
-<h2> Equipamiento </h2>
-<table>
-  <tr>
-    <th>Equipo</th>
-    <th>Disponible</th>
-  </tr>
-  <% @center.equipments.each do |equipment| %>
-    <tr>
-      <td> <%="#{equipment.name}" %> </td>
-      <td> <%=equipment.available ? "Si" : "No" %> </td>
-    </tr>
-  <% end %>
-</table>
-
-<h2> Premios y reconocimientos </h2>
-<table>
-  <tr>
-    <th> Premio </th>
-    <th> Año </th>
-  </tr>
-  <% @center.awards.each do |award| %>
-    <tr>
-      <td> <%= "#{award.name}" %> </td>
-      <td> <%= "#{award.date.year}" %> </td>
-    </tr>
-  <% end %>
-</table>
-
-<h2> IDTi </h2>
-<h3> Areas</h3>
-<ul>
-<% @center.idti_areas.each do |area| %>
-  <li> <%= "#{area.name}" %> </li>
-<% end %>
-</ul>
-
-<h3> Servicios</h3>
-<table>
-  <tr>
-    <th> Servicio </th>
-    <th> Industria </th>
-  </tr>
-  <% @center.idti_services.each do |service| %>
-    <tr>
-      <td> <%= "#{service.name}" %> </td>
-      <td> <%= "#{service.industry}" %> </td>
-    </tr>
-  <% end %>
-</table>
-
-<h2> Clusters </h2>
-<ul>
-  <% @center.clusters.each do |cluster| %>
-    <li> <%= cluster.name %> </li>
-  <% end %>
-</ul>
-
-<h2> Industrias </h2>
-<ul>
-  <% @center.industries.each do |industry| %>
-    <li> <%= industry.name %> </li>
-  <% end %>
-</ul>
-
-<%if can? :update, @center %><%= link_to 'Editar', edit_center_path(@center) %> | <% end %>
-<%= link_to 'Regresar', centers_path %>
+  <%if can? :update, @center %><%= link_to 'Editar', edit_center_path(@center) %> | <% end %>
+  <%= link_to 'Regresar', centers_path %>
+</div>
