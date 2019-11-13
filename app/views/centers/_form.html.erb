@@ -2,30 +2,242 @@
   <% if center.errors.any? %>
     <div class="alert alert-danger" role="alert">Hay campos faltantes</div>
   <% end %>
-  <div id="basic info">
-    <h2> Información básica </h2>
 
-    <%= render partial: 'text_field', locals: {form: form, tag:"Nombre completo", sym: :full_name, required_field: true, center: @center} %>
+  <%= render partial: 'text_field', locals: {form: form, tag:"Nombre completo", sym: :full_name, required_field: true, center: @center} %>
 
-    <%= render partial: 'text_field', locals: {form: form, tag:"Siglas", sym: :short_name, required_field: true, center: @center} %>
+  <%= render partial: 'text_field', locals: {form: form, tag:"Siglas", sym: :short_name, required_field: true, center: @center} %>
 
-    <%= render partial: 'text_field', locals: {form: form, tag:"Sitio web", sym: :website, required_field: true, center: @center} %>
 
-    <%= render partial: 'text_field', locals: {form: form, tag:"Direccion", sym: :address, required_field: true, center: @center} %>
+  <div>
+    <% if @center.clusters.empty? %>
+      <p>No pertenece a algún cluster</p>
+    <% else %>
+      Clusters:
+      <% @center.clusters.each do |cluster| %>
+        <span class="badge badge-pill badge-secondary"> <%=cluster.name%> </span>
+      <% end %>
+    <% end %>
+  </div>
+  <div>
+    <% if @center.industries.empty? %>
+      <p>No pertenece a alguna industria</p>
+    <% else %>
+      Industrias:
+      <% @center.industries.each do |industry| %>
+        <span class="badge badge-pill badge-light"> <%=industry.name%> </span>
+      <% end %>
+    <% end %>
+  </div>
+  <br/>
 
-    <div class="input-group field row">
-      <label class="col-sm-2 col-form-label">Inicio de operaciones</label>
-      <div class="col-sm-10">
-        <%= form.date_select :start_date %>
+  <div class="card">
+    <h5 class="card-header">Información general</h5>
+    <div class="card-body">
+      <%= render partial: 'text_field', locals: {form: form, tag:"Sitio web", sym: :website, required_field: true, center: @center} %>
+
+      <%= render partial: 'text_field', locals: {form: form, tag:"Direccion", sym: :address, required_field: true, center: @center} %>
+
+      <div class="input-group field row">
+        <label class="col-sm-2 col-form-label">Inicio de operaciones</label>
+        <div class="col-sm-10">
+          <%= form.date_select :start_date %>
+        </div>
+      </div>
+      <br>
+    </div>
+  </div>
+
+  <br/>
+  <div class="card">
+    <h5 class="card-header">Contacto del director</h5>
+    <div class="card-body">
+      <%= render partial: 'text_field', locals: {form: form, tag:"Nombre del director", sym: :director_name, required_field: true, center: @center} %>
+
+      <%= render partial: 'text_field', locals: {form: form, tag:"Email del director", sym: :director_email, required_field: true, center: @center} %>
+
+      <%= render partial: 'text_field', locals: {form: form, tag:"Telefono del director", sym: :director_phone, required_field: true, center: @center} %>
+    </div>
+  </div>
+
+  <br/>
+  <div class="card">
+    <h5 class="card-header">Propiedad e infraestructura</h5>
+    <div class="card-body">
+      <%= render partial: 'numeric_field', locals: {form: form, tag:"Area de construccion", sym: :building_area, required_field: true, center: @center} %>
+
+      <%= render partial: 'numeric_field', locals: {form: form, tag:"Area de propiedad", sym: :property_area, required_field: true, center: @center} %>
+
+      <%= render partial: 'numeric_field', locals: {form: form, tag:"Inversion privada", sym: :property_private_funding, required_field: true, center: @center} %>
+
+      <%= render partial: 'numeric_field', locals: {form: form, tag:"Inversion federal", sym: :property_federal_funding, required_field: true, center: @center} %>
+
+      <%= render partial: 'numeric_field', locals: {form: form, tag:"Inversion estatal", sym: :property_state_funding, required_field: true, center: @center} %>
+
+      <%= render partial: 'numeric_field', locals: {form: form, tag:"Otra inversion", sym: :property_other_funding, required_field: false, center: @center} %>
+
+      <%= render partial: 'text_field', locals: {form: form, tag:"Fuente de otra inversion", sym: :property_other_source, required_field: false, center: @center} %>
+    </div>
+  </div>
+
+  <br/>
+
+  <div class="card">
+    <h5 class="card-header">Equipamiento</h5>
+    <div class="card-body">
+      <%= render partial: 'numeric_field', locals: {form: form, tag:"Inversion privada", sym: :equipment_private_funding, required_field: true, center: @center} %>
+
+      <%= render partial: 'numeric_field', locals: {form: form, tag:"Inversion federal", sym: :equipment_federal_funding, required_field: true, center: @center} %>
+
+      <%= render partial: 'numeric_field', locals: {form: form, tag:"Inversion estatal", sym: :equipment_state_funding, required_field: true, center: @center} %>
+
+      <%= render partial: 'numeric_field', locals: {form: form, tag:"Otra inversion", sym: :equipment_other_funding, required_field: false, center: @center} %>
+
+      <%= render partial: 'text_field', locals: {form: form, tag:"Fuente de otra inversion", sym: :equipment_other_source, required_field: false, center: @center} %>
+    </div>
+  </div>
+
+  <br/>
+
+  <div class="card">
+    <h5 class="card-header">Patentes y diseños</h5>
+    <div class="card-body">
+      <h6 class="card-subtitle mb-2 text-muted">Opcional</h6>
+      <%= render partial: 'numeric_field', locals: {form: form, tag:"Patentes solicitadas en México", sym: :requested_patents_mexico, required_field: false, center: @center} %>
+      <%= render partial: 'numeric_field', locals: {form: form, tag:"Patentes otorgadas en México", sym: :given_patents_mexico, required_field: false, center: @center} %>
+      <%= render partial: 'numeric_field', locals: {form: form, tag:"Patentes solicitadas en EUA, Europa y Asia", sym: :requested_patents_us_eu_as, required_field: false, center: @center} %>
+      <%= render partial: 'numeric_field', locals: {form: form, tag:"Patentes obtenidas en EUA, Europa y Asia", sym: :given_patents_us_eu_as, required_field: false, center: @center} %>
+      <%= render partial: 'numeric_field', locals: {form: form, tag:"Diseños solicitados en México:", sym: :requested_designs_mexico, required_field: false, center: @center} %>
+      <%= render partial: 'numeric_field', locals: {form: form, tag:"Diseños otorgados en México:", sym: :given_designs_mexico, required_field: false, center: @center} %>
+    </div>
+  </div>
+
+  <br/>
+
+  <div class="card">
+    <h5 class="card-header">Publicaciones y derechos</h5>
+    <div class="card-body">
+      <h6 class="card-subtitle mb-2 text-muted">Opcional</h6>
+      <%= render partial: 'numeric_field', locals: {form: form, tag:"Marcas registradas", sym: :trademarks, required_field: false, center: @center} %>
+      <%= render partial: 'numeric_field', locals: {form: form, tag:"Derechos de autor", sym: :copyrights, required_field: false, center: @center} %>
+      <%= render partial: 'numeric_field', locals: {form: form, tag:"Publicaciones en el Institute for Scientific Information", sym: :isi_publications, required_field: false, center: @center} %>
+      <%= render partial: 'numeric_field', locals: {form: form, tag:"Artículos publicados en revistas arbitradas:", sym: :arbitrated_publications, required_field: false, center: @center} %>
+      <%= render partial: 'numeric_field', locals: {form: form, tag:"Artículos publicados en revistas no arbitradas", sym: :non_arbitrated_publications, required_field: false, center: @center} %>
+      <%= render partial: 'numeric_field', locals: {form: form, tag:"Citas de artículos", sym: :quotes_in_publications, required_field: false, center: @center} %>
+    </div>
+  </div>
+
+  <br/>
+
+    <div class="card">
+      <h5 class="card-header">Equipo</h5>
+      <div class="card-body">
+        <h6 class="card-subtitle mb-2 text-muted">Opcional</h6>
+        <div class="container">
+          <table class="table">
+            <tr>
+              <th>Equipo</th>
+              <th>Disponible</th>
+            </tr>
+            <tbody class="equipment_fields">
+              <%= form.fields_for :equipments do |equipment_form| %>
+                <%= render 'equipment_fields', f: equipment_form %>
+              <% end %>
+            </tbody>
+          </table>
+          <%= link_to_add_association "Agregar equipo", form, :equipments, data:
+            {"association-insertion-node" => "tbody.equipment_fields",
+          "association-insertion-method" => "append"} %>
+        </div>
       </div>
     </div>
-    <br>
 
-    <%= render partial: 'text_field', locals: {form: form, tag:"Nombre del director", sym: :director_name, required_field: true, center: @center} %>
+    <br/>
 
-    <%= render partial: 'text_field', locals: {form: form, tag:"Email del director", sym: :director_email, required_field: true, center: @center} %>
+    <div class="card">
+      <h5 class="card-header">Premios y reconocimientos</h5>
+      <div class="card-body">
+        <h6 class="card-subtitle mb-2 text-muted">Opcional</h6>
+        <div class="container">
+          <table class="table">
+            <tr>
+              <th> Premio </th>
+              <th> Año </th>
+            </tr>
+            <tbody class="awards_fields">
+              <%= form.fields_for :awards do |award_form| %>
+                <%= render 'award_fields', f: award_form %>
+              <% end %>
+            </tbody>
+          </table>
+          <%= link_to_add_association "Agregar premio", form, :awards, data:
+            {"association-insertion-node" => "tbody.awards_fields",
+          "association-insertion-method" => "append"} %>
+        </div>
+      </div>
+    </div>
 
-    <%= render partial: 'text_field', locals: {form: form, tag:"Telefono del director", sym: :director_phone, required_field: true, center: @center} %>
+    <br/>
+
+    <div class="card">
+      <h5 class="card-header">Áreas de Investigación, Desarrollo Tecnológico e Innovación</h5>
+      <div class="card-body">
+        <h6 class="card-subtitle mb-2 text-muted">Opcional</h6>
+        <table class="table">
+          <tr>
+            <th> Nombre </th>
+          </tr>
+          <tbody class="idti_areas">
+            <%= form.fields_for :idti_areas do |idti_area_form| %>
+              <%= render 'idti_area_fields', f: idti_area_form %>
+            <% end %>
+          </tbody>
+        </table>
+        <%= link_to_add_association "Agregar area", form, :idti_areas, data:
+          {"association-insertion-node" => "tbody.idti_areas",
+        "association-insertion-method" => "append"} %>
+      </div>
+    </div>
+
+    <br/>
+
+    <div class="card">
+      <h5 class="card-header">Servicios de Investigación, Desarrollo Tecnológico e Innovación</h5>
+      <div class="card-body">
+        <h6 class="card-subtitle mb-2 text-muted">Opcional</h6>
+        <div class="container">
+          <table class="table">
+            <tr>
+              <th> Servicio </th>
+              <th> Industria </th>
+            </tr>
+            <tbody class="idti_services">
+              <%= form.fields_for :idti_services do |idti_service_form| %>
+                <%= render 'idti_service_fields', f: idti_service_form %>
+              <% end %>
+            </tbody>
+          </table>
+          <%= link_to_add_association "Agregar servicio", form, :idti_services, data:
+            {"association-insertion-node" => "tbody.idti_services",
+          "association-insertion-method" => "append"} %>
+        </div>
+      </div>
+    </div>
+
+    <br/>
+    <div class="card">
+      <h5 class="card-header">Oficina de Transferencia de Tecnología</h5>
+      <div class="card-body">
+        <h6 class="card-subtitle mb-2 text-muted">Opcional</h6>
+        <%= render partial: 'text_field', locals: {form: form, tag:"Nombre de contacto", sym: :transfer_office_contact_name, required_field: false, center: @center} %>
+        <%= render partial: 'text_field', locals: {form: form, tag:"Email de contacto", sym: :transfer_office_contact, required_field: false, center: @center} %>
+      </div>
+    </div>
+
+
+
+    <h2> Información básica </h2>
+
+
 
 
 </div>
@@ -46,8 +258,8 @@
   <div class="form-check">
     <%= collection_check_boxes(:center, :industry_ids, Industry.all.sort_by{|x| x.name}, :id, :name) do |industry| %>
       <label class="checkbox-inline">
-        <%= industry.label %>
         <%= industry.check_box%>
+        <%= industry.label class: "badge" %>
       </label>
     <% end %>
   </div>
