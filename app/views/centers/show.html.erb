@@ -30,7 +30,7 @@
     <div class="card-body">
       <p>
         <strong>Sitio web:</strong>
-        <%= @center.website %>
+        <%= @center.website || '-' %>
       </p>
 
       <p>
@@ -184,27 +184,27 @@
             <div class="card-body">
               <p>
                 <strong>Marcas registradas:</strong>
-                <%= @center.trademarks %>
+                <%= @center.trademarks || '-' %>
               </p>
               <p>
                 <strong>Derechos de autor:</strong>
-                <%= @center.copyrights %>
+                <%= @center.copyrights || '-' %>
               </p>
               <p>
                 <strong>Publicaciones en el Institute for Scientific Information:</strong>
-                <%= @center.isi_publications %>
+                <%= @center.isi_publications || '-' %>
               </p>
               <p>
                 <strong>Artículos publicados en revistas arbitradas:</strong>
-                <%= @center.arbitrated_publications %>
+                <%= @center.arbitrated_publications || '-' %>
               </p>
               <p>
                 <strong>Artículos publicados en revistas no arbitradas:</strong>
-                <%= @center.non_arbitrated_publications %>
+                <%= @center.non_arbitrated_publications || '-' %>
               </p>
               <p>
                 <strong>Citas de artículos:</strong>
-                <%= @center.quotes_in_publications %>
+                <%= @center.quotes_in_publications || '-'%>
               </p>
             </div>
           </div>
@@ -298,6 +298,25 @@
               <% end %>
             </table>
           </div>
+        <% end %>
+      </div>
+    </div>
+
+    <br/>
+    <div class="card">
+      <h5 class="card-header">Oficina de Transferencia de Tecnología</h5>
+      <div class="card-body">
+        <% if @center.transfer_office_contact_name.blank? || @center.transfer_office_contact.blank? %>
+          No se brindaron datos sobre la Oficina de Transferencia de Tecnología.
+        <% else %>
+          <p>
+            <strong>Nombre:</strong>
+            <%= @center.transfer_office_contact_name %>
+          </p>
+          <p>
+            <strong>Email:</strong>
+            <%= @center.transfer_office_contact %>
+          </p>
         <% end %>
       </div>
     </div>
