@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Centros de investigación</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre completo</th>
+      <th>Nombre corto</th>
+      <th>Sitio web</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @centers.each do |center| %>
+      <tr>
+        <td><%= center.full_name %></td>
+        <td><%= center.short_name %></td>
+        <td><%= center.website %></td>
+        <td><%= link_to 'Detalle', center %></td>
+        <%if can? :update, center %> <td><%= link_to 'Editar', edit_center_path(center) %></td> <% end %>
+        <%if can? :update, center %> <td><%= link_to 'Destruir', center ,data: { confirm: 'Seguro que quieres destruir el centro?' }, method: :delete %></td> <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%if can_create_center %>
+  <%= link_to 'Agregar centro', new_center_path %>
+<% end %>

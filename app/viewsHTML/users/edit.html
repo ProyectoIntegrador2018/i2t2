@@ -1,0 +1,66 @@
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+</head>
+
+<br>
+<div class="container">
+<div class="card">
+<article class="card-body">
+<h2>Modificar Usuario</h2>
+
+<%= form_for(@user, url: admin_update_user_path(@user), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: @user %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+    <% if @minimum_password_length %>
+      <br />
+      <em><%= @minimum_password_length %> characters minimum</em>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :role %><br />
+    <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]}) %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>
+
+<h3>Eliminar cuenta</h3>
+
+<p>
+<%if can? :destroy, @user %> 
+
+<td><%= button_to 'Eliminar cuenta' ,data: { confirm: 'Seguro que quieres eliminar la cuenta?' }, :class => 'btn btn-primary' ,method: :delete %>
+</td> <% end %>
+
+</p>
+
+<div class="btn btn-primary">
+<%= link_to "Back", :back %>
+
+</div>
+    
+    </article>
+</div> 
+</div>

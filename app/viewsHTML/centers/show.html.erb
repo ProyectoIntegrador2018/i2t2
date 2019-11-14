@@ -1,0 +1,227 @@
+<p id="notice"><%= notice %></p>
+
+<h1> <%= @center.full_name %> </h1>
+<h2> <%= @center.short_name %> </h2>
+
+<h2> Información general </h2>
+<p>
+  <strong>Sitio web:</strong>
+  <%= @center.website %>
+</p>
+
+<p>
+  <strong>Dirección:</strong>
+  <%= @center.address %>
+</p>
+
+<p>
+  <strong>Inicio de operaciones:</strong>
+  <%= @center.start_date %>
+</p>
+<p>
+  <strong>Nombre del director o gerente:</strong>
+  <%= @center.director_name %>
+</p>
+
+<p>
+  <strong>Email del director o gerente:</strong>
+  <%= @center.director_email %>
+</p>
+
+<p>
+  <strong>Teléfono del director o gerente:</strong>
+  <%= @center.director_phone %>
+</p>
+
+<h2> Infraestructura </h2>
+<h3> Propiedad </h3>
+<p>
+  <strong>Área de construcción:</strong>
+  <%= @center.building_area %>
+</p>
+
+<p>
+  <strong>Área de terreno:</strong>
+  <%= @center.property_area %>
+</p>
+
+<p>
+  <strong>Inversión privada:</strong>
+  <%= @center.property_private_funding %>
+</p>
+
+<p>
+  <strong>Inversión federal:</strong>
+  <%= @center.property_federal_funding %>
+</p>
+
+<p>
+  <strong>Inversión estatal:</strong>
+  <%= @center.property_state_funding %>
+</p>
+
+<% if !@center.property_other_funding.blank? %>
+  <p>
+    <strong>Otra inversión:</strong>
+    <%= @center.property_other_funding %>
+  </p>
+
+  <p>
+    <strong>Fuente de otra inversión:</strong>
+    <%= @center.property_other_source %>
+  </p>
+<% end %>
+
+<h3> Equipamiento </h3>
+<p>
+  <strong>Inversión privada:</strong>
+  <%= @center.equipment_private_funding %>
+</p>
+
+<p>
+  <strong>Inversión federal:</strong>
+  <%= @center.equipment_federal_funding %>
+</p>
+
+<p>
+  <strong>Inversión estatal:</strong>
+  <%= @center.equipment_state_funding %>
+</p>
+
+<p>
+  <strong>Otra inversión:</strong>
+  <%= @center.equipment_other_funding %>
+</p>
+
+<p>
+  <strong>Fuente de otra inversión:</strong>
+  <%= @center.equipment_other_source %>
+</p>
+
+<h2> Patentes y diseños </h2>
+<p>
+  <strong>Patentes solicitadas en México:</strong>
+  <%= @center.requested_patents_mexico %>
+</p>
+
+<p>
+  <strong>Diseños solicitados en México:</strong>
+  <%= @center.requested_designs_mexico %>
+</p>
+
+<p>
+  <strong>Patentes solicitadas en EUA, Europa y Asia:</strong>
+  <%= @center.requested_patents_us_eu_as %>
+</p>
+
+<p>
+  <strong>Patentes otorgadas México:</strong>
+  <%= @center.given_patents_mexico %>
+</p>
+
+<p>
+  <strong>Diseños obtenidos en México:</strong>
+  <%= @center.given_designs_mexico %>
+</p>
+
+<p>
+  <strong>Patentes obtenidas en EUA, Europa y Asia:</strong>
+  <%= @center.given_patents_us_eu_as %>
+</p>
+
+<p>
+  <strong>Marcas registradas:</strong>
+  <%= @center.trademarks %>
+</p>
+
+<p>
+  <strong>Derechos de autor:</strong>
+  <%= @center.copyrights %>
+</p>
+
+<p>
+  <strong>Publicaciones en el Institute for Scientific Information:</strong>
+  <%= @center.isi_publications %>
+</p>
+
+<p>
+  <strong>Artículos publicados en revistas arbitradas:</strong>
+  <%= @center.arbitrated_publications %>
+</p>
+
+<p>
+  <strong>Artículos publicados en revistas no arbitradas:</strong>
+  <%= @center.non_arbitrated_publications %>
+</p>
+
+<p>
+  <strong>Citas de artículos:</strong>
+  <%= @center.quotes_in_publications %>
+</p>
+
+<h2> Equipamiento </h2>
+<table>
+  <tr>
+    <th>Equipo</th>
+    <th>Disponible</th>
+  </tr>
+  <% @center.equipments.each do |equipment| %>
+    <tr>
+      <td> <%="#{equipment.name}" %> </td>
+      <td> <%=equipment.available ? "Si" : "No" %> </td>
+    </tr>
+  <% end %>
+</table>
+
+<h2> Premios y reconocimientos </h2>
+<table>
+  <tr>
+    <th> Premio </th>
+    <th> Año </th>
+  </tr>
+  <% @center.awards.each do |award| %>
+    <tr>
+      <td> <%= "#{award.name}" %> </td>
+      <td> <%= "#{award.date.year}" %> </td>
+    </tr>
+  <% end %>
+</table>
+
+<h2> IDTi </h2>
+<h3> Areas</h3>
+<ul>
+<% @center.idti_areas.each do |area| %>
+  <li> <%= "#{area.name}" %> </li>
+<% end %>
+</ul>
+
+<h3> Servicios</h3>
+<table>
+  <tr>
+    <th> Servicio </th>
+    <th> Industria </th>
+  </tr>
+  <% @center.idti_services.each do |service| %>
+    <tr>
+      <td> <%= "#{service.name}" %> </td>
+      <td> <%= "#{service.industry}" %> </td>
+    </tr>
+  <% end %>
+</table>
+
+<h2> Clusters </h2>
+<ul>
+  <% @center.clusters.each do |cluster| %>
+    <li> <%= cluster.name %> </li>
+  <% end %>
+</ul>
+
+<h2> Industrias </h2>
+<ul>
+  <% @center.industries.each do |industry| %>
+    <li> <%= industry.name %> </li>
+  <% end %>
+</ul>
+
+<%if can? :update, @center %><%= link_to 'Editar', edit_center_path(@center) %> | <% end %>
+<%= link_to 'Regresar', centers_path %>
