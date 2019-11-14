@@ -1,5 +1,33 @@
 <p id="notice"><%= notice %></p>
 
+
+
+<!-- Seccion del Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">SEIICIT</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Pagina de inicio<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+       <%= link_to 'Iniciar Sesión', new_user_session_path, class: "nav-link"%>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Registrarse', new_user_registration_path, class: "nav-link" %>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+    </form>
+  </div>
+</nav>
+
 <h1>Centros de investigación</h1>
 
 <table>
