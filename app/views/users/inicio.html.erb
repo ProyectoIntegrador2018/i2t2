@@ -11,6 +11,7 @@
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
+    <!-- Liena para agregar el estilo de el sidebar  <%= stylesheet_link_tag %> -->
     <link rel="stylesheet" href="style2.css">
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
@@ -92,9 +93,10 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item active">
-                                <a class="nav-link" href="#">Pagina de inicio
+                                <%= link_to 'Inicio', root_path, class: "nav-link"%>
+                               <!--  <a class="nav-link" href="#">Pagina de inicio
                                     <span class="sr-only">(current)</span>
-                                </a>
+                                </a> -->
                             </li>
                             <li class="nav-item">
                                 <%= link_to 'Iniciar Sesión', new_user_session_path, class: "nav-link"%>
