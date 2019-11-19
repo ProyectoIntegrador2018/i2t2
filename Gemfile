@@ -12,10 +12,15 @@ gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
+gem "sassc", "~> 2.0.1"
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
+# Bootstrap open source toolkit for developing with HTML, CSS, and JS.
+gem 'bootstrap', '~> 4.3.1'
+# Bootstrap JavaScript depends on jQuery.
+gem 'jquery-rails'
 # gem 'mini_racer', platforms: :ruby
 gem 'cocoon'
 gem 'jquery-rails'
@@ -41,6 +46,8 @@ gem 'devise', '~> 4.7', '>= 4.7.1'
 
 # Use CanCanCan for users authorization
 gem 'cancancan'
+
+gem 'sprockets', '~> 3.7.2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

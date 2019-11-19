@@ -1,0 +1,11 @@
+<div class="input-group field row">
+  <label class="col-sm-4 col-form-label"><%="#{tag}"%></label>
+  <div class="col-sm-8">
+    <% if required_field %>
+      <%= form.number_field sym, class:"form-control  #{center.errors.include?(sym) ? 'is-invalid' : 'is-valid' if center.errors.any?}", placeholder:"#{tag}" %>
+    <% else %>
+      <%= form.number_field sym, class:"form-control", placeholder:"#{tag}" %>
+    <% end %>
+  </div>
+</div>
+<br>

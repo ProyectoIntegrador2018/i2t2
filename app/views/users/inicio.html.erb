@@ -1,8 +1,9 @@
-<h1>Usuarios</h1>
+<div class="container">
+  <h1>Usuarios</h1>
 
-<% if current_user %>
+  <% if current_user %>
 
-<%= link_to 'Cerrar Sesión', destroy_user_session_path, method: :delete %>
+  <%= link_to 'Cerrar Sesión', destroy_user_session_path, method: :delete %>
 
 
 <table>
