@@ -26,7 +26,6 @@ class User < ApplicationRecord
   end
 
   def platform_admin?
-    print self.role
     return self.role == 'admin_plataforma'
   end
 
