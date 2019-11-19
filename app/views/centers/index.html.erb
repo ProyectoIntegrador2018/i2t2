@@ -11,7 +11,7 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li class="nav-item">
         <%= link_to 'Inicio', root_path, class: "nav-link"%>
       </li>
       <li class="nav-item">
@@ -19,6 +19,9 @@
       </li>
       <li class="nav-item">
         <%= link_to 'Registrarse', new_user_registration_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item active">
+        <%= link_to 'Centros', centers_path,class: "nav-link active"%>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
