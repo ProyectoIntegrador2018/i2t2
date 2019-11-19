@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 2019_10_20_233808) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "has_created_center"
     t.index ["email"], name: "index_admin_centers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_centers_on_reset_password_token", unique: true
   end
@@ -101,56 +100,6 @@ ActiveRecord::Schema.define(version: 2019_10_20_233808) do
     t.index ["industry_id"], name: "index_centers_industries_on_industry_id"
   end
 
-  create_table "centro_investigacions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "nombre"
-    t.string "abreviacion"
-    t.string "sitio"
-    t.string "domicilio"
-    t.date "fecha_inicio"
-    t.string "nombre_encargado"
-    t.string "correo_encargado"
-    t.string "telefono_encargado"
-    t.string "sectores"
-    t.string "industrias"
-    t.string "areas_investigacion"
-    t.string "servicios_idti"
-    t.decimal "terreno_total", precision: 10
-    t.decimal "terreno_privada", precision: 10
-    t.decimal "terreno_federal", precision: 10
-    t.decimal "terreno_estatal", precision: 10
-    t.decimal "terreno_otro", precision: 10
-    t.decimal "equip_total", precision: 10
-    t.decimal "equip_privado", precision: 10
-    t.decimal "equip_federal", precision: 10
-    t.decimal "equip_estatal", precision: 10
-    t.decimal "equip_otro", precision: 10
-    t.decimal "area_edificio", precision: 10
-    t.decimal "area_terreno", precision: 10
-    t.decimal "area_total", precision: 10
-    t.decimal "area_idi", precision: 10
-    t.text "lista_equipo"
-    t.text "patentes_solicitadas_mexico"
-    t.text "disenos_solicitados_mexico"
-    t.text "patentes_solicitadas_triadicas"
-    t.text "patentes_otorgadas_mexico"
-    t.text "disenos_otorgados_mexico"
-    t.text "patentes_otorgadas_triadicas"
-    t.text "marcas_registradas"
-    t.text "derechos_registrados"
-    t.text "publicaciones_isi"
-    t.text "articulos_arb"
-    t.text "articulos_no_arb"
-    t.text "citas_articulos"
-    t.text "premios_centro"
-    t.string "responsable_dep_vinculacion"
-    t.bigint "user_id"
-    t.integer "centro_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["centro_id"], name: "index_centro_investigacions_on_centro_id", unique: true
-    t.index ["user_id"], name: "index_centro_investigacions_on_user_id"
-  end
-
   create_table "clusters", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -205,7 +154,6 @@ ActiveRecord::Schema.define(version: 2019_10_20_233808) do
 
   add_foreign_key "awards", "centers"
   add_foreign_key "centers", "users"
-  add_foreign_key "centro_investigacions", "users"
   add_foreign_key "equipment", "centers"
   add_foreign_key "idti_areas", "centers"
   add_foreign_key "idti_services", "centers"
