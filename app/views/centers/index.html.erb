@@ -2,6 +2,15 @@
   <p id="notice"><%= notice %></p>
 
   <h1>Centros de investigación</h1>
+  <div class="card-body">
+    <form action="/centers" method="GET">
+      <input type="text" name="search_name" value="<%= params[:search_name] %>">
+      <input type="submit" value="Buscar Centro">
+      <%if params[:search_name] %>
+        <%= link_to 'Eliminar Filtros', centers_path %>
+      <% end %>
+    </form>
+  </div>
 
   <table class="table">
     <thead>

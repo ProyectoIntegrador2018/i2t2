@@ -8,6 +8,20 @@ class CentersController < ApplicationController
   # GET /centers.json
   def index
     @centers = Center.all
+    handle_search_name
+  end
+
+  def handle_search_name
+    if params[:search_name]
+      @centers = Center.where("full_name LIKE ?", "%#{params[:search_name].titleize}%")
+    else
+      @centers = Center.all
+    end
+  end
+
+  def clear_search
+    @centers = Center.all
+    params[:search_name] = nil
   end
 
   # GET /centers/1
