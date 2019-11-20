@@ -11,11 +11,7 @@ Rails.application.routes.draw do
   resources :idti_services
   resources :centro_investigacions
 
-  root to: 'users#inicio'
-  # resources :users do
-  #   post '/users', :to => 'users#create', :as => :user
-  #   collection {post :import }
-  # end
+  root to: 'centers#index'
   resources :equipment
   resources :centers
   resources :awards
@@ -35,7 +31,7 @@ Rails.application.routes.draw do
     end
   end
   scope "/admin" do
-    resources :users, only: [:edit]
+    resources :users, only: [:edit, :index]
   end
   match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_user
   match 'admin/users/:id/update' => 'users#edit', :via => :get, :as => :admin_edit_user
