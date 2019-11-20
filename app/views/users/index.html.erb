@@ -31,6 +31,13 @@
       <% end %>
     </tbody>
   </table>
+  <% if current_user.platform_admin? %>
+  <h4>Importar usuarios</h4>
+  <%= form_tag import_users_path, multipart: true do %>
+    <%= file_field_tag :file, accept: 'text/csv' %>
+    <%= submit_tag "Importar CSV" %>
+  <% end %>
+<% end %>
 
   <% else %>
 
