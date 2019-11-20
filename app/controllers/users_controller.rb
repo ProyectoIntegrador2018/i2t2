@@ -9,6 +9,24 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def index
+    @users = User.all
+  end
+
+  def import
+    if File.extname(params[:file]&.original_filename||"") != '.csv'
+      redirect_to root_url, notice: "Archivo debe ser un CSV"
+      return
+    end
+    begin
+      User.import(params[:file])
+    rescue StandardError => e
+      redirect_to root_url, notice: e
+      return
+    end
+    redirect_to root_url, notice: "Usuarios importados"
+  end
+
   def edit_profile
     @user = current_user
   end

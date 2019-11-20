@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   resources :centro_investigacions
 
   root to: 'users#inicio'
+  # resources :users do
+  #   post '/users', :to => 'users#create', :as => :user
+  #   collection {post :import }
+  # end
   resources :equipment
   resources :centers
   resources :awards
@@ -21,7 +25,15 @@ Rails.application.routes.draw do
              :controllers  => {
              :registrations => 'registrations',
              }
-  post '/users', :to => 'users#create', :as => :user
+  resources :users do
+    member do
+      post '/users', :to => 'users#create', :as => :user
+    end
+
+    collection do
+       post :import
+    end
+  end
   scope "/admin" do
     resources :users, only: [:edit]
   end
