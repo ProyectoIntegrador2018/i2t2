@@ -36,4 +36,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one :center
+
+  def platform_admin?
+    return self.role == 'admin_plataforma'
+  end
 end

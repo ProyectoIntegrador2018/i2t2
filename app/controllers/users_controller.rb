@@ -15,16 +15,16 @@ class UsersController < ApplicationController
 
   def import
     if File.extname(params[:file]&.original_filename||"") != '.csv'
-      redirect_to root_url, notice: "Archivo debe ser un CSV"
+      redirect_to users_path, notice: "Archivo debe ser un CSV"
       return
     end
     begin
       User.import(params[:file])
     rescue StandardError => e
-      redirect_to root_url, notice: e
+      redirect_to users_path, notice: e
       return
     end
-    redirect_to root_url, notice: "Usuarios importados"
+    redirect_to users_path, notice: "Usuarios importados"
   end
 
   def edit_profile

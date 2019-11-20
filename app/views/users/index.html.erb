@@ -31,7 +31,6 @@
       <% end %>
     </tbody>
   </table>
-
   <% if current_user.platform_admin? %>
   <h4>Importar usuarios</h4>
   <%= form_tag import_users_path, multipart: true do %>
@@ -47,14 +46,6 @@
   <%= link_to 'Iniciar Sesión', new_user_session_path %>
 
   <% end %>
-<% end %>
 
-<% else %>
-
-<%= link_to 'Registrarse', new_user_registration_path %>
-
-<%= link_to 'Iniciar Sesión', new_user_session_path %>
-
-<% end %>
-
-<%= link_to 'Centros de Investigación', centers_path %>
+  <%= link_to 'Centros de Investigación', centers_path %>
+</div>
