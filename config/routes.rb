@@ -21,7 +21,15 @@ Rails.application.routes.draw do
              :controllers  => {
              :registrations => 'registrations',
              }
-  post '/users', :to => 'users#create', :as => :user
+  resources :users do
+    member do
+      post '/users', :to => 'users#create', :as => :user
+    end
+
+    collection do
+       post :import
+    end
+  end
   scope "/admin" do
     resources :users, only: [:edit, :index]
   end
