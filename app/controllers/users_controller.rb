@@ -44,14 +44,14 @@ class UsersController < ApplicationController
     respond_to do |format|
       if params[:user][:password].blank?
         if @user.update_without_password(params[:user].except(:password, :password_confirmation).permit(:email, :role))
-          format.html { redirect_to root_url, notice: 'User was successfully updated.' }
+          format.html { redirect_to users_path }
           format.json { render :show, status: :ok, location: @user }
         else
           format.html { render :edit }
         end
       else
         if @user.update_attributes(params[:user])
-          format.html { redirect_to root_url, notice: 'User was successfully updated.' }
+          format.html { redirect_to users_path }
           format.json { render :show, status: :ok, location: @user }
         else
           flash[:notice] = "Couldn't update."
