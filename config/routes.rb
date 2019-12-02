@@ -22,9 +22,9 @@ Rails.application.routes.draw do
              :registrations => 'registrations',
              }
   resources :users do
-    member do
-      post '/users', :to => 'users#create', :as => :user
-    end
+    # member do
+    #   post '/users', :to => 'users#create', :as => :user
+    # end
 
     collection do
        post :import
