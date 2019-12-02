@@ -7,8 +7,12 @@ class CentersController < ApplicationController
   # GET /centers
   # GET /centers.json
   def index
-    @centers = Center.all
-    handle_search_name
+    if current_user&.center_admin?
+      @centers = current_user.center.present? ? [current_user.center] : []
+    else
+      @centers = Center.all
+      handle_search_name
+    end
   end
 
   def handle_search_name
