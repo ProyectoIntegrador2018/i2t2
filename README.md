@@ -40,10 +40,7 @@ El Sistema Estatal de Información para Impulsar el Conocimiento y la Innovació
 
 ## Stack Tecnológico
 
-### Librerías Front End:
-* ReactJS
-
-### Librerias Back End:
+### Librerias:
 * Ruby on Rails
 * ActiveAdmin
 
