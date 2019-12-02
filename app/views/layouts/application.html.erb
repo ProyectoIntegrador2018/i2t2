@@ -28,7 +28,7 @@
           <% end %>
         </ul>
         <% if current_user.nil? %>
-          <!-- <%= link_to 'Registrarse', new_user_registration_path, class:"btn btn-outline-primary" %> -->
+          <%= link_to 'Registrarse', new_user_registration_path, class:"btn btn-outline-primary" %>
           <%= link_to 'Iniciar Sesión', new_user_session_path, class:"btn btn-outline-primary" %>
         <% else %>
           <%= link_to 'Cerrar Sesión', destroy_user_session_path, method: :delete %>
