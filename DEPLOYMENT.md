@@ -26,6 +26,7 @@ $ docker-compose down
 
 ## Heroku con Container Registry y Heroku CLI
 Para hacer el deploy a Heroku, se requiere crear una base de datos MariaDB. Para el desarrollo y deployment se utilizó el plugin ClearDB en Heroku, con lo cual se obtiene un URL que se utiliza en la variable de ambiente DATABASE_URL.
+Actualmente el proyecto se encuentra en producción en la siguiente liga: https://shrouded-brushlands-92167.herokuapp.com
 
 ### 1. Clonar y acceder al repositorio
 ```shell
