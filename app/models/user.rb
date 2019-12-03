@@ -29,6 +29,9 @@ class User < ApplicationRecord
     return self.role == 'admin_plataforma'
   end
 
+  def center_admin?
+    return self.role == 'admin_centro_inv'
+  end
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
