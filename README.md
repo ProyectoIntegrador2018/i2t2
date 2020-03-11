@@ -15,20 +15,31 @@ El Sistema Estatal de Información para Impulsar el Conocimiento y la Innovació
 
 ## Detalles del cliente
 
-| Nombre             | Email         | Rol                                      |
-| ------------------ | ------------- | ---------------------------------------- |
+| Nombre             | Email                    | Rol  |
+| ------------------ | ------------------------ | ---- |
 | Saul Gonzalez Oliva| saul.gonzalez@mtycic.org | I2T2 |
 
 
 
 ## Equipo
 
-| Nombre                       | Email              | Rol           |
-| ---------------------------- | ------------------ | ------------- |
-| Adán Villarreal  | A01281312@itesm.mx | Product Owner  |
-| Andrés Martínez  | A00817465@itesm.mx | Admin Proyecto |
-| Diego Jiménez      | A01139513@itesm.mx | Scrum Master |
-| Irvel Nduva | A01196346@itesm.mx | Admin Configuración |
+### Actual
+
+| Nombre            | Email              | Rol                 |
+| ----------------- | ------------------ | ------------------- |
+| Gerardo Osio      | A01281037@itesm.mx | Product Owner       |
+| Héctor Salazar    | A01207471@itesm.mx | Admin Proyecto      |
+| Joao Moura        | A01193400@itesm.mx | Scrum Master        |
+| Alejandro Sanchez | A01272385@itesm.mx | Admin Configuración |
+
+### Pasado(s)
+
+| Nombre           | Email              | Rol                 |
+| ---------------- | ------------------ | ------------------- |
+| Adán Villarreal  | A01281312@itesm.mx | Product Owner       |
+| Andrés Martínez  | A00817465@itesm.mx | Admin Proyecto      |
+| Diego Jiménez    | A01139513@itesm.mx | Scrum Master        |
+| Irvel Nduva      | A01196346@itesm.mx | Admin Configuración |
 
 
 ## Recursos de gestión
