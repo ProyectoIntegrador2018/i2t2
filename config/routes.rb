@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/superadmin', as: 'rails_admin'
   devise_for :admin_platforms, path: 'admin_plataforma', controllers: {
     # sessions: 'sessions'
   }
