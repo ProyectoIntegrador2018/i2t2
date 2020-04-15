@@ -73,24 +73,12 @@ $ cd i2t2
 $ docker-compose build
 ```
 
-### 4. Correr servicio de la base de datos
-```shell
-$ docker-compose up -d mariadb
-```
-
-### 5. Crear base de datos dentro del contenedor
-```
-$ docker-compose run web bash
-# rails db:create
-# rails db:migrate
-```
-
-### 6. Ejecutar aplicación web
+### 4. Ejecutar aplicación web
 ```shell
 $ docker-compose up
 ```
 
-### 7. Detener ejecución de aplicación web
+### 5. Detener ejecución de aplicación web
 ```shell
 $ docker-compose down
 ```
