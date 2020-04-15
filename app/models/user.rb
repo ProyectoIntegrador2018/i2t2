@@ -33,6 +33,10 @@ class User < ApplicationRecord
     return self.role == 'superadmin'
   end
 
+  def superadmin?
+    return self.role == 'superadmin'
+  end
+
   def center_admin?
     return self.role == 'admin_centro_inv'
   end
