@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/superadmin', as: 'rails_admin'
-  devise_for :admin_platforms, path: 'administrador', controllers: {
+  devise_for :admin_platforms, path: 'moderador', controllers: {
   }
   devise_for :admin_centers, path: 'admin_centro', controllers: {
     # sessions: 'admin_centers/sessions'
