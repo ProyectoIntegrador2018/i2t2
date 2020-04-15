@@ -7,6 +7,7 @@ ruby '2.5.6'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
+gem 'rails-i18n'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 # Use Puma as the app server
@@ -46,6 +47,9 @@ gem 'devise', '~> 4.7', '>= 4.7.1'
 
 # Use CanCanCan for users authorization
 gem 'cancancan'
+gem 'rails_admin', '~> 2.0'
+gem 'rails_admin-i18n'
+
 
 gem 'sprockets', '~> 3.7.2'
 
