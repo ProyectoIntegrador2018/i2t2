@@ -5,7 +5,7 @@ class User < ApplicationRecord
   require 'csv'
 
   enum role: %i[admin_centro_inv administrador usuario_empresa
-                moderador usuario_emprendedor usuario_general superadmin]
+                moderador usuario_emprendedor usuario_general investigador superadmin]
 
   after_initialize :set_default_role, if: :new_record?
 
