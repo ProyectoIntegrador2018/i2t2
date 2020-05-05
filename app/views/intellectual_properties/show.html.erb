@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Creation:</strong>
+  <%= @intellectual_property.creation %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @intellectual_property.description %>
+</p>
+
+<p>
+  <strong>Institution:</strong>
+  <%= @intellectual_property.institution %>
+</p>
+
+<p>
+  <strong>Registration year:</strong>
+  <%= @intellectual_property.registration_year %>
+</p>
+
+<p>
+  <strong>Publication year:</strong>
+  <%= @intellectual_property.publication_year %>
+</p>
+
+<p>
+  <strong>Keywords:</strong>
+  <%= @intellectual_property.keywords %>
+</p>
+
+<%= link_to 'Edit', edit_intellectual_property_path(@intellectual_property) %> |
+<%= link_to 'Back', intellectual_properties_path %>

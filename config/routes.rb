@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :entrepreneurs
+  resources :scientific_articles
+  resources :intellectual_properties
+  resources :researchers
+  resources :companies
   mount RailsAdmin::Engine => '/superadmin', as: 'rails_admin'
   devise_for :admin_platforms, path: 'moderador', controllers: {
   }

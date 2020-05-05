@@ -1,0 +1,47 @@
+<%= form_with(model: intellectual_property, local: true) do |form| %>
+  <% if intellectual_property.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(intellectual_property.errors.count, "error") %> prohibited this intellectual_property from being saved:</h2>
+
+      <ul>
+      <% intellectual_property.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :creation %>
+    <%= form.text_field :creation %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :institution %>
+    <%= form.text_field :institution %>
+  </div>
+
+  <div class="field">
+    <%= form.label :registration_year %>
+    <%= form.number_field :registration_year %>
+  </div>
+
+  <div class="field">
+    <%= form.label :publication_year %>
+    <%= form.number_field :publication_year %>
+  </div>
+
+  <div class="field">
+    <%= form.label :keywords %>
+    <%= form.text_field :keywords %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
