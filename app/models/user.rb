@@ -52,10 +52,6 @@ class User < ApplicationRecord
   has_one :entrepreneur
   has_one :cluster
 
-  def title
-    self.email
-  end
-
   def platform_admin?
     return self.role == 'moderador'
   end
