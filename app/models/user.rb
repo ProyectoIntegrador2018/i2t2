@@ -5,7 +5,7 @@ class User < ApplicationRecord
   require 'csv'
   has_paper_trail
   enum role: %i[admin_centro_inv admin_cluster usuario_empresa
-                moderador usuario_emprendedor usuario_general  superadmin investigador]
+                moderador usuario_emprendedor usuario_general superadmin investigador]
 
   after_initialize :set_default_role, if: :new_record?
 
@@ -33,10 +33,6 @@ class User < ApplicationRecord
     return self.role == 'superadmin'
   end
 
-  def superadmin?
-    return self.role == 'superadmin'
-  end
-
   def center_admin?
     return self.role == 'admin_centro_inv'
   end
@@ -51,8 +47,4 @@ class User < ApplicationRecord
   has_one :researcher
   has_one :entrepreneur
   has_one :cluster
-
-  def platform_admin?
-    return self.role == 'moderador'
-  end
 end

@@ -9,5 +9,9 @@ class AdminAbility
     if user.superadmin?
       can :manage, :all
     end
+    if user.admin?
+      can :create, User, role: "moderador"
+      can :manage, User, id: user.id
+    end
   end
 end

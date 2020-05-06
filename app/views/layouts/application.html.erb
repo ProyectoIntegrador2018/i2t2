@@ -21,7 +21,7 @@
           <li class="nav-item">
             <%= link_to 'Centros de investigación', centers_path, class: "nav-link" %>
           </li>
-          <% if current_user&.platform_admin? %>
+          <% if current_user&.admin? %>
             <li>
               <%= link_to 'Usuarios', users_path, class: "nav-link" %>
             </li>

@@ -8,8 +8,8 @@ class Ability
     # Define abilities for the passed in user here.
     user ||= User.new # guest user (not logged in)
     if user.moderador?
-        can :manage, :all
-        cannot :create, Center  # Can create a new Center.
+        can :create, User, role: "moderador"
+        # cannot :create, Center  # Cannot create a new Center.
     elsif user.admin_centro_inv?
         can :create, Center  # Can create a new Center.
         can :manage, Center, user_id: user.id # Can only edit their own Centers.
