@@ -47,6 +47,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one :center
+  has_one :company
+  has_one :researcher
+  has_one :entrepreneur
+  has_one :cluster
 
   def platform_admin?
     return self.role == 'moderador'

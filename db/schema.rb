@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_20_233808) do
+ActiveRecord::Schema.define(version: 2020_05_05_215213) do
 
   create_table "admin_centers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -104,6 +104,27 @@ ActiveRecord::Schema.define(version: 2019_10_20_233808) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_clusters_on_user_id"
+  end
+
+  create_table "companies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.string "industry"
+    t.string "reniecyt"
+    t.string "location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_companies_on_user_id"
+  end
+
+  create_table "entrepreneurs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "organization"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_entrepreneurs_on_user_id"
   end
 
   create_table "equipment", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -139,6 +160,43 @@ ActiveRecord::Schema.define(version: 2019_10_20_233808) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "intellectual_properties", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "creation"
+    t.string "description"
+    t.string "institution"
+    t.integer "registration_year"
+    t.integer "publication_year"
+    t.string "keywords"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "researcher_id"
+    t.index ["researcher_id"], name: "index_intellectual_properties_on_researcher_id"
+  end
+
+  create_table "researchers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_researchers_on_user_id"
+  end
+
+  create_table "scientific_articles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title"
+    t.string "authors"
+    t.date "publication_date"
+    t.string "magazine"
+    t.string "volume"
+    t.integer "number"
+    t.integer "first_page"
+    t.integer "last_page"
+    t.string "doi"
+    t.string "link"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "researcher_id"
+    t.index ["researcher_id"], name: "index_scientific_articles_on_researcher_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -148,13 +206,35 @@ ActiveRecord::Schema.define(version: 2019_10_20_233808) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "role"
+    t.string "name"
+    t.string "organization"
+    t.string "job"
+    t.string "contact_telephone"
+    t.string "office_telephone"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "versions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "item_type", limit: 191, null: false
+    t.bigint "item_id", null: false
+    t.string "event", null: false
+    t.string "whodunnit"
+    t.text "object", limit: 4294967295
+    t.datetime "created_at"
+    t.text "object_changes", limit: 4294967295
+    t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
+  end
+
   add_foreign_key "awards", "centers"
   add_foreign_key "centers", "users"
+  add_foreign_key "clusters", "users"
+  add_foreign_key "companies", "users"
+  add_foreign_key "entrepreneurs", "users"
   add_foreign_key "equipment", "centers"
   add_foreign_key "idti_areas", "centers"
   add_foreign_key "idti_services", "centers"
+  add_foreign_key "intellectual_properties", "researchers"
+  add_foreign_key "researchers", "users"
+  add_foreign_key "scientific_articles", "researchers"
 end

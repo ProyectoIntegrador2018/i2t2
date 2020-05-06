@@ -162,6 +162,6 @@ class CentersController < ApplicationController
                                      _destroy
                                    ],
                                    industry_ids: [],
-                                   cluster_ids: [])
+                                   cluster_ids: []).merge(user: current_user)
   end
 end

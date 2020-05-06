@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @scientific_article.title %>
+</p>
+
+<p>
+  <strong>Authors:</strong>
+  <%= @scientific_article.authors %>
+</p>
+
+<p>
+  <strong>Publication date:</strong>
+  <%= @scientific_article.publication_date %>
+</p>
+
+<p>
+  <strong>Magazine:</strong>
+  <%= @scientific_article.magazine %>
+</p>
+
+<p>
+  <strong>Volume:</strong>
+  <%= @scientific_article.volume %>
+</p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @scientific_article.number %>
+</p>
+
+<p>
+  <strong>First page:</strong>
+  <%= @scientific_article.first_page %>
+</p>
+
+<p>
+  <strong>Last page:</strong>
+  <%= @scientific_article.last_page %>
+</p>
+
+<p>
+  <strong>Doi:</strong>
+  <%= @scientific_article.doi %>
+</p>
+
+<p>
+  <strong>Link:</strong>
+  <%= @scientific_article.link %>
+</p>
+
+<%= link_to 'Edit', edit_scientific_article_path(@scientific_article) %> |
+<%= link_to 'Back', scientific_articles_path %>

@@ -11,6 +11,16 @@ RailsAdmin.config do |config|
   ## == CancanCan ==
   config.authorize_with :cancancan, AdminAbility
 
+  config.model 'User' do
+    object_label_method do
+      :custom_label_method
+    end
+  end
+
+  def custom_label_method
+    self.email
+  end
+
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory

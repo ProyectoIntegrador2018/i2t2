@@ -70,6 +70,6 @@ class ClustersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def cluster_params
-    params.require(:cluster).permit(:name)
+    params.require(:cluster).permit(:name).merge(user: current_user)
   end
 end

@@ -1,0 +1,22 @@
+<%= form_with(model: entrepreneur, local: true) do |form| %>
+  <% if entrepreneur.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(entrepreneur.errors.count, "error") %> prohibited this entrepreneur from being saved:</h2>
+
+      <ul>
+      <% entrepreneur.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :organization %>
+    <%= form.text_field :organization %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
