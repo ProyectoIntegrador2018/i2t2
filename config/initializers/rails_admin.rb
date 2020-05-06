@@ -1,6 +1,7 @@
 RailsAdmin.config do |config|
 
   ### Popular gems integration
+  config.audit_with :paper_trail, 'User', 'PaperTrail::Version'
 
   ## == Devise ==
   config.authenticate_with do
@@ -33,7 +34,7 @@ RailsAdmin.config do |config|
     show_in_app
 
     ## With an audit adapter, you can add:
-    # history_index
-    # history_show
+    history_index
+    history_show
   end
 end

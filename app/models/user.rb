@@ -3,7 +3,7 @@
 # Base model of a User that can have different roles.
 class User < ApplicationRecord
   require 'csv'
-
+  has_paper_trail
   enum role: %i[admin_centro_inv admin_cluster usuario_empresa
                 moderador usuario_emprendedor usuario_general  superadmin investigador]
 
