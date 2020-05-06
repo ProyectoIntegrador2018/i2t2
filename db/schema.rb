@@ -223,3 +223,29 @@ ActiveRecord::Schema.define(version: 2020_05_06_002933) do
     t.index ["foreign_key_name", "foreign_key_id", "foreign_type"], name: "index_version_associations_on_foreign_key"
     t.index ["version_id"], name: "index_version_associations_on_version_id"
   end
+
+  create_table "versions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "item_type", limit: 191, null: false
+    t.bigint "item_id", null: false
+    t.string "event", null: false
+    t.string "whodunnit"
+    t.text "object", limit: 4294967295
+    t.datetime "created_at"
+    t.text "object_changes", limit: 4294967295
+    t.integer "transaction_id"
+    t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
+    t.index ["transaction_id"], name: "index_versions_on_transaction_id"
+  end
+
+  add_foreign_key "awards", "centers"
+  add_foreign_key "centers", "users"
+  add_foreign_key "clusters", "users"
+  add_foreign_key "companies", "users"
+  add_foreign_key "entrepreneurs", "users"
+  add_foreign_key "equipment", "centers"
+  add_foreign_key "idti_areas", "centers"
+  add_foreign_key "idti_services", "centers"
+  add_foreign_key "intellectual_properties", "researchers"
+  add_foreign_key "researchers", "users"
+  add_foreign_key "scientific_articles", "researchers"
+end
