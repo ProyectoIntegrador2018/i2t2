@@ -20,8 +20,8 @@ class UsersController < ApplicationController
     end
     begin
       User.import(params[:file])
-    rescue StandardError => e
-      redirect_to users_path, notice: e
+    rescue StandardError => error_message
+      redirect_to users_path, notice: error_message
       return
     end
     redirect_to users_path, notice: "Usuarios importados"
