@@ -49,6 +49,9 @@ gem 'devise', '~> 4.7', '>= 4.7.1'
 gem 'cancancan'
 gem 'rails_admin', '~> 2.0'
 gem 'rails_admin-i18n'
+gem 'paper_trail'
+gem 'paper_trail-association_tracking'
+gem 'rails_admin_history_rollback'
 
 
 gem 'sprockets', '~> 3.7.2'
