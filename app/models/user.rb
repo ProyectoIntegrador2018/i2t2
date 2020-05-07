@@ -15,11 +15,11 @@ class User < ApplicationRecord
 
   # CSV first-line format for each available import
   # ONLY USER:    email, role, password, name, organization, job, contact_telephone, office_telephone
-  # CENTER:       ONLY USER params, center, full_name, short_name, website, address
-  # CLUSTER:      ONLY USER params, cluster, cluster_name
-  # COMPANY:      ONLY USER params, company, company_name, industry, reniecyt, location
-  # ENTREPRENEUR: ONLY USER params, entrepreneur, organization
-  # RESEARCHER:   ONLY USER params, researcher
+  # CENTER:       ONLY USER params, profile: 'center', full_name, short_name, website, address
+  # CLUSTER:      ONLY USER params, profile: 'cluster', cluster_name
+  # COMPANY:      ONLY USER params, profile: 'company', company_name, industry, reniecyt, location
+  # ENTREPRENEUR: ONLY USER params, profile: 'entrepreneur', organization
+  # RESEARCHER:   ONLY USER params, profile: 'researcher'
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
       r = row.to_hash
@@ -42,7 +42,8 @@ class User < ApplicationRecord
 
       user = User.find(email: r['email'])
 
-      if r.key?('center')
+      case r.key?('profile')
+      when 'center'
         unless r.key?('full_name') && r.key?('short_name') && r.key?('website') && r.key?('address')
           raise "Formato del archivo con perfil de Centro no es valido"
         end
@@ -59,7 +60,7 @@ class User < ApplicationRecord
           end
         end
 
-      elsif r.key?('cluster')
+      when 'cluster'
         unless r.key?('cluster_name')
           raise "Formato del archivo con perfil de Cluster no es valido"
         end
@@ -73,7 +74,7 @@ class User < ApplicationRecord
           end
         end
 
-      elsif r.key?('company')
+      when 'company'
         unless r.key?('company_name') && r.key?('industry') && r.key?('reniecyt') && r.key?('location')
           raise "Formato del archivo con perfil de compañia no es valido"
         end
@@ -90,7 +91,7 @@ class User < ApplicationRecord
           end
         end
 
-      elsif r.key?('entrepreneur')
+      when 'entrepreneur'
         unless r.key?('organization')
           raise "Formato del archivo con perfil de emprendedor no es valido"
         end
@@ -104,7 +105,7 @@ class User < ApplicationRecord
           end
         end
 
-      elsif r.key?('researcher')
+      when 'researcher'
         unless user.researcher
           researcher = Researcher.new(user: user)
 
@@ -112,7 +113,11 @@ class User < ApplicationRecord
             raise "No se pudo guardar el investigador con el usuario #{user.email}"
           end
         end
+
+      else
+        raise "Nombre del perfil invalido"
       end
+
     end
   end
 
