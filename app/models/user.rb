@@ -4,6 +4,13 @@
 class User < ApplicationRecord
   require 'csv'
   has_paper_trail
+
+  rails_admin do
+     
+       exclude_fields :remember_created_at, :reset_password_sent_at, :versions
+     
+  end
+
   enum role: %i[admin_centro_inv admin_cluster usuario_empresa
                 moderador usuario_emprendedor usuario_general superadmin investigador]
 
