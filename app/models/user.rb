@@ -6,10 +6,11 @@ class User < ApplicationRecord
   has_paper_trail
 
   rails_admin do
-     
-       exclude_fields :remember_created_at, :reset_password_sent_at, :versions
-     
+    exclude_fields :remember_created_at, :reset_password_sent_at, :versions
   end
+
+  validates :email, :password, :password_confirmation, :contact_telephone,
+            :name, :organization, presence: true
 
   enum role: %i[admin_centro_inv admin_cluster usuario_empresa
                 moderador usuario_emprendedor usuario_general superadmin investigador]

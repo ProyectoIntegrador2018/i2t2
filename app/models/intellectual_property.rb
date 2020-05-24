@@ -8,5 +8,8 @@ class IntellectualProperty < ApplicationRecord
        exclude_fields :versions
   	end
 
+	validates :creation, :description, :registration_year,
+			  :publication_year, :keywords, presence: true
+
   	belongs_to :researcher
 end

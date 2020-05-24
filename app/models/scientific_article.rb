@@ -8,5 +8,7 @@ class ScientificArticle < ApplicationRecord
        exclude_fields :versions
   	end
 
+	validates :title, :authors, :publication_date, presence: true
+
   	belongs_to :researcher
 end
