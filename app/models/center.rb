@@ -1,7 +1,15 @@
 # frozen_string_literal: true
 
 class Center < ApplicationRecord
+
+  #Trigger for changes log
   has_paper_trail
+
+  #Hides versions field 
+  rails_admin do
+       exclude_fields :versions
+    end
+    
   validates :full_name, :short_name, :website, :address, :start_date, :building_area,
             :property_area, :property_private_funding, :property_federal_funding, :property_state_funding,
             :equipment_private_funding, :equipment_federal_funding, :equipment_state_funding,
