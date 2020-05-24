@@ -9,6 +9,8 @@ class Cluster < ApplicationRecord
 	rails_admin do
        exclude_fields :versions
   	end
-  	
+	  
+	validates :name, presence: true
+
   has_and_belongs_to_many :centers
 end

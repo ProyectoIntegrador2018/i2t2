@@ -10,5 +10,7 @@ class Industry < ApplicationRecord
        exclude_fields :versions
   	end
 
+	validates :name, presence: true
+
   	has_and_belongs_to_many :centers
 end

@@ -7,6 +7,8 @@ class Entrepreneur < ApplicationRecord
 	rails_admin do
        exclude_fields :versions
   	end
-  	
+	  
+	validates :organization, presence: true
+
   	belongs_to :user
 end

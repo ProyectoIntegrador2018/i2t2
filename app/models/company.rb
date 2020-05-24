@@ -8,5 +8,7 @@ class Company < ApplicationRecord
        exclude_fields :versions
   	end
 
+	validates :name, :industry, :location, presence: true
+
   	belongs_to :user
 end
