@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Center < ApplicationRecord
-  has_paper_trail
 
   #Trigger for changes log
   has_paper_trail
