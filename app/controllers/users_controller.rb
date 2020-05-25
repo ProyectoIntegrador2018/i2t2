@@ -32,38 +32,29 @@ class UsersController < ApplicationController
   end
 
   def set_user
-    # @center = Center.find(params[:id])
   end
 
   def edit
-     @user = User.find(params[:id])
-   end
+  end
 
   def update
-    @user = User.find(params[:id])
+    authorize! :change_roles, @user if params[:user][:change_roles]
     respond_to do |format|
-      if params[:user][:password].blank?
-        if @user.update_without_password(params[:user].except(:password, :password_confirmation).permit(:email, :role))
-          format.html { redirect_to users_path }
-          format.json { render :show, status: :ok, location: @user }
+      if @user.update(user_params)
+        if params[:user][:password].blank?
+          format.html { redirect_to edit_user_path, notice: "User was successfully updated." }
         else
-          format.html { render :edit }
+          format.html { redirect_to unauthenticated_root, notice: "User was successfully updated." }
         end
+        format.json { render :edit, status: :ok, location: @user }
       else
-        if @user.update_attributes(params[:user])
-          format.html { redirect_to users_path }
-          format.json { render :show, status: :ok, location: @user }
-        else
-          flash[:notice] = "Couldn't update."
-          render :action => 'edit'
-        end
+        format.html { redirect_to edit_user_path, notice: "Couldn't update." }
+        render :action => 'edit'
       end
     end
   end
 
-
   def destroy
-    @user = User.find(params[:id])
     if @user.destroy
       respond_to do |format|
         format.html { redirect_to root_url, notice: 'Usuario was succesfully destroyed.' }
@@ -71,4 +62,17 @@ class UsersController < ApplicationController
       end
     end
   end
+
+  private
+    def set_user
+      if params[:id]
+        @user = User.find(params[:id])
+      else
+        @user = current_user
+      end
+    end
+
+    def user_params
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :organization, :job, :office_telephone, :contact_telephone, :role)
+    end
 end

@@ -21,6 +21,7 @@ class Ability
     end
     can :read, :all
     can :inicio, :all
+    can :update, User, id: user.id
     #
     # The first argument to `can` is the action you are giving the user
     # permission to do.

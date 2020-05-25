@@ -6,6 +6,7 @@ class AdminAbility
     can :access, :rails_admin
     can :read, :dashboard
     can :read, :all
+    can :change_roles, User
     if user.superadmin?
       can :manage, :all
     end
