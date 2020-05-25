@@ -5,6 +5,8 @@
     <br/>
     <h3> <%= @researcher.user.name %> </h3>
 
+    <%= render partial: "users/contact_info", locals: {user: @researcher.user} %>
+
     <div class="card my-4">
       <h5 class="card-header">Artículos Científicos</h5>
       <div class="card-body">
