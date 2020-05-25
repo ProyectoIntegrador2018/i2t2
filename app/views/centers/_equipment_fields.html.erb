@@ -1,4 +1,4 @@
-<tr class="nested-fields">
+<!-- <tr class="nested-fields">
   <td> <%= f.text_field :name, class:"form-control" %> </td>
   <td> <%= f.check_box :available %> </td>
   <td>
@@ -6,3 +6,54 @@
     <%= link_to_remove_association "Remover", f %>
   </td>
 </tr>
+ -->
+
+<h5>Registrar nuevo equipamiento:</h5>
+          <div class="form-group mt-3">
+            <label for="inputNombre">Nombre del Equipamiento:</label>
+            <!-- <input
+              type="text"
+              class="form-control"
+              id="inputNombre"
+              placeholder="Ej. Retroexcavadora industrial."
+            /> -->
+            <%= f.text_field :name, class:"form-control" %>
+          </div>
+          <div class="form-group">
+            <label for="inputModelo">Modelo:</label>
+            <!-- <input
+              type="text"
+              class="form-control"
+              id="inputModelo"
+              placeholder="Ej. 2002, Made in Germany."
+            /> -->
+            <%= f.text_field :name, class:"form-control" %>
+          </div>
+          <div class="form-group">
+            <label for="inputMarca">Marca:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputMarca"
+              placeholder="Ej. John deere."
+            />
+          </div>
+          <div class="form-group">
+            <label for="inputDescription">Descripción del Equipamiento:</label>
+            <textarea id="inputDescription" class="form-control" rows="2">
+            </textarea>
+          </div>
+          <div class="form-group form-check-inline">
+            <label for="inlineCheckboxExt">Disponible uso externo:</label>
+            <input class="mb-1 ml-2" type="checkbox" id="inlineCheckboxExt" />
+          </div>
+          <div class="form-group">
+            <label for="inputExterno"
+              >Procedimiento para pedir uso externo:</label
+            >
+            <textarea
+              id="inputExterno"
+              class="form-control"
+              rows="2"
+            ></textarea>
+          </div>

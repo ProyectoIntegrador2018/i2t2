@@ -136,19 +136,13 @@
     <div class="card">
       <h5 class="card-header">Equipo</h5>
       <div class="card-body">
-        <h6 class="card-subtitle mb-2 text-muted">Opcional</h6>
+        
         <div class="container">
-          <table class="table">
-            <tr>
-              <th>Equipo</th>
-              <th>Disponible</th>
-            </tr>
-            <tbody class="equipment_fields">
+          
               <%= form.fields_for :equipments do |equipment_form| %>
                 <%= render 'equipment_fields', f: equipment_form %>
               <% end %>
-            </tbody>
-          </table>
+
           <%= link_to_add_association "Agregar equipo", form, :equipments, data:
             {"association-insertion-node" => "tbody.equipment_fields",
           "association-insertion-method" => "append"} %>
