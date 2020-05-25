@@ -1,4 +1,75 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+    <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_researcher_path(@researcher) %> |
-<%= link_to 'Back', researchers_path %>
+    <h1> Investigador </h1>
+    <br/>
+    <h3> <%= @researcher.user.name %> </h3>
+
+    <%= render partial: "users/contact_info", locals: {user: @researcher.user} %>
+
+    <div class="card my-4">
+      <h5 class="card-header">Artículos Científicos</h5>
+      <div class="card-body">
+        <% if @researcher.scientific_articles.empty? %>
+          No se han registrado Artículos Científicos.
+        <% else %>
+            <% @researcher.scientific_articles.each do |scientific_article| %>
+                <b>Nombre publicación:</b> <%= "#{scientific_article.title}" %>
+                <br />
+                <b>Autores:</b> <%= "#{scientific_article.authors}" %>
+                <br />
+                <b>Fecha de publicación:</b> <%= "#{scientific_article.publication_date}" %>
+                <br />
+                <b>Revista:</b> <%= "#{scientific_article.magazine}" %>
+                <br />
+                <b>Volumen:</b> <%= "#{scientific_article.volume}" %>
+                <br />
+                <b>Número:</b> <%= "#{scientific_article.number}" %>
+                <br />
+                <b>Páginas:</b> de <%= "#{scientific_article.first_page}" %> a <%= "#{scientific_article.last_page}" %>
+                <br />
+                <b>DOI:</b> <%= "#{scientific_article.doi}" %>
+                <br />
+                <b>Link:</b> <%= "#{scientific_article.link}" %>
+                <br/>
+                <% if scientific_article != @researcher.scientific_articles.last %>
+                    <hr/>
+                <% end %>
+            <% end %>    
+        <% end %>
+      </div>
+    </div>
+
+    <div class="card my-4">
+      <h5 class="card-header">Propiedad Intelectual</h5>
+      <div class="card-body">
+        <% if @researcher.scientific_articles.empty? %>
+          No se ha registrado Propiedad Intelectual.
+        <% else %>
+            <% @researcher.intellectual_properties.each do |intellectual_property| %>
+                <b>Invento:</b> <%= "#{intellectual_property.creation}" %>
+                <br />
+                <b>Breve descripción:</b> <%= "#{intellectual_property.description}" %>
+                <br />
+                <b>Institución:</b> <%= "#{intellectual_property.institution}" %>
+                <br />
+                <b>Año de registro:</b> <%= "#{intellectual_property.registration_year}" %>
+                <br />
+                <b>Año de publicación:</b> <%= "#{intellectual_property.publication_year}" %>
+                <br />
+                <b>Palabras clave:</b> <%= "#{intellectual_property.keywords}" %>
+                <br />
+                <% if intellectual_property != @researcher.intellectual_properties.last %>
+                    <hr/>
+                <% end %>
+            <% end %>    
+        <% end %>
+      </div>
+    </div>
+
+    <%if can? :update, @researcher %>
+        <%= link_to 'Edit', edit_researcher_path(@researcher) %> |
+    <% end %>    
+    <%= link_to 'Back', researchers_path %>
+
+</div>

@@ -14,6 +14,10 @@ class Ability
         can :create, Center  # Can create a new Center.
         can :manage, Center, user_id: user.id # Can only edit their own Centers.
         can :manage, User, id: user.id # Can only edit their own profile.
+    elsif user.investigador?
+        can :create, Researcher  # Can create a Researcher.
+        can :manage, Researcher, user_id: user.id # Can only edit their own Researcher.
+        can :manage, User, id: user.id # Can only edit their own profile.
     end
     can :read, :all
     can :inicio, :all

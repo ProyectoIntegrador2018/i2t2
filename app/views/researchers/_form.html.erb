@@ -11,7 +11,35 @@
     </div>
   <% end %>
 
+  <div class="card my-4">
+    <h5 class="card-header">Articulos científicos <small>Opcional</small></h5>
+    <div class="card-body">
+      <div class="scientific-article-item">
+        <%= form.fields_for :scientific_articles do |scientific_articles_form| %>
+          <%= render 'scientific_article_fields', f: scientific_articles_form %>
+        <% end %>
+      </div>
+      <%= link_to_add_association "Agregar articulo", form, :scientific_articles, data:
+        {"association-insertion-node" => "div.scientific-article-item",
+      "association-insertion-method" => "append"}, class:"btn btn-outline-success" %>
+    </div>
+  </div>
+
+  <div class="card my-4">
+    <h5 class="card-header">Propiedad Intelectual <small>Opcional</small></h5>
+    <div class="card-body">
+      <div class="intellectual-property-item">
+        <%= form.fields_for :intellectual_properties do |intellectual_property_form| %>
+          <%= render 'intellectual_property_fields', f: intellectual_property_form %>
+        <% end %>
+      </div>
+      <%= link_to_add_association "Agregar propiedad intelectual", form, :intellectual_properties, data:
+        {"association-insertion-node" => "div.intellectual-property-item",
+      "association-insertion-method" => "append"}, class:"btn btn-outline-success" %>
+    </div>
+  </div>
+
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class:"btn btn-primary", value:"Guardar registro de investigador" %>
   </div>
 <% end %>
