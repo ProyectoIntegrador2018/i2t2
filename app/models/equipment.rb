@@ -9,8 +9,12 @@ class Equipment < ApplicationRecord
 	rails_admin do
        exclude_fields :versions
   	end
+
+  	
 	  
 	validates :name, :description, presence: true
+
+
 
   	belongs_to :center
 end

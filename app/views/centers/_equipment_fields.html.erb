@@ -1,8 +1,42 @@
-<tr class="nested-fields">
-  <td> <%= f.text_field :name, class:"form-control" %> </td>
-  <td> <%= f.check_box :available %> </td>
-  <td>
+<div class="nested-fields">
+<h5>Registrar nuevo equipamiento:</h5>
+          <div class="form-group mt-3">
+            <label for="inputNombre">Nombre del Equipamiento:</label>
+
+            <%= f.text_field :name, class:"form-control" %>
+          </div>
+          <div class="form-group">
+            <label for="inputModelo">Modelo:</label>
+
+            <%= f.text_field :model, class:"form-control" %>
+          </div>
+          <div class="form-group">
+            <label for="inputMarca">Marca:</label>
+            <%= f.text_field :brand, class:"form-control" %>
+          </div>
+          <div class="form-group">
+            <label for="inputDescription">Descripción del Equipamiento:</label>
+
+            <%= f.text_area :description, class:"form-control" %>
+          </div>
+          <div class="form-group">
+            <label for="inputDescription">Aplicaciones del Equipamiento:</label>
+
+            <%= f.text_area :applications, class:"form-control" %>
+          </div>
+          <div class="form-group form-check-inline">
+            <label for="inlineCheckboxExt">Disponible uso externo:</label>
+            <input class="mb-1 ml-2" type="checkbox" id="inlineCheckboxExt" />
+          </div>
+          <div class="form-group">
+            <label for="inputExterno"
+              >Procedimiento para pedir uso externo:</label
+            >
+
+             <%= f.text_area :external_use, class:"form-control" %>
+          </div>
+<div>
     <%= f.check_box :_destroy, hidden: true %>
-    <%= link_to_remove_association "Remover", f %>
-  </td>
-</tr>
+    <%= link_to_remove_association "Remover", f, class:"btn btn-outline-warning" %>
+  </div>
+</div>
