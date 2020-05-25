@@ -1,6 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<p>
+<%
+=begin%>
+ <p>
   <strong>Name:</strong>
   <%= @company.name %>
 </p>
@@ -18,7 +20,36 @@
 <p>
   <strong>Location:</strong>
   <%= @company.location %>
-</p>
+</p> 
+<%
+=end%>
 
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %>
+<div
+  id="main-content"
+  class="container"
+  style="background-color: white;"
+>
+  <h1><%= @company.name %></h1>
+  <div class="mt-4">
+    <h4><b>Giro:</b><%= @company.industry %></h4>
+  </div>
+  <div class="d-flex my-3">
+    <%= link_to 'Editar', edit_company_path(@company), class: "btn btn-outline-info ml-auto" %>
+  </div>
+  <div class="card mt-4">
+    <div class="card-header">
+      <h4>Datos Generales</h4>
+    </div>
+    <div class="card-body">
+      <b>Nombre:</b> <%= @company.name %>
+      <br />
+      <b>Giro:</b> <%= @company.industry %>
+      <br />
+      <b>No. de RENIECYT:</b> <%= @company.reniecyt %>
+      <br />
+      <b>Municipio:</b> <%= @company.location %>
+      <br />
+    </div>
+  </div>
+  <%= render partial: "users/contact_info", locals: {user: @company.user} %>
+</div>
