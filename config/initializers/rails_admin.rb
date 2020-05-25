@@ -18,6 +18,45 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model Researcher do
+    field :user do
+      associated_collection_scope do
+        Proc.new { |scope|
+          scope = scope.where(role: :investigador)
+        }
+      end
+    end
+    field :scientific_articles
+    field :intellectual_properties
+  end
+
+  config.model Company do
+    field :user do
+      associated_collection_scope do
+        Proc.new { |scope|
+          scope = scope.where(role: :usuario_empresa)
+        }
+      end
+    end
+    field :name
+    field :industry
+    field :reniecyt
+    field :location
+  end
+
+  config.model Entrepreneur do
+    field :user do
+      associated_collection_scope do
+        Proc.new { |scope|
+          scope = scope.where(role: :usuario_emprendedor)
+        }
+      end
+    end
+    field :organization
+  end
+
+
+
   def custom_label_method
     self.email
   end

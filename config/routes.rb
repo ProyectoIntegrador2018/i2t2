@@ -7,16 +7,10 @@ Rails.application.routes.draw do
   resources :researchers
   resources :companies
   mount RailsAdmin::Engine => '/superadmin', as: 'rails_admin'
-  devise_for :admin_platforms, path: 'moderador', controllers: {
-  }
-  devise_for :admin_centers, path: 'admin_centro', controllers: {
-    # sessions: 'admin_centers/sessions'
-  }
   resources :idti_areas
   resources :idti_services
   resources :centro_investigacions
 
-  root to: 'centers#index'
   resources :equipment
   resources :centers
   resources :awards
@@ -26,11 +20,16 @@ Rails.application.routes.draw do
              :controllers  => {
              :registrations => 'registrations',
              }
+  devise_scope :user do
+    authenticated :user do
+      root 'centers#index', as: :authenticated_root
+    end
+  
+    unauthenticated do
+      root 'devise/sessions#new', as: :unauthenticated_root
+    end
+  end
   resources :users do
-    # member do
-    #   post '/users', :to => 'users#create', :as => :user
-    # end
-
     collection do
        post :import
     end
