@@ -37,15 +37,6 @@
         <%= submit_tag "Importar CSV", class: "btn btn-link mt-2" %>
       <% end %>
     <% end %>
-    </tbody>
-  </table>
-  <% if current_user.superadmin? %>
-    <h4 class="mb-3">Importar usuarios</h4>
-    <%= form_tag import_users_path, class: "d-flex flex-column align-items-start", multipart: true do %>
-      <%= file_field_tag :file, accept: 'text/csv' %>
-      <%= submit_tag "Importar CSV", class: "btn btn-link mt-2" %>
-    <% end %>
-  <% end %>
 
   <% else %>
     <%= link_to 'Registrarse', new_user_registration_path %>
