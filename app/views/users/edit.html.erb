@@ -1,56 +1,92 @@
 <div class="container">
-  <h2>Modificar Usuario</h2>
+  <h2 class="text-center">Modificar Usuario</h2>
   <br/>
 
-  <%= form_for(@user, url: admin_update_user_path(@user), html: { method: :put }) do |f| %>
-    <%= render "devise/shared/error_messages", resource: @user %>
+  <%= render "devise/shared/error_messages", resource: @user %>
 
-    <div class="input-group field row">
-      <%= f.label :email, class: "col-sm-2 col-form-label"%>
-      <div class="col-sm-10">
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", placeholder:"email"%>
-      </div>
+  <div class="card w-75 mx-auto">
+    <div class="card-header">
+      <h3>
+        Mis Datos de Contacto
+      </h3>
     </div>
-    </br>
-
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-    <% end %>
-
-    <div class="input-group field row">
-      <%= f.label :password, 'Contraseña', class: "col-sm-2 col-form-label"%>
-      <div class="col-sm-10">
-        <%= f.password_field :password, autocomplete: "new-password", class:"form-control", placeholder: "Dejar en blanco para no modificar"%>
-      </div>
-    </div>
-
-      <% if @minimum_password_length %>
-        <em><%= @minimum_password_length %> characters minimum</em>
+    <div class="card-body">
+      <%= form_for(@user, url: admin_update_user_path(@user), html: { method: :put }) do |f| %>
+        <div class="form-group">
+          <%= f.label :name, 'Nombre:'%>
+          <%= f.text_field :name, class:"form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :organization, 'Empresa/Organización:'%>
+          <%= f.text_field :organization, class:"form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :job, 'Puesto:'%>
+          <%= f.text_field :job, class:"form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :email, 'Email:'%>
+          <%= f.email_field :email, class:"form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :contact_telephone, 'Teléfono de Contacto:'%>
+          <%= f.telephone_field :contact_telephone, class:"form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :office_telephone, 'Teléfono de Oficina:'%>
+          <%= f.telephone_field :office_telephone, class:"form-control" %>
+        </div>
+        <div clas="mt-3">
+          <%= f.submit "Guardar", class:"btn btn-outline-info" %>
+          <%= link_to "Cancel", :back, class: "btn btn-outline-warning ml-2" %>
+        </div>
       <% end %>
-    <br/>
-    <div class="input-group field row">
-      <%= f.label :password_confirmation, 'Confirmación de contraseña', class: "col-sm-2 col-form-label"%>
-      <div class="col-sm-10">
-        <%= f.password_field :password_confirmation, class:"form-control", autocomplete: "new-password" %>
-      </div>
     </div>
-    <br/>
+  </div>
 
-    <div class="form-group row">
-      <%= f.label :role, 'Rol', class: "col-sm-2 col-form-label"%>
-      <div class="col-sm-10">
-        <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]}, {}, { :class => "form form-control form-group"}) %>
-      </div>
+  <div class="card w-75 mx-auto my-4">
+    <div class="card-header">
+      <h3>
+        Mis Datos de Cuenta
+      </h3>
     </div>
+    <div class="card-body">
+      <%= form_for(@user, url: admin_update_user_path(@user), html: { method: :put }) do |f| %>
+        <div class="form-group">
+          <%= f.label :role, 'Rol:'%>
+          <% if can? :change_role, @user %>
+            <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]}, {}, { :class => "form-control form-group"}) %>
+          <% else %>
+            <%= f.text_field :role, class:"form-control", disabled: true %>
+          <% end %>
+        </div>
+        <div class="form-group">
+          <%= f.label :email, "Email:" %>
+          <%= f.email_field :email, autocomplete: "email", class:"form-control", placeholder:"email"%>
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <% end %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password, 'Contraseña:' %>
+          <%= f.password_field :password, autocomplete: "new-password", class:"form-control", placeholder: "Dejar en blanco para no modificar"%>
+          <% if @minimum_password_length %>
+            <em><%= @minimum_password_length %> characters minimum</em>
+          <% end %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password_confirmation, 'Confirmación de contraseña:'%>
+          <%= f.password_field :password_confirmation, class:"form-control", autocomplete: "new-password" %>
+        </div>
+        <div clas="mt-3">
+          <%= f.submit "Guardar", class:"btn btn-outline-info" %>
+          <%= link_to "Cancel", :back, class: "btn btn-outline-warning ml-2" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 
-    <div class="actions">
-      <%= f.submit "Guardar", class:"btn btn-primary" %>
-    </div>
-  <% end %>
-  <br/>
-  <%if can? :destroy, @user %>
+  <% if can? :destroy, @user %>
     <%= button_to 'Eliminar cuenta', admin_destroy_user_path, data: {confirm: 'Seguro que quieres eliminar este usuario?'}, method: :delete, class: "btn btn-danger"%>
   <% end %>
-
-  <%= link_to "Back", :back %>
 </div>
