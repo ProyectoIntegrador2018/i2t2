@@ -21,6 +21,26 @@ class User < ApplicationRecord
     self.role ||= :usuario_general
   end
 
+  def admin?
+    return self.role == 'moderador'
+  end
+
+  def superadmin?
+    return self.role == 'superadmin'
+  end
+
+  def center_admin?
+    return self.role == 'admin_centro_inv'
+  end
+
+  def investigador?
+    return self.role == 'investigador'
+  end
+
+  def admin_cluster?
+    return self.role == 'admin_cluster'
+  end
+
   # CSV first-line format for each available import
   # ONLY USER:    email, role, password, name, organization, job, contact_telephone, office_telephone
   # CENTER:       ONLY USER params, profile: 'center', full_name, short_name, website, address
@@ -127,18 +147,6 @@ class User < ApplicationRecord
       end
 
     end
-  end
-
-  def admin?
-    return self.role == 'moderador'
-  end
-
-  def superadmin?
-    return self.role == 'superadmin'
-  end
-
-  def center_admin?
-    return self.role == 'admin_centro_inv'
   end
 
   # Include default devise modules. Others available are:

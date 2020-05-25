@@ -1,0 +1,38 @@
+<div class="nested-fields">
+
+  <div class="form-group">
+    <label>Invento:</label>
+    <%= f.text_field :creation, class:"form-control" %>
+  </div>
+  <div class="form-group">
+    <label>Breve descripción:</label>
+    <%= f.text_area :description, class:"form-control" %>
+  </div>
+  <div class="form-group">
+    <label>Nombre institución:</label>
+    <%= f.text_field :institution, class:"form-control" %>
+  </div>
+
+  <div class="row">
+    <div class="col form-group">
+      <label>Año registro:</label>
+      <%= f.number_field :registration_year, class:"form-control" %>
+    </div>
+    <div class="col form-group">
+      <label>Año publicación:</label>
+      <%= f.number_field :publication_year, class:"form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Palabras Clave:</label>
+    <%= f.text_area :keywords, class:"form-control" %>
+  </div>
+
+  <div>
+    <%= f.check_box :_destroy, hidden: true %>
+    <%= link_to_remove_association "Remover", f, class:"btn btn-outline-warning" %>
+  </div>
+
+  <hr />
+</div>

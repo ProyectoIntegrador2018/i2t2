@@ -1,6 +1,7 @@
-<h1>Editing Researcher</h1>
+<div class="container">
+    <h1>Edición de propiedad intelectual y artículos</h1>
+    <%= render 'form', researcher: @researcher %>
 
-<%= render 'form', researcher: @researcher %>
-
-<%= link_to 'Show', @researcher %> |
-<%= link_to 'Back', researchers_path %>
+    <%= link_to 'Show', @researcher %> |
+    <%= link_to 'Back', researchers_path %>
+</div>

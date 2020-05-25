@@ -1,5 +1,7 @@
-<h1>New Researcher</h1>
+<div class="container">
+    <h1>Registro de propiedad intelectual y artículos</h1>
+    <%= render 'form', researcher: @researcher %>
 
-<%= render 'form', researcher: @researcher %>
-
-<%= link_to 'Back', researchers_path %>
+    <br/>
+    <%= link_to 'Back', researchers_path %>
+</div>
