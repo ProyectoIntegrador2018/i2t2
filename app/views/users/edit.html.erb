@@ -54,7 +54,7 @@
       <%= form_for(@user, url: admin_update_user_path(@user), html: { method: :put }) do |f| %>
         <div class="form-group">
           <%= f.label :role, 'Rol:'%>
-          <% if can? :change_role, @user %>
+          <% if current_user.superadmin? %>
             <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]}, {}, { :class => "form-control form-group"}) %>
           <% else %>
             <%= f.text_field :role, class:"form-control", disabled: true %>
@@ -85,8 +85,4 @@
       <% end %>
     </div>
   </div>
-
-  <% if can? :destroy, @user %>
-    <%= button_to 'Eliminar cuenta', admin_destroy_user_path, data: {confirm: 'Seguro que quieres eliminar este usuario?'}, method: :delete, class: "btn btn-danger"%>
-  <% end %>
 </div>
