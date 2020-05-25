@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_06_002933) do
+ActiveRecord::Schema.define(version: 2020_05_25_060254) do
 
   create_table "admin_centers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -134,6 +134,10 @@ ActiveRecord::Schema.define(version: 2020_05_06_002933) do
     t.bigint "center_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "model"
+    t.string "brand"
+    t.string "applications"
+    t.string "external_use"
     t.index ["center_id"], name: "index_equipment_on_center_id"
   end
 
