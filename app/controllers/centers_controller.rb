@@ -142,6 +142,11 @@ class CentersController < ApplicationController
                                      id
                                      name
                                      available
+                                     model
+                                     brand
+                                     description
+                                     applications
+                                     external_use
                                      _destroy
                                    ],
                                    awards_attributes: %i[

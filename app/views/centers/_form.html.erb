@@ -138,13 +138,13 @@
       <div class="card-body">
         
         <div class="container">
-          
+            <div class="equipment_fields">
               <%= form.fields_for :equipments do |equipment_form| %>
                 <%= render 'equipment_fields', f: equipment_form %>
               <% end %>
-
+            </div>
           <%= link_to_add_association "Agregar equipo", form, :equipments, data:
-            {"association-insertion-node" => "tbody.equipment_fields",
+            {"association-insertion-node" => "div.equipment_fields",
           "association-insertion-method" => "append"} %>
         </div>
       </div>
