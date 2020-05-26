@@ -44,12 +44,12 @@ class UsersController < ApplicationController
         if params[:user][:password].blank?
           format.html { redirect_to edit_user_path, notice: "User was successfully updated." }
         else
-          format.html { redirect_to unauthenticated_root, notice: "User was successfully updated." }
+          format.html { redirect_to unauthenticated_root_path, notice: "User was successfully updated." }
         end
         format.json { render :edit, status: :ok, location: @user }
       else
-        format.html { redirect_to edit_user_path, notice: "Couldn't update." }
-        render :action => 'edit'
+        format.html { render :edit }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
