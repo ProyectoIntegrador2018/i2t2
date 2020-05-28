@@ -7,7 +7,9 @@ class Ability
   def initialize(user)
     # Define abilities for the passed in user here.
     user ||= User.new # guest user (not logged in)
-    if user.moderador?
+    if user.superadmin?
+      can :manage, :all
+    elsif user.moderador?
         can :create, User, role: "moderador"
         # cannot :create, Center  # Cannot create a new Center.
     elsif user.admin_centro_inv?
