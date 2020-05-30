@@ -54,13 +54,13 @@
           <% end %>
         </ul>
         <% if current_user.nil? %>
-          <%= link_to 'Iniciar Sesión', new_user_session_path, class:"btn btn-outline-primary" %>
+          <%= link_to 'Iniciar Sesión', new_user_session_path, class:"btn btn-outline-primary nav-link" %>
         <% else %>
-          <p class="text-muted m-0 mr-2">
+          <div class="text-muted mx-2 py-2">
             <%= current_user.email %>
             <span class="badge badge-secondary text-monospace"><%= current_user.role %></span>
-          </p>
-          <%= link_to 'Cerrar Sesión', destroy_user_session_path, class:"btn btn-outline-secondary" , method: :delete %>
+          </div>
+          <%= link_to 'Cerrar Sesión', destroy_user_session_path, class:"btn btn-outline-secondary nav-link" , method: :delete %>
         <% end %>
       </div>
     </nav>

@@ -2,7 +2,7 @@
   <h1>Usuarios</h1>
 
   <% if current_user.superadmin? %>
-    <%= render partial: "users/import" %>
+    <%= render partial: "users/import/import" %>
   <% end %>
 
   <table class="table">
