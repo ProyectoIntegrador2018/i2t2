@@ -3,11 +3,8 @@
 # Main controller for responding to user actions.
 class UsersController < ApplicationController
   load_and_authorize_resource
+  before_action :authenticate_user!
   before_action :set_user, only: %i[show edit update destroy]
-
-  def inicio
-    @users = User.all
-  end
 
   def index
     @users = User.all
@@ -29,9 +26,6 @@ class UsersController < ApplicationController
 
   def edit_profile
     @user = current_user
-  end
-
-  def set_user
   end
 
   def edit
@@ -57,7 +51,7 @@ class UsersController < ApplicationController
   def destroy
     if @user.destroy
       respond_to do |format|
-        format.html { redirect_to root_url, notice: 'Usuario was succesfully destroyed.' }
+        format.html { redirect_to users_url, notice: 'User was succesfully destroyed.' }
         format.json { head :no_content }
       end
     end
