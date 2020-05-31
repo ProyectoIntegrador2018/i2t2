@@ -1,9 +1,12 @@
-<div class="container">
-    <p id="notice"><%= notice %></p>
+<p id="notice"><%= notice %></p>
 
+<div class="container">
     <h1> Investigador </h1>
     <br/>
     <h3> <%= @researcher.user.name %> </h3>
+    <div class="d-flex my-3">
+      <%= link_to 'Editar', edit_researcher_path(@researcher), class: "btn btn-outline-info ml-auto" %>
+    </div>
 
     <%= render partial: "users/contact_info", locals: {user: @researcher.user} %>
 
@@ -66,10 +69,4 @@
         <% end %>
       </div>
     </div>
-
-    <%if can? :update, @researcher %>
-        <%= link_to 'Edit', edit_researcher_path(@researcher) %> |
-    <% end %>    
-    <%= link_to 'Back', researchers_path %>
-
 </div>

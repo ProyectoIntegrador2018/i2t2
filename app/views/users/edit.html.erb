@@ -14,7 +14,19 @@
       <%= form_for(@user, url: admin_update_user_path(@user), html: { method: :put }) do |f| %>
         <div class="form-group">
           <%= f.label :name, 'Nombre:'%>
-          <%= f.text_field :name, class:"form-control" %>
+          <% if current_user.superadmin? %>
+            <%= f.text_field :name, class:"form-control" %>
+          <% else %>
+            <%= f.text_field :name, class:"form-control", disabled: true %>
+          <% end %>
+        </div>
+        <div class="form-group">
+          <%= f.label :email, 'Email:'%>
+          <% if current_user.superadmin? %>
+            <%= f.email_field :email, class:"form-control" %>
+          <% else %>
+            <%= f.email_field :email, class:"form-control", disabled: true %>
+          <% end %>
         </div>
         <div class="form-group">
           <%= f.label :organization, 'Empresa/Organización:'%>
@@ -25,10 +37,6 @@
           <%= f.text_field :job, class:"form-control" %>
         </div>
         <div class="form-group">
-          <%= f.label :email, 'Email:'%>
-          <%= f.email_field :email, class:"form-control" %>
-        </div>
-        <div class="form-group">
           <%= f.label :contact_telephone, 'Teléfono de Contacto:'%>
           <%= f.telephone_field :contact_telephone, class:"form-control" %>
         </div>
@@ -36,8 +44,8 @@
           <%= f.label :office_telephone, 'Teléfono de Oficina:'%>
           <%= f.telephone_field :office_telephone, class:"form-control" %>
         </div>
-        <div clas="mt-3">
-          <%= f.submit "Guardar", class:"btn btn-outline-info" %>
+        <div class="mt-3 d-flex">
+          <%= f.submit "Guardar", class:"ml-auto btn btn-outline-info" %>
           <%= link_to "Cancel", :back, class: "btn btn-outline-warning ml-2" %>
         </div>
       <% end %>
@@ -62,7 +70,11 @@
         </div>
         <div class="form-group">
           <%= f.label :email, "Email:" %>
-          <%= f.email_field :email, autocomplete: "email", class:"form-control", placeholder:"email"%>
+          <% if current_user.superadmin? %>
+            <%= f.email_field :email, autocomplete: "email", class:"form-control", placeholder:"email" %>
+          <% else %>
+            <%= f.email_field :email, autocomplete: "email", class:"form-control", disabled: true %>
+          <% end %>
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
             <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
           <% end %>
@@ -78,8 +90,8 @@
           <%= f.label :password_confirmation, 'Confirmación de contraseña:'%>
           <%= f.password_field :password_confirmation, class:"form-control", autocomplete: "new-password" %>
         </div>
-        <div clas="mt-3">
-          <%= f.submit "Guardar", class:"btn btn-outline-info" %>
+        <div class="mt-3 d-flex">
+          <%= f.submit "Guardar", class:"ml-auto btn btn-outline-info" %>
           <%= link_to "Cancel", :back, class: "btn btn-outline-warning ml-2" %>
         </div>
       <% end %>
