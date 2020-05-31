@@ -19,9 +19,13 @@
           <%= render 'scientific_article_fields', f: scientific_articles_form %>
         <% end %>
       </div>
-      <%= link_to_add_association "Agregar articulo", form, :scientific_articles, data:
-        {"association-insertion-node" => "div.scientific-article-item",
-      "association-insertion-method" => "append"}, class:"btn btn-outline-success" %>
+      <div class="d-flex py-2">
+        <div class="ml-auto">
+          <%= link_to_add_association "Agregar articulo", form, :scientific_articles, data:
+            {"association-insertion-node" => "div.scientific-article-item",
+          "association-insertion-method" => "append"}, class:"btn btn-outline-info" %>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -33,13 +37,19 @@
           <%= render 'intellectual_property_fields', f: intellectual_property_form %>
         <% end %>
       </div>
-      <%= link_to_add_association "Agregar propiedad intelectual", form, :intellectual_properties, data:
-        {"association-insertion-node" => "div.intellectual-property-item",
-      "association-insertion-method" => "append"}, class:"btn btn-outline-success" %>
+      <div class="d-flex py-2">
+        <div class="ml-auto">
+          <%= link_to_add_association "Agregar propiedad intelectual", form, :intellectual_properties, data:
+              {"association-insertion-node" => "div.intellectual-property-item",
+            "association-insertion-method" => "append"}, class:"btn btn-outline-info" %>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit class:"btn btn-primary", value:"Guardar registro de investigador" %>
+  <div class="d-flex py-3">
+    <div class="actions ml-auto">
+      <%= form.submit class:"btn btn-outline-info", value:"Confirmar" %>
+    </div>
   </div>
 <% end %>
