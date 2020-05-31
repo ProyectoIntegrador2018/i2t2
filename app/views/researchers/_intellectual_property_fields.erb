@@ -2,31 +2,31 @@
 
   <div class="form-group">
     <label>Invento:</label>
-    <%= f.text_field :creation, class:"form-control" %>
+    <%= f.text_field :creation, class:"form-control", placeholder: "Ingresa el nombre del invento" %>
   </div>
   <div class="form-group">
     <label>Breve descripción:</label>
-    <%= f.text_area :description, class:"form-control" %>
+    <%= f.text_area :description, class:"form-control", placeholder: "Descripción del invento y de su principal finalidad" %>
   </div>
   <div class="form-group">
     <label>Nombre institución:</label>
-    <%= f.text_field :institution, class:"form-control" %>
+    <%= f.text_field :institution, class:"form-control", placeholder: "Ej: ITESM" %>
   </div>
 
   <div class="row">
     <div class="col form-group">
       <label>Año registro:</label>
-      <%= f.number_field :registration_year, class:"form-control" %>
+      <%= f.number_field :registration_year, class:"form-control", placeholder: "Ej: 2018" %>
     </div>
     <div class="col form-group">
       <label>Año publicación:</label>
-      <%= f.number_field :publication_year, class:"form-control" %>
+      <%= f.number_field :publication_year, class:"form-control", placeholder: "Ej: 2020" %>
     </div>
   </div>
 
   <div class="form-group">
     <label>Palabras Clave:</label>
-    <%= f.text_area :keywords, class:"form-control" %>
+    <%= f.text_area :keywords, class:"form-control", placeholder: "Palabras relacionadas al invento, separadas por coma" %>
   </div>
 
   <div>
