@@ -3,6 +3,6 @@
   <td> <%= f.date_select :date, discard_day: true, discard_month: true %> </td>
   <td>
     <%= f.check_box :_destroy, hidden: true %>
-    <%= link_to_remove_association "Remover", f %>
+    <%= link_to_remove_association "Remover", f, class:"btn btn-outline-warning" %>
   </td>
 </tr>
