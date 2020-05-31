@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>I2t2</title>
+    <title>I2T2</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -18,15 +18,38 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <% if current_user&.superadmin? || current_user&.admin? || current_user&.center_admin?  %>
-            <li class="nav-item">
-              <%= link_to 'Centros de investigación', centers_path, class: "nav-link" %>
-            </li>
+          <% if current_user&.center_admin?  %>
+            <% if current_user&.center %>
+              <li class="nav-item">
+                <%= link_to 'Centro de investigación', center_path(current_user.center), class: "nav-link" %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to 'Centro de investigación', new_center_path, class: "nav-link" %>
+              </li>
+            <% end %>
           <% end %>
-          <% if current_user&.superadmin? || current_user&.admin? || current_user&.investigador?  %>
-            <li>
-              <%= link_to 'Investigadores', researchers_path, class: "nav-link" %>
-            </li>
+          <% if current_user&.investigador?  %>
+            <% if current_user&.researcher %>
+              <li>
+                <%= link_to 'Perfil Investigador', researcher_path(current_user.researcher), class: "nav-link" %>
+              </li>
+            <% else %>
+              <li>
+                <%= link_to 'Perfil Investigador', new_researcher_path, class: "nav-link" %>
+              </li>
+            <% end %>
+          <% end %>
+          <% if current_user&.usuario_empresa? %>
+            <% if current_user&.company %>
+              <li>
+                <%= link_to 'Perfil Empresa', company_path(current_user.company), class: "nav-link" %>
+              </li>
+            <% else %>
+              <li>
+                <%= link_to 'Perfil Empresa', new_company_path, class: "nav-link" %>
+              </li>
+            <% end %>
           <% end %>
           <% if current_user&.superadmin? || current_user&.admin? %>
             <li>
@@ -36,20 +59,9 @@
               <%= link_to 'Panel de Administrador', rails_admin_path, class: "nav-link" %>
             </li>
           <% end %>
-          <% if current_user&.usuario_empresa? %>
-            <% if current_user&.company %>
-              <li>
-                <%= link_to 'Empresa', company_path(current_user.company), class: "nav-link" %>
-              </li>
-            <% else %>
-              <li>
-                <%= link_to 'Empresa', new_company_path, class: "nav-link" %>
-              </li>
-            <% end %>
-          <% end %>
           <% if current_user %>
             <li>
-              <%= link_to 'Mis Datos', edit_user_path(current_user), class: "nav-link" %>
+              <%= link_to 'Configuración Usuario', edit_user_path(current_user), class: "nav-link" %>
             </li>
           <% end %>
         </ul>
