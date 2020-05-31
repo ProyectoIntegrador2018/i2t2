@@ -1,6 +1,5 @@
+<p id="notice"><%= notice %></p>
 <div class="container">
-  <p id="notice"><%= notice %></p>
-
   <h1> <%= @center.full_name %> </h1>
   <h2> <%= @center.short_name %> </h2>
   <div>
@@ -24,6 +23,9 @@
     <% end %>
   </div>
   <br/>
+  <div class="d-flex my-3">
+    <%= link_to 'Editar', edit_center_path(@center), class: "btn btn-outline-info ml-auto" %>
+  </div>
 
   <div class="card">
     <h5 class="card-header">Información general</h5>
@@ -320,7 +322,4 @@
         <% end %>
       </div>
     </div>
-
-  <%if can? :update, @center %><%= link_to 'Editar', edit_center_path(@center) %> | <% end %>
-  <%= link_to 'Regresar', centers_path %>
 </div>

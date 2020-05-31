@@ -143,9 +143,13 @@
                 <%= render 'equipment_fields', f: equipment_form %>
               <% end %>
             </div>
-          <%= link_to_add_association "Agregar equipo", form, :equipments, data:
-            {"association-insertion-node" => "div.equipment_fields",
-          "association-insertion-method" => "append"} , class:"btn btn-outline-info" %>
+            <div class="d-flex py-2">
+              <div class="ml-auto">
+                <%= link_to_add_association "Agregar equipo", form, :equipments, data:
+                  {"association-insertion-node" => "div.equipment_fields",
+                "association-insertion-method" => "append"} , class:"btn btn-outline-info" %>
+              </div>
+            </div>
         </div>
       </div>
     </div>
@@ -168,9 +172,13 @@
               <% end %>
             </tbody>
           </table>
-          <%= link_to_add_association "Agregar premio", form, :awards, data:
-            {"association-insertion-node" => "tbody.awards_fields",
-          "association-insertion-method" => "append"}, class:"btn btn-outline-info" %>
+          <div class="d-flex py-2">
+            <div class="ml-auto">
+              <%= link_to_add_association "Agregar premio", form, :awards, data:
+                {"association-insertion-node" => "tbody.awards_fields",
+              "association-insertion-method" => "append"}, class:"btn btn-outline-info" %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -191,9 +199,13 @@
             <% end %>
           </tbody>
         </table>
-        <%= link_to_add_association "Agregar area", form, :idti_areas, data:
-          {"association-insertion-node" => "tbody.idti_areas",
-        "association-insertion-method" => "append"}, class:"btn btn-outline-info" %>
+        <div class="d-flex py-2">
+          <div class="ml-auto">
+            <%= link_to_add_association "Agregar area", form, :idti_areas, data:
+              {"association-insertion-node" => "tbody.idti_areas",
+            "association-insertion-method" => "append"}, class:"btn btn-outline-info" %>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -215,9 +227,13 @@
               <% end %>
             </tbody>
           </table>
-          <%= link_to_add_association "Agregar servicio", form, :idti_services, data:
-            {"association-insertion-node" => "tbody.idti_services",
-          "association-insertion-method" => "append"} , class:"btn btn-outline-info"%>
+          <div class="d-flex py-2">
+            <div class="ml-auto">
+              <%= link_to_add_association "Agregar servicio", form, :idti_services, data:
+                {"association-insertion-node" => "tbody.idti_services",
+              "association-insertion-method" => "append"} , class:"btn btn-outline-info"%>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -232,7 +248,9 @@
       </div>
     </div>
 
-<div class="actions">
-  <%= form.submit class:"btn btn-primary", value:"Guardar centro", 'data-disable-with'=>"Guardar centro" %>
-</div>
+    <div class="d-flex py-3">
+      <div class="actions ml-auto">
+        <%= form.submit class:"btn btn-outline-info", value:"Guardar centro", 'data-disable-with'=>"Guardar centro" %>
+      </div>
+    </div>
 <% end %>
