@@ -1,39 +1,32 @@
 <div class="nested-fields">
 
           <div class="form-group mt-3">
-            <label for="inputNombre">Nombre del Equipamiento:</label>
-
-            <%= f.text_field :name, class:"form-control" %>
+            <label for="inputNombre">Nombre del Equipo:</label>
+            <%= f.text_field :name, class:"form-control", placeholder: "Ingresar el nombre del equipo" %>
           </div>
           <div class="form-group">
             <label for="inputModelo">Modelo:</label>
-
-            <%= f.text_field :model, class:"form-control" %>
+            <%= f.text_field :model, class:"form-control", placeholder: "Ingresar el modelo del equipo" %>
           </div>
           <div class="form-group">
             <label for="inputMarca">Marca:</label>
-            <%= f.text_field :brand, class:"form-control" %>
+            <%= f.text_field :brand, class:"form-control", placeholder: "Ingresar la marca del equipo" %>
           </div>
           <div class="form-group">
             <label for="inputDescription">Descripción del Equipamiento:</label>
-
-            <%= f.text_area :description, class:"form-control" %>
+            <%= f.text_area :description, class:"form-control", placeholder: "Ingresar principal descripción y funcionamiento" %>
           </div>
           <div class="form-group">
             <label for="inputDescription">Aplicaciones del Equipamiento:</label>
-
-            <%= f.text_area :applications, class:"form-control" %>
+            <%= f.text_area :applications, class:"form-control", placeholder: "Describir principales usos del equipo" %>
           </div>
           <div class="form-group form-check-inline">
             <label for="inlineCheckboxExt">Disponible uso externo:</label>
-            <input class="mb-1 ml-2" type="checkbox" id="inlineCheckboxExt" />
+            <%= f.check_box :available, class:"mb-2 ml-2" %>
           </div>
           <div class="form-group">
-            <label for="inputExterno"
-              >Procedimiento para pedir uso externo:</label
-            >
-
-             <%= f.text_area :external_use, class:"form-control" %>
+            <label for="inputExterno">Procedimiento para pedir uso externo:</label>
+             <%= f.text_area :external_use, class:"form-control", placeholder: "En caso de poderse pedir el equipo, describir el procedimiento para pedirlo" %>
           </div>
 <div>
     <%= f.check_box :_destroy, hidden: true %>

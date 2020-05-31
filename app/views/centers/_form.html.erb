@@ -39,7 +39,6 @@
     <h5 class="card-header">Información general</h5>
     <div class="card-body">
       <%= render partial: 'text_field', locals: {form: form, tag:"Sitio web", sym: :website,  center: @center} %>
-
       <%= render partial: 'text_field', locals: {form: form, tag:"Direccion", sym: :address,  center: @center} %>
 
       <div class="input-group field row">
@@ -57,9 +56,7 @@
     <h5 class="card-header">Contacto del director</h5>
     <div class="card-body">
       <%= render partial: 'text_field', locals: {form: form, tag:"Nombre del director", sym: :director_name,  center: @center} %>
-
       <%= render partial: 'text_field', locals: {form: form, tag:"Email del director", sym: :director_email,  center: @center} %>
-
       <%= render partial: 'text_field', locals: {form: form, tag:"Telefono del director", sym: :director_phone,  center: @center} %>
     </div>
   </div>
@@ -69,17 +66,11 @@
     <h5 class="card-header">Propiedad e infraestructura</h5>
     <div class="card-body">
       <%= render partial: 'numeric_field', locals: {form: form, tag:"Area de construccion", sym: :building_area,  center: @center} %>
-
       <%= render partial: 'numeric_field', locals: {form: form, tag:"Area de propiedad", sym: :property_area,  center: @center} %>
-
       <%= render partial: 'numeric_field', locals: {form: form, tag:"Inversion privada", sym: :property_private_funding,  center: @center} %>
-
       <%= render partial: 'numeric_field', locals: {form: form, tag:"Inversion federal", sym: :property_federal_funding,  center: @center} %>
-
       <%= render partial: 'numeric_field', locals: {form: form, tag:"Inversion estatal", sym: :property_state_funding,  center: @center} %>
-
       <%= render partial: 'numeric_field', locals: {form: form, tag:"Otra inversion", sym: :property_other_funding,  center: @center} %>
-
       <%= render partial: 'text_field', locals: {form: form, tag:"Fuente de otra inversion", sym: :property_other_source,  center: @center} %>
     </div>
   </div>
@@ -89,14 +80,11 @@
   <div class="card">
     <h5 class="card-header">Inversiones</h5>
     <div class="card-body">
+      <h6 class="card-subtitle mb-2 text-muted">Opcional, valores numéricos</h6>
       <%= render partial: 'numeric_field', locals: {form: form, tag:"Inversion privada", sym: :equipment_private_funding,  center: @center} %>
-
       <%= render partial: 'numeric_field', locals: {form: form, tag:"Inversion federal", sym: :equipment_federal_funding,  center: @center} %>
-
       <%= render partial: 'numeric_field', locals: {form: form, tag:"Inversion estatal", sym: :equipment_state_funding,  center: @center} %>
-
       <%= render partial: 'numeric_field', locals: {form: form, tag:"Otra inversion", sym: :equipment_other_funding,  center: @center} %>
-
       <%= render partial: 'text_field', locals: {form: form, tag:"Fuente de otra inversion", sym: :equipment_other_source,  center: @center} %>
 
     </div>
@@ -106,7 +94,7 @@
   <div class="card">
     <h5 class="card-header">Patentes y diseños</h5>
     <div class="card-body">
-      <h6 class="card-subtitle mb-2 text-muted">Opcional</h6>
+      <h6 class="card-subtitle mb-2 text-muted">Opcional, valores numéricos</h6>
       <%= render partial: 'numeric_field', locals: {form: form, tag:"Patentes solicitadas en México", sym: :requested_patents_mexico,  center: @center} %>
       <%= render partial: 'numeric_field', locals: {form: form, tag:"Patentes otorgadas en México", sym: :given_patents_mexico,  center: @center} %>
       <%= render partial: 'numeric_field', locals: {form: form, tag:"Patentes solicitadas en EUA, Europa y Asia", sym: :requested_patents_us_eu_as,  center: @center} %>
@@ -121,7 +109,7 @@
   <div class="card">
     <h5 class="card-header">Publicaciones y derechos</h5>
     <div class="card-body">
-      <h6 class="card-subtitle mb-2 text-muted">Opcional</h6>
+      <h6 class="card-subtitle mb-2 text-muted">Opcional, valores numéricos</h6>
       <%= render partial: 'numeric_field', locals: {form: form, tag:"Marcas registradas", sym: :trademarks,  center: @center} %>
       <%= render partial: 'numeric_field', locals: {form: form, tag:"Derechos de autor", sym: :copyrights,  center: @center} %>
       <%= render partial: 'numeric_field', locals: {form: form, tag:"Publicaciones en el Institute for Scientific Information", sym: :isi_publications,  center: @center} %>
@@ -134,9 +122,8 @@
   <br/>
 
     <div class="card">
-      <h5 class="card-header">Equipamiento</h5>
+      <h5 class="card-header">Equipo</h5>
       <div class="card-body">
-        
         <div class="container">
             <div class="equipment_fields">
               <%= form.fields_for :equipments do |equipment_form| %>
