@@ -15,3 +15,21 @@
 
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
+
+#formats .nav-link {
+  &:hover {
+    text-decoration: underline;
+
+    &:not(.active) {
+      background-color: inherit;
+    }
+  }
+
+  &:not(.active) {
+    background-color: inherit;
+  }
+
+  &.active:hover {
+    text-decoration: none;
+  }
+}

@@ -1,0 +1,52 @@
+<div class="card import-card mb-4">
+  <div class="card-header">
+    <h4>Importar Usuarios</h4>
+    <p class="text-muted">Archivos soportados: <span class="badge badge-secondary align-text-bottom">.csv</span></p>
+    <ul class="nav nav-tabs card-header-tabs" id="importUsersInformation" role="tablist">
+      <li class="nav-item">
+        <a
+          class="nav-link active"
+          id="instructions-tab"
+          data-toggle="tab"
+          href="#instructions"
+          role="tab"
+          aria-controls="instructions"
+          aria-selected="true"
+        >
+          Instrucciones
+        </a>
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          id="formats-tab"
+          data-toggle="tab"
+          href="#formats"
+          role="tab"
+          aria-controls="formats"
+          aria-selected="false"
+        >
+          Formatos CSV
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card-body tab-content" id="importUsersInformationContent">
+    <div class="tab-pane fade show active" id="instructions" role="tabpanel" aria-labelledby="instructions-tab">
+      <p class="card-text">
+        Aqui se podrá importar usuarios o usuarios con un perfil asociado, por ejemplo, un usuario con un perfil de investigador. Dependiendo de que tipo de importación se debe de seguir un formato distinto. Para ver los formatos que tiene que seguir el archivo, haz click en el link "Formatos CSV" a la derecha de "Instrucciones".
+      </p>
+    </div>
+    <div class="tab-pane fade" id="formats" role="tabpanel" aria-labelledby="formats-tab">
+      <%= render partial: "users/import/formats" %>
+    </div>
+  </div>
+
+  <div class="card-footer">
+    <%= form_tag import_users_path, multipart: true do %>
+      <%= file_field_tag :file, accept: 'text/csv' %>
+      <%= submit_tag "Importar usuarios", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
