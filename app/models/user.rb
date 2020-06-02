@@ -100,8 +100,8 @@ class User < ApplicationRecord
         unless center.save
           raise "No se pudo guardar el centro #{r['full_name']} para el usuario #{user.name} con id #{user.id}"
         end
-
-      if user.cluster_admin?
+      
+      elsif user.cluster_admin?
         unless r.key?('cluster_name')
           raise "Formato del archivo con perfil de Cluster no es valido"
         end
@@ -116,8 +116,8 @@ class User < ApplicationRecord
         unless cluster.save
           raise "No se pudo guardar el cluter #{r['cluster_name']} para el usuario #{user.name} con id #{user.id}"
         end
-
-      if user.company_user?
+      
+      elsif user.company_user?
         unless r.key?('company_name') && r.key?('industry') && r.key?('reniecyt') && r.key?('location')
           raise "Formato del archivo con perfil de compañia no es valido"
         end
@@ -137,7 +137,7 @@ class User < ApplicationRecord
           raise "No se pudo guardar la compañia #{r['company_name']} para el usuario #{user.name} con id #{user.id}"
         end
 
-      if user.entrepreneur?
+      elsif user.entrepreneur?
         unless r.key?('organization')
           raise "Formato del archivo con perfil de emprendedor no es valido"
         end
@@ -153,8 +153,8 @@ class User < ApplicationRecord
         unless entrepreneur.save
           raise "No se pudo guardar el perfil emprendedor de #{r['organization']} para el usuario #{user.name} con id #{user.id}"
         end
-
-      if user.investigador?
+      
+      elsif user.investigador?
         raise "El usuario #{user.name} con id #{user.id} no tiene el rol de investigador." unless user.investigador?
 
         unless user.researcher
