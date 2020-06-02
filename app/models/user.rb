@@ -32,21 +32,29 @@ class User < ApplicationRecord
     return self.role == 'admin_centro_inv'
   end
 
+  def cluster_admin?
+    return self.role == 'admin_cluster'
+  end
+
+  def company_user?
+    return self.role == 'usuario_empresa'
+  end
+
+  def entrepreneur?
+    return self.role == 'usuario_emprendedor'
+  end
+
   def investigador?
     return self.role == 'investigador'
   end
 
-  def admin_cluster?
-    return self.role == 'admin_cluster'
-  end
-
   # CSV first-line format for each available import
   # USER:         email, role, password, name, organization, job, contact_telephone, office_telephone
-  # CENTER:       USER params, profile: 'center', full_name, short_name, website, address
-  # CLUSTER:      USER params, profile: 'cluster', cluster_name
-  # COMPANY:      USER params, profile: 'company', company_name, industry, reniecyt, location
-  # ENTREPRENEUR: USER params, profile: 'entrepreneur', organization
-  # RESEARCHER:   USER params, profile: 'researcher'
+  # CENTER:       USER params, role: 'admin_centro_inv', full_name, short_name, website, address
+  # CLUSTER:      USER params, role: 'admin_cluster', cluster_name
+  # COMPANY:      USER params, role: 'usuario_empresa', company_name, industry, reniecyt, location
+  # ENTREPRENEUR: USER params, role: 'usuario_emprendedor', organization
+  # RESEARCHER:   USER params, role: 'investigador'
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
       r = row.to_hash
@@ -57,116 +65,113 @@ class User < ApplicationRecord
         raise "Formato de archivo no valido"
       end
 
-      user = nil
-      unless User.exists?(email: r['email'])
-        user = User.create!(email: r['email'],
-                            role: r['role'],
-                            password: r['password'],
-                            password_confirmation: r['password'],
-                            name: r['name'],
-                            organization: r['organization'],
-                            job: r['job'],
-                            contact_telephone: r['contact_telephone'],
-                            office_telephone: r['office_telephone'])
-      else
-        user = User.find_by_email(r['email'])
+      unless user = User.find_by_email(r['email'])
+        user = User.new(email: r['email'],
+                        role: r['role'],
+                        password: r['password'],
+                        password_confirmation: r['password'],
+                        name: r['name'],
+                        organization: r['organization'],
+                        job: r['job'],
+                        contact_telephone: r['contact_telephone'],
+                        office_telephone: r['office_telephone'])
       end
 
-      if r.key?('profile')
-        case r['profile']
-        when 'center'
-          unless r.key?('full_name') && r.key?('short_name') && r.key?('website') && r.key?('address')
-            raise "Formato del archivo con perfil de Centro no es valido"
-          end
-
-          center = nil
-          if center = Center.find_by_full_name(r['full_name'])
-            center.user = user
-          else
-            center = Center.new(user: user,
-                                full_name: r['full_name'],
-                                short_name: r['short_name'],
-                                website: r['website'],
-                                address: r['address'],
-                                start_date: Time.now,
-                                director_name: "Importado desde archivo CSV",
-                                director_email: "Importado desde archivo CSV",
-                                director_phone: "Importado desde archivo CSV")
-          end
-
-          unless center.save
-            raise "No se pudo guardar el centro #{r['full_name']} para el usuario #{user.name} con id #{user.id}"
-          end
-
-        when 'cluster'
-          unless r.key?('cluster_name')
-            raise "Formato del archivo con perfil de Cluster no es valido"
-          end
-
-          cluster = nil
-          if cluster = Cluster.find_by_name(r['cluster_name'])
-            cluster.user_id = user.id
-          else
-            cluster = Cluster.new(user_id: user.id, name: r['cluster_name'])
-          end
-
-          unless cluster.save
-            raise "No se pudo guardar el cluter #{r['cluster_name']} para el usuario #{user.name} con id #{user.id}"
-          end
-
-        when 'company'
-          unless r.key?('company_name') && r.key?('industry') && r.key?('reniecyt') && r.key?('location')
-            raise "Formato del archivo con perfil de compañia no es valido"
-          end
-
-          company = nil
-          if company = Company.find_by_name(r['company_name'])
-            company.user = user
-          else
-            company = Company.new(user: user,
-                                  name: r['company_name'],
-                                  industry: r['industry'],
-                                  reniecyt: r['reniecyt'],
-                                  location: r['location'])
-          end
-
-          unless company.save
-            raise "No se pudo guardar la compañia #{r['company_name']} para el usuario #{user.name} con id #{user.id}"
-          end
-
-        when 'entrepreneur'
-          unless r.key?('organization')
-            raise "Formato del archivo con perfil de emprendedor no es valido"
-          end
-
-          entrepreneur = nil
-          if entrepreneur = Entrepreneur.find_by_organization(r['organization'])
-            entrepreneur.user = user
-          else
-            entrepreneur = Entrepreneur.new(user: user,
-                                            organization: r['organization'])
-          end
-
-          unless entrepreneur.save
-            raise "No se pudo guardar el perfil emprendedor de #{r['organization']} para el usuario #{user.name} con id #{user.id}"
-          end
-
-        when 'researcher'
-          raise "El usuario #{user.name} con id #{user.id} no tiene el rol de investigador." unless user.investigador?
-
-          unless user.researcher
-            researcher = Researcher.new(user: user)
-
-            unless researcher.save
-              raise "No se pudo guardar el investigador con el usuario #{user.name} con id #{user.id}"
-            end
-          end
-
-        else
-          raise "Nombre del perfil invalido para el usuario #{user.name} con id #{user.id}"
+      if user.center_admin?
+        unless r.key?('full_name') && r.key?('short_name') && r.key?('website') && r.key?('address')
+          raise "Formato del archivo con perfil de Centro no es valido"
         end
+
+        center = nil
+        if center = Center.find_by_full_name(r['full_name'])
+          center.user = user
+        else
+          center = Center.new(user: user,
+                              full_name: r['full_name'],
+                              short_name: r['short_name'],
+                              website: r['website'],
+                              address: r['address'],
+                              start_date: Time.now,
+                              director_name: "Importado desde archivo CSV",
+                              director_email: "Importado desde archivo CSV",
+                              director_phone: "Importado desde archivo CSV")
+        end
+
+        unless center.save
+          raise "No se pudo guardar el centro #{r['full_name']} para el usuario #{user.name} con id #{user.id}"
+        end
+
+      if user.cluster_admin?
+        unless r.key?('cluster_name')
+          raise "Formato del archivo con perfil de Cluster no es valido"
+        end
+
+        cluster = nil
+        if cluster = Cluster.find_by_name(r['cluster_name'])
+          cluster.user_id = user.id
+        else
+          cluster = Cluster.new(user_id: user.id, name: r['cluster_name'])
+        end
+
+        unless cluster.save
+          raise "No se pudo guardar el cluter #{r['cluster_name']} para el usuario #{user.name} con id #{user.id}"
+        end
+
+      if user.company_user?
+        unless r.key?('company_name') && r.key?('industry') && r.key?('reniecyt') && r.key?('location')
+          raise "Formato del archivo con perfil de compañia no es valido"
+        end
+
+        company = nil
+        if company = Company.find_by_name(r['company_name'])
+          company.user = user
+        else
+          company = Company.new(user: user,
+                                name: r['company_name'],
+                                industry: r['industry'],
+                                reniecyt: r['reniecyt'],
+                                location: r['location'])
+        end
+
+        unless company.save
+          raise "No se pudo guardar la compañia #{r['company_name']} para el usuario #{user.name} con id #{user.id}"
+        end
+
+      if user.entrepreneur?
+        unless r.key?('organization')
+          raise "Formato del archivo con perfil de emprendedor no es valido"
+        end
+
+        entrepreneur = nil
+        if entrepreneur = Entrepreneur.find_by_organization(r['organization'])
+          entrepreneur.user = user
+        else
+          entrepreneur = Entrepreneur.new(user: user,
+                                          organization: r['organization'])
+        end
+
+        unless entrepreneur.save
+          raise "No se pudo guardar el perfil emprendedor de #{r['organization']} para el usuario #{user.name} con id #{user.id}"
+        end
+
+      if user.investigador?
+        raise "El usuario #{user.name} con id #{user.id} no tiene el rol de investigador." unless user.investigador?
+
+        unless user.researcher
+          researcher = Researcher.new(user: user)
+
+          unless researcher.save
+            raise "No se pudo guardar el investigador con el usuario #{user.name} con id #{user.id}"
+          end
+        end
+
+      else
+        raise "Rol invalido para el usuario #{user.name} con id #{user.id}, el rol #{user.role} no es válido"
       end
 
+      unless user.save
+        raise "No se pudo guardar el usuario #{user.name}"
+      end
     end
   end
 

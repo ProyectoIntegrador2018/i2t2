@@ -14,56 +14,56 @@
     <div class="tab-content" id="v-pills-tabContent">
       <div class="tab-pane fade show active" id="v-pills-users" role="tabpanel" aria-labelledby="v-pills-users-tab">
         <p>
-          El valor de <code>role</code> solo puede ser <code>usuario_general</code>.
+          El valor de <code>role</code> solo puede ser <code>usuario_general</code> o <code>moderador</code>.
           Tiene que seguir el siguiente formato:
         </p>
         <code>email,role,password,name,organization,job,contact_telephone,office_telephone</code><br>
         <code>usuario1@email.com,usuario_general,contraseña,Nombre del Usuario,Organización A,Administración,8140707726,8162226958</code><br>
-        <code>usuario2@email.com,usuario_general,contraseña,Nombre del Usuario,Organización B,Dirección,8140747726,8192226958</code><br>
+        <code>usuario2@email.com,moderador,contraseña,Nombre del Usuario,Organización B,Dirección,8140747726,8192226958</code><br>
         ...
       </div>
 
       <div class="tab-pane fade" id="v-pills-centers" role="tabpanel" aria-labelledby="v-pills-centers-tab">
         <p>
-          El valor de <code>role</code> solo puede ser <code>moderador</code>. En <code>profile</code> solo puede tener el valor de <code>center</code> para que identifique que se va a importar con un centro ligado.
+          El valor de <code>role</code> solo puede ser <code>admin_centro_inv</code>. En <code>profile</code> solo puede tener el valor de <code>center</code> para que identifique que se va a importar con un centro ligado.
           Tiene que seguir el siguiente formato:
         </p>
         <code>email,role,password,name,organization,job,contact_telephone,office_telephone,profile,full_name,short_name,website,address</code><br>
-        <code>usuario1@email.com,moderador,contraseña,Nombre del Usuario,Organización A,Administración,8140707726,8162226958,center,Centro A,CA,centroa.com,Dirección de centro A</code><br>
-        <code>usuario2@email.com,moderador,contraseña,Nombre del Usuario,Organización B,Director,8140747726,8192226958,center,Centro B,CB,centrob.com,Dirección de centro B</code><br>
+        <code>usuario1@email.com,admin_centro_inv,contraseña,Nombre del Usuario,Organización A,Administración,8140707726,8162226958,center,Centro A,CA,centroa.com,Dirección de centro A</code><br>
+        <code>usuario2@email.com,admin_centro_inv,contraseña,Nombre del Usuario,Organización B,Director,8140747726,8192226958,center,Centro B,CB,centrob.com,Dirección de centro B</code><br>
         ...
       </div>
 
       <div class="tab-pane fade" id="v-pills-clusters" role="tabpanel" aria-labelledby="v-pills-clusters-tab">
         <p>
-          El valor de <code>role</code> solo puede ser <code>moderador</code>. En <code>profile</code> solo puede tener el valor de <code>cluster</code> para que identifique que se va a importar con un cluster ligado.
+          El valor de <code>role</code> solo puede ser <code>admin_cluster</code>. En <code>profile</code> solo puede tener el valor de <code>cluster</code> para que identifique que se va a importar con un cluster ligado.
           Tiene que seguir el siguiente formato:
         </p>
         <code>email,role,password,name,organization,job,contact_telephone,office_telephone,profile,cluster_name</code><br>
-        <code>usuario1@email.com,moderador,contraseña,Nombre del Usuario,Organización A,Administración,8140707726,8162226958,cluster,Cluster A</code><br>
-        <code>usuario2@email.com,moderador,contraseña,Nombre del Usuario,Organización B,Dirección,8140747726,8192226958,cluster,Cluster B</code><br>
+        <code>usuario1@email.com,admin_cluster,contraseña,Nombre del Usuario,Organización A,Administración,8140707726,8162226958,cluster,Cluster A</code><br>
+        <code>usuario2@email.com,admin_cluster,contraseña,Nombre del Usuario,Organización B,Dirección,8140747726,8192226958,cluster,Cluster B</code><br>
         ...
       </div>
 
       <div class="tab-pane fade" id="v-pills-companies" role="tabpanel" aria-labelledby="v-pills-companies-tab">
         <p>
-          El valor de <code>role</code> solo puede ser <code>moderador</code>. En <code>profile</code> solo puede tener el valor de <code>company</code> para que identifique que se va a importar con una compañía ligado.
+          El valor de <code>role</code> solo puede ser <code>usuario_empresa</code>. En <code>profile</code> solo puede tener el valor de <code>company</code> para que identifique que se va a importar con una compañía ligado.
           Tiene que seguir el siguiente formato:
         </p>
         <code>email,role,password,name,organization,job,contact_telephone,office_telephone,profile,company_name,industry,reniecyt,location</code><br>
-        <code>usuario1@email.com,moderador,contraseña,Nombre del Usuario,Organización A,Administración,8140707726,8162226958,company,Compañía A,Manufactura,RENIECYT,Nuevo León</code><br>
-        <code>usuario2@email.com,moderador,contraseña,Nombre del Usuario,Organización B,Director,8140747726,8192226958,company,Compañía B,Agricultura,RENIECYT,Sinaloa</code><br>
+        <code>usuario1@email.com,usuario_empresa,contraseña,Nombre del Usuario,Organización A,Administración,8140707726,8162226958,company,Compañía A,Manufactura,RENIECYT,Nuevo León</code><br>
+        <code>usuario2@email.com,usuario_empresa,contraseña,Nombre del Usuario,Organización B,Director,8140747726,8192226958,company,Compañía B,Agricultura,RENIECYT,Sinaloa</code><br>
         ...
       </div>
 
       <div class="tab-pane fade" id="v-pills-entrepreneurs" role="tabpanel" aria-labelledby="v-pills-entrepreneurs-tab">
         <p>
-          El valor de <code>role</code> puede ser <code>usuario_general</code> o <code>moderador</code>. En <code>profile</code> solo puede tener el valor de <code>entrepreneur</code> para que identifique que se va a importar con un perfil de emprendedor ligado.
+          El valor de <code>role</code> solo puede ser <code>usuario_emprendedor</code>. En <code>profile</code> solo puede tener el valor de <code>entrepreneur</code> para que identifique que se va a importar con un perfil de emprendedor ligado.
           Tiene que seguir el siguiente formato:
         </p>
         <code>email,role,password,name,organization,job,contact_telephone,office_telephone,profile,organization</code><br>
-        <code>usuario1@email.com,moderador,contraseña,Nombre del Usuario,Organización A,Administración,8140707726,8162226958,entrepreneur,Startup A</code><br>
-        <code>usuario2@email.com,moderador,contraseña,Nombre del Usuario,Organización B,Dirección,8140747726,8192226958,entrepreneur,Startup B</code><br>
+        <code>usuario1@email.com,usuario_emprendedor,contraseña,Nombre del Usuario,Organización A,Administración,8140707726,8162226958,entrepreneur,Startup A</code><br>
+        <code>usuario2@email.com,usuario_emprendedor,contraseña,Nombre del Usuario,Organización B,Dirección,8140747726,8192226958,entrepreneur,Startup B</code><br>
         ...
       </div>
 
@@ -73,8 +73,8 @@
           Tiene que seguir el siguiente formato:
         </p>
         <code>email,role,password,name,organization,job,contact_telephone,office_telephone,profile</code><br>
-        <code>usuario1@email.com,moderador,contraseña,Nombre del Usuario,Organización A,Administración,8140707726,8162226958,researcher</code><br>
-        <code>usuario2@email.com,moderador,contraseña,Nombre del Usuario,Organización B,Dirección,8140747726,8192226958,researcher</code><br>
+        <code>usuario1@email.com,investigador,contraseña,Nombre del Usuario,Organización A,Administración,8140707726,8162226958,researcher</code><br>
+        <code>usuario2@email.com,investigador,contraseña,Nombre del Usuario,Organización B,Dirección,8140747726,8192226958,researcher</code><br>
         ...
       </div>
     </div>
