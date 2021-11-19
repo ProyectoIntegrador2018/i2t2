@@ -1,5 +1,5 @@
-# Sistema Estatal de Información para Impulsar el Conocimiento y la Innovación Tecnológica (SEIICIT)
-El Sistema Estatal de Información para Impulsar el Conocimiento y la Innovación Tecnológica (SEIICIT) es una plataforma web que integra información accionable y actualizada relacionada a Ciencia, Tecnología e Innovación del estado de Nuevo León, México, que permita la toma de decisiones para mejores políticas públicas.
+# Sistema de Información para Impulsar el Conocimiento y la Innovación Tecnológica
+El Sistema de Información para Impulsar el Conocimiento y la Innovación Tecnológica es una plataforma web que integra información accionable y actualizada relacionada a CTI.
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/93c30356afc8ec073de1/maintainability)](https://codeclimate.com/github/ProyectoIntegrador2018/i2t2/maintainability)
 
