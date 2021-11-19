@@ -15,9 +15,9 @@ El Sistema Estatal de Información para Impulsar el Conocimiento y la Innovació
 
 ## Detalles del cliente
 
-| Nombre             | Email                    | Rol  |
-| ------------------ | ------------------------ | ---- |
-| Saul Gonzalez Oliva| saul.gonzalez@mtycic.org | I2T2 |
+| Email                    | Rol  |
+| ------------------------ | ---- |
+| sistemas@mtycic.org | I2T2 |
 
 
 
